@@ -76,7 +76,7 @@ public class PolyCubicSplineFast{
             if(this.xArrays instanceof double[] && this.nDimensions == 1){
                 double[][] xArraysTemp = new double[1][];
                 xArraysTemp[0] = (double[])this.xArrays;
-                this.xArrays = (Object)xArraysTemp;
+                this.xArrays = xArraysTemp;
             }
             else{
                if(!(this.xArrays instanceof double[][]))throw new IllegalArgumentException("xArrays should be a two dimensional array of doubles");
@@ -90,11 +90,11 @@ public class PolyCubicSplineFast{
                 case 0: throw new IllegalArgumentException("data array must have at least one dimension");
                 case 1:     // If fOfX is one dimensional perform simple cubic spline
                             CubicSplineFast cs = new CubicSplineFast(this.xArray[0], (double[])this.fOfX);
-                            this.method = (Object)cs;
+                            this.method = cs;
                             break;
                 case 2:     // If fOfX is two dimensional perform bicubic spline
                             BiCubicSplineFast bcs = new BiCubicSplineFast(this.xArray[0], this.xArray[1], (double[][])this.fOfX);
-                            this.method = (Object)bcs;
+                            this.method = bcs;
                             break;
                 default:    // If fOfX is greater than four dimensional, recursively call PolyCubicSplineFast
                             //  with, as arguments, the n1 fOfX sub-arrays, each of (number of dimensions - 1) dimensions,
@@ -109,7 +109,7 @@ public class PolyCubicSplineFast{
 
                             this.pcs = new PolyCubicSplineFast[dimOne];
                             for(int i=0; i<dimOne; i++){
-                                Object objT = (Object)Array.get(obj, i);
+                                Object objT = Array.get(obj, i);
                                 this.pcs[i] = new PolyCubicSplineFast(newXarrays, objT);
                             }
             }

@@ -737,7 +737,7 @@ public class Phasor{
                 b.magnitude = this.magnitude;
                 b.phaseInDeg = this.phaseInDeg;
                 b.phaseInRad = this.phaseInRad;
-                ret = (Object)b;
+                ret = b;
             }
 
             return ret;
@@ -920,7 +920,7 @@ public class Phasor{
 
         // Multiply an int by this Phasor and replace this with the product
         public void timesEquals(int constant ){
-                this.magnitude *= (double)constant;
+                this.magnitude *= constant;
         }
 
         // Multiply exp(omega.time) by this Phasor and replace this with the product
@@ -1014,7 +1014,7 @@ public class Phasor{
 
         // Divide this Phasor by an int and replace this with the quotient
         public void overEquals(int constant ){
-                this.magnitude /= (double)constant;
+                this.magnitude /= constant;
         }
 
         // FURTHER MATHEMATICAL FUNCTIONS
@@ -1733,7 +1733,7 @@ public class Phasor{
                 }
                 Complex com = Impedance.inductanceImpedance(inductance, Phasor.omega);
                 Phasor ph = new Phasor();
-                return ph.toPhasor(com);
+                return Phasor.toPhasor(com);
         }
 
         // capacitance as a phasor
@@ -1747,7 +1747,7 @@ public class Phasor{
                 }
                 Complex com = Impedance.capacitanceImpedance(capacitance, Phasor.omega);
                 Phasor ph = new Phasor();
-                return ph.toPhasor(com);
+                return Phasor.toPhasor(com);
         }
 
         // infinite warburg impedance as a phasor
@@ -1761,7 +1761,7 @@ public class Phasor{
                 }
                 Complex com = Impedance.infiniteWarburgImpedance(sigma, Phasor.omega);
                 Phasor ph = new Phasor();
-                return ph.toPhasor(com);
+                return Phasor.toPhasor(com);
         }
 
         // finite warburg impedance as a phasor
@@ -1775,7 +1775,7 @@ public class Phasor{
                 }
                 Complex com = Impedance.finiteWarburgImpedance(sigma, delta, Phasor.omega);
                 Phasor ph = new Phasor();
-                return ph.toPhasor(com);
+                return Phasor.toPhasor(com);
         }
 
         // constant phase elelemnt a phasor
@@ -1789,6 +1789,6 @@ public class Phasor{
                 }
                 Complex com = Impedance.constantPhaseElementImpedance(sigma, alpha, Phasor.omega);
                 Phasor ph = new Phasor();
-                return ph.toPhasor(com);
+                return Phasor.toPhasor(com);
         }
 }

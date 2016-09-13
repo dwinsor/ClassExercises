@@ -914,14 +914,14 @@ public class RealRoot{
     // when flag returnNaN = true exceptions resulting from a bound being NaN do not halt the prorgam but return NaN
     // required by PsRandom and Stat classes calling RealRoot
     public void resetStaticNaNexceptionToTrue(){
-        this.staticReturnNaN = true;
+        RealRoot.staticReturnNaN = true;
     }
 
     // Reset exception handling for NaN bound flag to false for static methods
     // when flag returnNaN = false exceptions resulting from a bound being NaN  halts the prorgam
     // required by PsRandom and Stat classes calling RealRoot
     public void resetStaticNaNexceptionToFalse(){
-        this.staticReturnNaN= false;
+        RealRoot.staticReturnNaN= false;
     }
 
 

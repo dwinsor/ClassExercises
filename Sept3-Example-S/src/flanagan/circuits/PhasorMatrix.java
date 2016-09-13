@@ -399,7 +399,7 @@ public class PhasorMatrix{
             		}
         	    }
         	    for(int i=0; i<nr; i++)b.index[i] = this.index[i];
-        	    return (Object) b;
+        	    return b;
         	}
     	}
 
@@ -921,7 +921,7 @@ public class PhasorMatrix{
 
    	    // Multiply this matrix by a real integer(int) constant [equivalence of *=]
     	public void timesEquals(int constant){
-        	Phasor cconstant = new Phasor((double)constant, 0.0);
+        	Phasor cconstant = new Phasor(constant, 0.0);
 
         	for(int i=0; i<this.nrow; i++){
             		for(int j=0; j<this.ncol; j++){

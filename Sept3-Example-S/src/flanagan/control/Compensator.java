@@ -193,6 +193,6 @@ public class Compensator extends BlackBox{
 
     // Clone - overrides Java.Object method clone
     public Object clone(){
-        return (Object)this.copy();
+        return this.copy();
     }
 }

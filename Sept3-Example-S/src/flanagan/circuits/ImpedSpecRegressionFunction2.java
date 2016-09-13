@@ -34,7 +34,6 @@
 
 package flanagan.circuits;
 
-import flanagan.io.*;
 import flanagan.complex.Complex;
 import flanagan.analysis.RegressionFunction2;
 

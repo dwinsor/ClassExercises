@@ -166,7 +166,7 @@ public class PropDeriv extends BlackBox{
 
         // Calculate time course outputs
         int n = 51;                             // number of points on plot
-        double incrT = finalTime/(double)(n-2); // plotting increment
+        double incrT = finalTime/(n-2); // plotting increment
         double cdata[][] = new double [2][n];   // plotting array
 
         cdata[0][0]=0.0D;
@@ -209,7 +209,7 @@ public class PropDeriv extends BlackBox{
         else{
             // Calculate time course outputs
             int n = 50;                             // number of points on plot
-            double incrT = finalTime/(double)(n-1); // plotting increment
+            double incrT = finalTime/(n-1); // plotting increment
             double cdata[][] = new double [2][n];   // plotting array
             double sum = 0.0D;                      // integration sum
 
@@ -313,6 +313,6 @@ public class PropDeriv extends BlackBox{
 
     // Clone - overrides Java.Object method clone
     public Object clone(){
-        return (Object)this.copy();
+        return this.copy();
     }
 }

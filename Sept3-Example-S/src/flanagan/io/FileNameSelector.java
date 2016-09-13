@@ -38,8 +38,6 @@ package flanagan.io;
 
 import javax.swing.*;
 import java.io.*;
-import java.util.*;
-import javax.swing.filechooser.*;
 
 public class FileNameSelector{
 

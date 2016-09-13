@@ -238,7 +238,7 @@ public class PropIntDeriv extends BlackBox{
 
         // Calculate time course outputs
         int n = 50;                             // number of points on plot
-        double incrT = finalTime/(double)(n-1); // plotting increment
+        double incrT = finalTime/(n-1); // plotting increment
         double cdata[][] = new double [2][n];   // plotting array
         double sum = 0.0D;                      // integration sum
 
@@ -280,7 +280,7 @@ public class PropIntDeriv extends BlackBox{
         else{
             // Calculate time course outputs
             int n = 50;                             // number of points on plot
-            double incrT = finalTime/(double)(n-1); // plotting increment
+            double incrT = finalTime/(n-1); // plotting increment
             double cdata[][] = new double [2][n];   // plotting array
             double sum = 0.0D;                      // integration sum
 
@@ -288,7 +288,7 @@ public class PropIntDeriv extends BlackBox{
             cdata[1][0]=0.0D;
             for(int i=1; i<n; i++){
                 cdata[0][i]=cdata[0][i-1]+incrT;
-                sum += ki*rampGradient*(Math.pow(cdata[0][i],rampOrder+1) - Math.pow(cdata[0][i-1],rampOrder+1))/(double)(rampOrder+1);
+                sum += ki*rampGradient*(Math.pow(cdata[0][i],rampOrder+1) - Math.pow(cdata[0][i-1],rampOrder+1))/(rampOrder+1);
                 cdata[1][i] = this.kp*rampGradient*Math.pow(cdata[0][i],rampOrder) + sum;
             }
             if(super.deadTime!=0.0D)for(int i=0; i<n; i++)cdata[0][i] += super.deadTime;
@@ -439,6 +439,6 @@ public class PropIntDeriv extends BlackBox{
 
     // Clone - overrides Java.Object method clone
     public Object clone(){
-        return (Object)this.copy();
+        return this.copy();
     }
 }

@@ -143,7 +143,7 @@ public class SurfaceSmooth{
         for(int i=0; i<n; i++)this.yData[i] = i;
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
-                this.zData[i][j] = (double)z[i][j];
+                this.zData[i][j] = z[i][j];
             }
         }
         this.polyIndices();
@@ -176,7 +176,7 @@ public class SurfaceSmooth{
         for(int i=0; i<n; i++)this.yData[i] = i;
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
-                this.zData[i][j] = (double)z[i][j];
+                this.zData[i][j] = z[i][j];
             }
         }
         this.polyIndices();
@@ -209,7 +209,7 @@ public class SurfaceSmooth{
         for(int i=0; i<n; i++)this.yData[i] = i;
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
-                this.zData[i][j] = (double)z[i][j];
+                this.zData[i][j] = z[i][j];
             }
         }
         this.polyIndices();

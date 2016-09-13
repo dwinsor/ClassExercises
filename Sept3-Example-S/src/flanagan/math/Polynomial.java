@@ -78,7 +78,7 @@ public class Polynomial{
                 this.deg =aa.length-1;
                 coeff = new double[this.deg+1];
                 for(int i=0; i<=deg; i++){
-                        this.coeff[i] = (double)aa[i];
+                        this.coeff[i] = aa[i];
                 }
         }
 
@@ -87,7 +87,7 @@ public class Polynomial{
                 this.deg =aa.length-1;
                 coeff = new double[this.deg+1];
                 for(int i=0; i<=deg; i++){
-                        this.coeff[i] = (double)aa[i];
+                        this.coeff[i] = aa[i];
                 }
         }
 
@@ -96,7 +96,7 @@ public class Polynomial{
                 this.deg =aa.length-1;
                 coeff = new double[this.deg+1];
                 for(int i=0; i<=deg; i++){
-                        this.coeff[i] = (double)aa[i];
+                        this.coeff[i] = aa[i];
                 }
         }
 
@@ -106,7 +106,7 @@ public class Polynomial{
                 this.deg = aa.size()-1;
                 coeff = new double[this.deg+1];
                 for(int i=0; i<=deg; i++){
-                    int code = this.getTypeCode((Object)aa.get(i));
+                    int code = this.getTypeCode(aa.get(i));
                     switch(code){
                         case 1: // Byte
                                 this.coeff[i] = (double)((Byte)aa.get(i));
@@ -127,10 +127,10 @@ public class Polynomial{
                                 this.coeff[i] = (double)((Double)aa.get(i));
                                 break;
                         case 7: // BigInteger
-                                this.coeff[i] = (double)((BigInteger)aa.get(i)).doubleValue();
+                                this.coeff[i] = ((BigInteger)aa.get(i)).doubleValue();
                                 break;
                         case 8:// BigDecimal
-                                this.coeff[i] = (double)((BigDecimal)aa.get(i)).doubleValue();
+                                this.coeff[i] = ((BigDecimal)aa.get(i)).doubleValue();
                                 break;
                         default: throw new IllegalArgumentException("Type code, " + code + ", not recognised");
                     }
@@ -327,7 +327,7 @@ public class Polynomial{
         public void resetPoly(ArrayList<Object> aa){
                 if((this.deg+1)!=aa.size())throw new IllegalArgumentException("array lengths do not match");
                 for(int i=0; i<=deg; i++){
-                    int code = this.getTypeCode((Object)aa.get(i));
+                    int code = this.getTypeCode(aa.get(i));
                     switch(code){
                         case 1: // Byte
                                 this.coeff[i] = (double)((Byte)aa.get(i));
@@ -400,7 +400,7 @@ public class Polynomial{
 
         // Clone a Polynomial
         public Object clone(){
-                return (Object) this.copy();
+                return this.copy();
         }
 
         // Return a copy of the polynomial coefficients

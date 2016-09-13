@@ -263,9 +263,9 @@ public class DataType{
     public final Object[] getTypeData(){
         Object[] ret = new Object[3];
         if(!this.typeFound)this.inner();
-        ret[0] = (Object)this.objTypeName;
-        ret[1] = (Object)(new Integer(this.objTypeDim));
-        ret[2] = (Object)(new Integer(this.objTypeCode));
+        ret[0] = this.objTypeName;
+        ret[1] = (new Integer(this.objTypeDim));
+        ret[2] = (new Integer(this.objTypeCode));
         return ret;
     }
         
@@ -479,7 +479,7 @@ public class DataType{
                                                 break;
                                     }
                                 }
-                                this.highestArray = (Object)bd;
+                                this.highestArray = bd;
                                 break;
                         case 2: BigInteger[] bi = new BigInteger[this.nArrayElements]; 
                                 for(int i=0; i<this.nArrayElements;i++){
@@ -504,7 +504,7 @@ public class DataType{
                                                 break;
                                     }
                                 }
-                                this.highestArray = (Object)bi;
+                                this.highestArray = bi;
                                 break;
                         case 3: Double[] dd = new Double[this.nArrayElements]; 
                                 for(int i=0; i<this.nArrayElements;i++){
@@ -527,7 +527,7 @@ public class DataType{
                                                 break;
                                     }
                                 }
-                                this.highestArray = (Object)dd;
+                                this.highestArray = dd;
                                 break;
                         case 4: Float[] ff = new Float[this.nArrayElements]; 
                                 for(int i=0; i<this.nArrayElements;i++){
@@ -548,7 +548,7 @@ public class DataType{
                                                 break;
                                     }
                                 }
-                                this.highestArray = (Object)ff;
+                                this.highestArray = ff;
                                 break;
                         case 5: Long[] ll = new Long[this.nArrayElements]; 
                                 for(int i=0; i<this.nArrayElements;i++){
@@ -567,7 +567,7 @@ public class DataType{
                                                 break;
                                     }
                                 }
-                                this.highestArray = (Object)ll;
+                                this.highestArray = ll;
                                 break;
                         case 6: Integer[] ii = new Integer[this.nArrayElements]; 
                                 for(int i=0; i<this.nArrayElements;i++){
@@ -584,7 +584,7 @@ public class DataType{
                                                 break;
                                     }
                                 }
-                                this.highestArray = (Object)ii;
+                                this.highestArray = ii;
                                 break;
                         case 7: Integer[] ci = new Integer[this.nArrayElements]; 
                                 for(int i=0; i<this.nArrayElements;i++){
@@ -599,7 +599,7 @@ public class DataType{
                                                 break;
                                     }
                                 }
-                                this.highestArray = (Object)ci;
+                                this.highestArray = ci;
                                 break;
                         case 8: Short[] ss = new Short[this.nArrayElements]; 
                                 for(int i=0; i<this.nArrayElements;i++){
@@ -612,7 +612,7 @@ public class DataType{
                                                 break;
                                     }
                                 }
-                                this.highestArray = (Object)ss;
+                                this.highestArray = ss;
                                 break;
                         case 9: Byte[] bb = new Byte[this.nArrayElements]; 
                                 for(int i=0; i<this.nArrayElements;i++){
@@ -623,7 +623,7 @@ public class DataType{
                                                 break;
                                     }
                                 }
-                                this.highestArray = (Object)bb;
+                                this.highestArray = bb;
                                 break;
                     }
                     this.highestDone = true;

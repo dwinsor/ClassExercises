@@ -35,10 +35,6 @@
 
 package flanagan.math;
 
-import java.util.*;
-import flanagan.math.Fmath;
-import flanagan.io.FileOutput;
-
 
 // Maximization class
 public class Maximization extends Maximisation{

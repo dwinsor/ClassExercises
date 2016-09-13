@@ -720,6 +720,6 @@ public class Gradient{
     }
     
     public Object clone(){
-        return (Object)this.copy();
+        return this.copy();
     }   
 }

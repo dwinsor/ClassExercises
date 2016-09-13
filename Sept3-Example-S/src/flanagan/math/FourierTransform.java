@@ -15,7 +15,7 @@
 *   AUTHOR: Dr Michael Thomas Flanagan
 *   DATE:       20 December 2003
 *   UPDATES:    26 July 2004, 31 August 2004, 15 June 2005, 27 January 2006
-*   UPDATES:    18 February 2006  method correlation correction (thanks to Daniel Mader, Universtät Freiburg -- IMTEK)
+*   UPDATES:    18 February 2006  method correlation correction (thanks to Daniel Mader, Universtï¿½t Freiburg -- IMTEK)
                 7 July 2008
 *
 *   DOCUMENTATION:
@@ -40,14 +40,11 @@
 
 package flanagan.math;
 
-import flanagan.math.*;
 import flanagan.io.*;
 import java.io.Serializable;
 import flanagan.complex.*;
 import flanagan.plot.*;
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import javax.swing.JFrame;
 
 
@@ -1164,7 +1161,7 @@ public class FourierTransform extends Canvas implements Serializable{
 
             // Calculate frequencies
 		    for(int i=0; i<this.psdNumberOfPoints; i++){
-		         this.powerSpectrumEstimate[0][i] = (double)i/((double)this.segmentLength*this.deltaT);
+		         this.powerSpectrumEstimate[0][i] = i/(this.segmentLength*this.deltaT);
 		    }
         }
 		else{
@@ -1236,7 +1233,7 @@ public class FourierTransform extends Canvas implements Serializable{
 
             // Calculate frequencies
 		    for(int i=0; i<this.psdNumberOfPoints; i++){
-		         this.powerSpectrumEstimate[0][i] = (double)i/((double)this.segmentLength*this.deltaT);
+		         this.powerSpectrumEstimate[0][i] = i/(this.segmentLength*this.deltaT);
 		    }
 
 		}
@@ -1315,7 +1312,7 @@ public class FourierTransform extends Canvas implements Serializable{
 
         // Calculate frequencies
 		for(int i=0; i<this.psdNumberOfPoints; i++){
-		    avePSD[0][i] = (double)i/((double)this.segmentLength*this.deltaT);
+		    avePSD[0][i] = i/(this.segmentLength*this.deltaT);
 	    }
 
         return avePSD;
@@ -1430,7 +1427,7 @@ public class FourierTransform extends Canvas implements Serializable{
 
         // Calculate frequencies
 		for(int i=0; i<this.psdNumberOfPoints; i++){
-		    avePSD[0][i] = (double)i/((double)this.segmentLength*this.deltaT);
+		    avePSD[0][i] = i/(this.segmentLength*this.deltaT);
 	    }
 
         return avePSD;
@@ -2170,9 +2167,9 @@ public class FourierTransform extends Canvas implements Serializable{
 	// windowLength is the length of the window in time units
 	public double[][] shortTime(double windowTime){
 	    int windowLength = (int)Math.round(windowTime/this.deltaT);
-	    if(!this.checkPowerOfTwo(windowLength)){
-            int low = this.lastPowerOfTwo(windowLength);
-            int high = this.nextPowerOfTwo(windowLength);
+	    if(!FourierTransform.checkPowerOfTwo(windowLength)){
+            int low = FourierTransform.lastPowerOfTwo(windowLength);
+            int high = FourierTransform.nextPowerOfTwo(windowLength);
 
             if((windowLength - low)<=(high-windowLength)){
                 windowLength = low;
@@ -2209,12 +2206,12 @@ public class FourierTransform extends Canvas implements Serializable{
         this.numShortFreq = windowLength/2;
         this.timeFrequency = new double[this.numShortFreq+1][this.numShortTimes+1];
         this.timeFrequency[0][0]=0.0D;
-        this.timeFrequency[0][1]=(double)(windowLength-1)*this.deltaT/2.0D;
+        this.timeFrequency[0][1]=(windowLength-1)*this.deltaT/2.0D;
         for(int i=2;i<=this.numShortTimes;i++){
             this.timeFrequency[0][i] = this.timeFrequency[0][i-1] + this.deltaT;
         }
         for(int i=0;i<this.numShortFreq;i++){
-            this.timeFrequency[i+1][0] = (double)i/((double)windowLength*this.deltaT);
+            this.timeFrequency[i+1][0] = i/(windowLength*this.deltaT);
         }
 
         // set up window details

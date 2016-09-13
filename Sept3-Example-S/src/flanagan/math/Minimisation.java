@@ -130,13 +130,13 @@ public class Minimisation{
 
     // Nelder and Mead Simplex minimisation
     public void nelderMead(MinimisationFunction gg, double[] start, double[] step, double fTol, int nMax){
-        Object g = (Object)gg;
+        Object g = gg;
         this.nelderMead(g, start, step, fTol, nMax);
     }
 
     // Nelder and Mead Simplex minimisation
     public void nelderMead(MinimizationFunction gg, double[] start, double[] step, double fTol, int nMax){
-        Object g = (Object)gg;
+        Object g = gg;
         this.nelderMead(g, start, step, fTol, nMax);
     }
 
@@ -415,7 +415,7 @@ public class Minimisation{
 	                ilo=i;
 	            }
 	        }
-	        sumnm /= (double)(nnp);
+	        sumnm /= (nnp);
 	        summnm=0.0;
 	        for (int i=0; i<nnp; ++i){
 		        zn=yy[i]-sumnm;

@@ -50,21 +50,21 @@ import flanagan.circuits.Phasor;
 public class Conv{
 
    
-    private static  double max_float_as_double  = (double)Float.MAX_VALUE;
-    private static  double max_long_as_double   = (double)Long.MAX_VALUE;
-    private static  double max_long_as_float    = (float)Long.MAX_VALUE;
-    private static  double max_int_as_double    = (double)Integer.MAX_VALUE;
-    private static  double max_int_as_float     = (float)Integer.MAX_VALUE;
-    private static  double max_int_as_long      = (long)Integer.MAX_VALUE;
-    private static  double max_short_as_double  = (double)Short.MAX_VALUE;
-    private static  double max_short_as_long    = (long)Short.MAX_VALUE;
-    private static  double max_short_as_float   = (float)Short.MAX_VALUE;
-    private static  double max_short_as_int     = (int)Short.MAX_VALUE;
-    private static  double max_byte_as_double   = (double)Byte.MAX_VALUE;
-    private static  double max_byte_as_float    = (float)Byte.MAX_VALUE;
-    private static  double max_byte_as_long     = (long)Byte.MAX_VALUE;
-    private static  double max_byte_as_int      = (int)Byte.MAX_VALUE;
-    private static  double max_byte_as_short    = (short)Byte.MAX_VALUE;
+    private static  double max_float_as_double  = Float.MAX_VALUE;
+    private static  double max_long_as_double   = Long.MAX_VALUE;
+    private static  double max_long_as_float    = Long.MAX_VALUE;
+    private static  double max_int_as_double    = Integer.MAX_VALUE;
+    private static  double max_int_as_float     = Integer.MAX_VALUE;
+    private static  double max_int_as_long      = Integer.MAX_VALUE;
+    private static  double max_short_as_double  = Short.MAX_VALUE;
+    private static  double max_short_as_long    = Short.MAX_VALUE;
+    private static  double max_short_as_float   = Short.MAX_VALUE;
+    private static  double max_short_as_int     = Short.MAX_VALUE;
+    private static  double max_byte_as_double   = Byte.MAX_VALUE;
+    private static  double max_byte_as_float    = Byte.MAX_VALUE;
+    private static  double max_byte_as_long     = Byte.MAX_VALUE;
+    private static  double max_byte_as_int      = Byte.MAX_VALUE;
+    private static  double max_byte_as_short    = Byte.MAX_VALUE;
 
     private static boolean suppressMessage = false;    // if true lack of precision messages are suppressed
     private static boolean suppressMessageAM = false;  // for use with ArrayMaths - allows suppression for all instances of ArrayMaths
@@ -392,7 +392,7 @@ public class Conv{
     }
 
     public static BigDecimal convert_float_to_BigDecimal(float x){
-        return new BigDecimal((double)x);
+        return new BigDecimal(x);
     }
 
     public static BigDecimal convert_Float_to_BigDecimal(Float xx){
@@ -1178,12 +1178,12 @@ public class Conv{
     
     // char and Character -> . . .        
     public static double convert_char_to_double(char x){
-        int xx = (int)x;
+        int xx = x;
         return Conv.convert_int_to_double(xx);
     }
     
     public static Double convert_char_to_Double(char x){
-        int xx = (int)x;
+        int xx = x;
         return Conv.convert_int_to_Double(xx);
     }
     
@@ -1198,12 +1198,12 @@ public class Conv{
     }
     
     public static float convert_char_to_float(char x){
-        int xx = (int)x;
+        int xx = x;
         return Conv.convert_int_to_float(xx);
     }
     
     public static Float convert_char_to_Float(char x){
-        int xx = (int)x;
+        int xx = x;
         return Conv.convert_int_to_Float(xx);
     }
     
@@ -1218,12 +1218,12 @@ public class Conv{
     }
       
     public static long convert_char_to_long(char x){
-        int xx = (int)x;
+        int xx = x;
         return Conv.convert_int_to_long(xx);
     }
     
     public static Long convert_char_to_Long(char x){
-        int xx = (int)x;
+        int xx = x;
         return Conv.convert_int_to_Long(xx);
     }
     
@@ -1238,11 +1238,11 @@ public class Conv{
     }
     
     public static int convert_char_to_int(char x){
-        return (int)x;
+        return x;
     }
     
     public static Integer convert_char_to_Integer(char x){
-        return new Integer((int)x);
+        return new Integer(x);
     }
     
     public static int convert_Character_to_int(Character x){
@@ -1255,12 +1255,12 @@ public class Conv{
     }
     
     public static short convert_char_to_short(char x){
-        int xx = (int)x;
+        int xx = x;
         return Conv.convert_int_to_short(xx);
     }
     
     public static Short convert_char_to_Short(char x){
-        int xx = (int)x;
+        int xx = x;
         return Conv.convert_int_to_Short(xx);
     }
     
@@ -1275,12 +1275,12 @@ public class Conv{
     }
     
     public static byte convert_char_to_byte(char x){
-        int xx = (int)x;
+        int xx = x;
         return Conv.convert_int_to_byte(xx);
     }
     
     public static Byte convert_char_to_Byte(char x){
-        int xx = (int)x;
+        int xx = x;
         return Conv.convert_int_to_Byte(xx);
     }
     

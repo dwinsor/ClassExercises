@@ -31,9 +31,6 @@
 
 package flanagan.roots;
 
-import java.util.*;
-import flanagan.math.Fmath;
-
 // Interface for RealRoot class
 // returns value of function and of the first derivative of the function whose root is required
 public interface RealRootDerivFunction{

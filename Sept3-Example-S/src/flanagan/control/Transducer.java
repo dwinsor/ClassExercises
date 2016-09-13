@@ -225,7 +225,7 @@ public class Transducer extends BlackBox{
         if(this.tConst==0.0){
             // Calculate time course outputs
             int n = 51;                             // number of points on plot
-            double incrT = finalTime/(double)(n-2); // plotting increment
+            double incrT = finalTime/(n-2); // plotting increment
             double cdata[][] = new double [2][n];   // plotting array
 
             cdata[0][0]=0.0D;
@@ -393,6 +393,6 @@ public class Transducer extends BlackBox{
 
     // Clone - overrides Java.Object method clone
     public Object clone(){
-        return (Object)this.copy();
+        return this.copy();
     }
 }

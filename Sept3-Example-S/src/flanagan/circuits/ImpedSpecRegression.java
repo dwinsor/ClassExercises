@@ -1631,7 +1631,7 @@ public class ImpedSpecRegression extends Regression{
 
         this.calculateLineFrequencies();
 
-        double[][] data = PlotGraph.data(2, this.numberOfLineFrequencies);
+        double[][] data = Plot.data(2, this.numberOfLineFrequencies);
 
         for(int i=0; i<this.numberOfFrequencies; i++){
             data[0][i] = this.realZ[this.numberOfFrequencies - i - 1];
@@ -1677,7 +1677,7 @@ public class ImpedSpecRegression extends Regression{
         this.calculateLineFrequencies();
 
         // Magnitude versus frequency
-        double[][] data = PlotGraph.data(2, this.numberOfLineFrequencies);
+        double[][] data = Plot.data(2, this.numberOfLineFrequencies);
 
         if(this.logOrLinear){
             for(int i=0; i<this.numberOfFrequencies; i++){
@@ -1756,7 +1756,7 @@ public class ImpedSpecRegression extends Regression{
         this.calculateLineFrequencies();
 
         // Magnitude versus frequency
-        double[][] data = PlotGraph.data(2, this.numberOfLineFrequencies);
+        double[][] data = Plot.data(2, this.numberOfLineFrequencies);
 
         if(this.logOrLinear){
             for(int i=0; i<this.numberOfFrequencies; i++){
@@ -1836,7 +1836,7 @@ public class ImpedSpecRegression extends Regression{
 
             this.calculateLineFrequencies();
 
-            double[][] data = PlotGraph.data(2, this.numberOfLineFrequencies);
+            double[][] data = Plot.data(2, this.numberOfLineFrequencies);
 
             if(this.logOrLinear){
                 for(int i=0; i<this.numberOfFrequencies; i++){
@@ -1923,7 +1923,7 @@ public class ImpedSpecRegression extends Regression{
 
             this.calculateLineFrequencies();
 
-            double[][] data = PlotGraph.data(2, this.numberOfLineFrequencies);
+            double[][] data = Plot.data(2, this.numberOfLineFrequencies);
 
             if(this.logOrLinear){
                 for(int i=0; i<this.numberOfFrequencies; i++){

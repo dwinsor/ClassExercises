@@ -37,9 +37,8 @@ package flanagan.plot;
 
 // Include the windowing libraries
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.JFrame;
+
 import java.io.Serializable;
 
 // Declare a class that creates a window capable of being drawn to
@@ -71,18 +70,18 @@ public class PlotGraph extends Plot implements Serializable{
     	// Rescale the y dimension of the graph window and graph
     	public void rescaleY(double yScaleFactor)
     	{
-        	this.graphHeight=(int)Math.round((double)graphHeight*yScaleFactor);
-        	super.yLen=(int)Math.round((double)super.yLen*yScaleFactor);
-        	super.yTop=(int)Math.round((double)super.yTop*yScaleFactor);
+        	this.graphHeight=(int)Math.round(graphHeight*yScaleFactor);
+        	super.yLen=(int)Math.round(super.yLen*yScaleFactor);
+        	super.yTop=(int)Math.round(super.yTop*yScaleFactor);
         	super.yBot=super.yTop + super.yLen;
     	}
 
     	// Rescale the x dimension of the graph window and graph
     	public void rescaleX(double xScaleFactor)
     	{
-        	this.graphWidth=(int)Math.round((double)graphWidth*xScaleFactor);
-        	super.xLen=(int)Math.round((double)super.xLen*xScaleFactor);
-        	super.xBot=(int)Math.round((double)super.xBot*xScaleFactor);
+        	this.graphWidth=(int)Math.round(graphWidth*xScaleFactor);
+        	super.xLen=(int)Math.round(super.xLen*xScaleFactor);
+        	super.xBot=(int)Math.round(super.xBot*xScaleFactor);
         	super.xTop=super.xBot + super.xLen;
     	}
 
@@ -122,8 +121,8 @@ public class PlotGraph extends Plot implements Serializable{
         	// Rescale - needed for redrawing if graph window is resized by dragging
         	double newGraphWidth = this.getSize().width;
         	double newGraphHeight = this.getSize().height;
-        	double xScale = newGraphWidth/(double)this.graphWidth;
-        	double yScale = newGraphHeight/(double)this.graphHeight;
+        	double xScale = newGraphWidth/this.graphWidth;
+        	double yScale = newGraphHeight/this.graphHeight;
         	rescaleX(xScale);
         	rescaleY(yScale);
 
@@ -144,7 +143,7 @@ public class PlotGraph extends Plot implements Serializable{
             		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         	}
         	else{
-            		window.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            		window.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         	}
 
         	// Add graph canvas

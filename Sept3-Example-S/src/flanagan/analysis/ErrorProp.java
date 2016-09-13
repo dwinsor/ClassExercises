@@ -271,7 +271,7 @@ public class ErrorProp{
                 ErrorProp b = new ErrorProp();
                 b.value = this.value;
                 b.error = this.error;
-                return (Object) b;
+                return b;
         }
 
 
@@ -823,7 +823,7 @@ public class ErrorProp{
                 if(n==0)throw new ArithmeticException("Division by zero (n = 0 - infinite root) attempted in ErrorProp.nthRoot");
                 ErrorProp b = new ErrorProp();
                 b.value = Math.pow(a.value, 1/n);
-                b.error = Math.abs(a.error*Math.pow(a.value, 1/n-1)/((double)n));
+                b.error = Math.abs(a.error*Math.pow(a.value, 1/n-1)/(n));
                 return b;
         }
 

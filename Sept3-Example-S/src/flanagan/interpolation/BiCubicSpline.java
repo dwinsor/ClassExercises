@@ -143,7 +143,7 @@ public class BiCubicSpline{
         	this.mPointsT=nP;
         	this.csm = new CubicSpline(this.nPoints);
         	this.csmT = new CubicSpline(this.nPointsT);
-        	if(!this.roundingCheck)this.csm.noRoundingErrorCheck();
+        	if(!BiCubicSpline.roundingCheck)CubicSpline.noRoundingErrorCheck();
 
         	this.csn = CubicSpline.oneDarray(this.nPoints, this.mPoints);
         	this.csnT = CubicSpline.oneDarray(this.nPointsT, this.mPointsT);
@@ -181,8 +181,8 @@ public class BiCubicSpline{
         // to avraging the relevant ordinates
     	public void averageIdenticalAbscissae(){
     	    this.averageIdenticalAbscissae = true;
-    	    for(int i=0; i<this.csn.length; i++)this.csn[i].averageIdenticalAbscissae();
-    	    this.csm.averageIdenticalAbscissae();
+    	    for(int i=0; i<this.csn.length; i++)CubicSpline.averageIdenticalAbscissae();
+    	    CubicSpline.averageIdenticalAbscissae();
     	}
 
   	    // Resets the x1, x2, y data arrays

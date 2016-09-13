@@ -457,7 +457,7 @@ public class FileInput{
                         while(test4){
                             test5 = true;
                             test6 = false;
-                            jj =((Integer)al1.get(ii)).intValue();
+                            jj =al1.get(ii).intValue();
                             if(jj==0){
                                 test6 = true;
                             }
@@ -480,7 +480,7 @@ public class FileInput{
 
                                     }
                                     else{
-                                        kk  =((Integer)al1.get(ii+1)).intValue();
+                                        kk  =al1.get(ii+1).intValue();
                                         test5 = true;
                                         for(int i=jj+1; i<kk; i++){
                                             if(this.fullLine.charAt(i)!=' '){
@@ -502,7 +502,7 @@ public class FileInput{
                         int nal2 = al2.size();
                         if(nal2>0){
                             for(int i=nal2-1; i>=0; i--){
-                                int mm = ((Integer)al2.get(i)).intValue();
+                                int mm = al2.get(i).intValue();
                                 if(mm>=len-1){
                                     this.fullLine += this.holdingWord;
                                 }

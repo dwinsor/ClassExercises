@@ -39,6 +39,7 @@ import java.util.*;
 import java.math.*;
 
 import flanagan.math.*;
+import flanagan.plot.Plot;
 import flanagan.plot.PlotGraph;
 import flanagan.interpolation.CubicSpline;
 import flanagan.io.PrintToScreen;
@@ -454,7 +455,7 @@ public class ProbabilityPlot{
                     interp += incrI;
 
                 }
-                interpData[nInterp-1] = (double)(this.numberOfDataPoints-1);
+                interpData[nInterp-1] = this.numberOfDataPoints-1;
             }
 
             // Bin the data
@@ -483,7 +484,7 @@ public class ProbabilityPlot{
                 binLower = binUpper;
                 binUpper = binLower + binWidth;
             }
-            if(counter<nInterp)binnedData[nBins-1] += (double)(nInterp-counter);
+            if(counter<nInterp)binnedData[nBins-1] += nInterp-counter;
 
             // Identify peak
             ArrayMaths am = new ArrayMaths(binnedData);
@@ -729,7 +730,7 @@ public class ProbabilityPlot{
             this.gaussianCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.gaussianOrderMedians;
@@ -1024,7 +1025,7 @@ public class ProbabilityPlot{
             this.gaussianStandardCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.gaussianStandardOrderMedians;
@@ -1241,7 +1242,7 @@ public class ProbabilityPlot{
             this.logisticCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.logisticOrderMedians;
@@ -1476,7 +1477,7 @@ public class ProbabilityPlot{
             this.weibullCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.weibullOrderMedians;
@@ -1734,7 +1735,7 @@ public class ProbabilityPlot{
             this.weibullTwoParCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.weibullTwoParOrderMedians;
@@ -1953,7 +1954,7 @@ public class ProbabilityPlot{
             this.weibullStandardCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.weibullStandardOrderMedians;
@@ -2134,7 +2135,7 @@ public class ProbabilityPlot{
             this.exponentialCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.exponentialOrderMedians;
@@ -2352,7 +2353,7 @@ public class ProbabilityPlot{
             this.frechetCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.frechetOrderMedians;
@@ -2568,7 +2569,7 @@ public class ProbabilityPlot{
             this.gumbelMinCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.gumbelMinOrderMedians;
@@ -2760,7 +2761,7 @@ public class ProbabilityPlot{
             this.gumbelMaxCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.gumbelMaxOrderMedians;
@@ -2953,7 +2954,7 @@ public class ProbabilityPlot{
             this.rayleighCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.rayleighOrderMedians;
@@ -3123,7 +3124,7 @@ public class ProbabilityPlot{
             this.paretoCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.paretoOrderMedians;
@@ -3288,7 +3289,7 @@ public class ProbabilityPlot{
             this.fDistributionCorrCoeff = reg.getSampleR();
 
             // Initialize data arrays for plotting
-            double[][] data = PlotGraph.data(2,this.numberOfDataPoints);
+            double[][] data = Plot.data(2,this.numberOfDataPoints);
 
             // Assign data to plotting arrays
             data[0] = this.fDistributionOrderMedians;

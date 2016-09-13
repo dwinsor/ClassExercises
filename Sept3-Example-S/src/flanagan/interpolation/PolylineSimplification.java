@@ -159,7 +159,7 @@ public class PolylineSimplification{
         this.simplifiedIndices = new int[this.nSimplifiedPoints];
         for(i=0; i<this.nSimplifiedPoints; i++){
             this.simplifiedPoints[i] = results.get(i);
-            this.simplifiedIndices[i] = ((Integer)indices.get(i)).intValue();
+            this.simplifiedIndices[i] = indices.get(i).intValue();
         }
         
         // Remove duplicate points
@@ -313,8 +313,8 @@ public class PolylineSimplification{
     // Plots both the original and the simplified curves
     public void plot(){
         if(this.pointDimension!=2)throw new IllegalArgumentException("Plot will only function for an array of 2D points");
-        double[][] cc0 = (double[][])(Point.getArrayCoordinates(this.originalPoints));
-        double[][] cc1 = (double[][])this.simplifiedCurveCoordinates();
+        double[][] cc0 = (Point.getArrayCoordinates(this.originalPoints));
+        double[][] cc1 = this.simplifiedCurveCoordinates();
         double[][] data = new double[4][];
         data[0] = cc0[0];
         data[1] = cc0[1];

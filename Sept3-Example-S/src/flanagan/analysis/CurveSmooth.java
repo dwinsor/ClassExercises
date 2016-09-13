@@ -156,7 +156,7 @@ public class CurveSmooth{
         this.xData = new double[n];
         for(int i=0; i<n; i++){
             this.xData[i] = i;
-            this.yData[i] = (double)y[i];
+            this.yData[i] = y[i];
         }
         this.check();
     }
@@ -178,7 +178,7 @@ public class CurveSmooth{
         this.xData = new double[n];
         for(int i=0; i<n; i++){
             this.xData[i] = i;
-            this.yData[i] = (double)y[i];
+            this.yData[i] = y[i];
         }
         this.check();
     }
@@ -201,7 +201,7 @@ public class CurveSmooth{
         this.xData = new double[n];
         for(int i=0; i<n; i++){
             this.xData[i] = i;
-            this.yData[i] = (double)y[i];
+            this.yData[i] = y[i];
         }
         this.check();
     }

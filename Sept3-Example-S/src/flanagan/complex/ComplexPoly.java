@@ -89,7 +89,7 @@ public class ComplexPoly{
                 this.deg =aa.length-1;
                 coeff = Complex.oneDarray(this.deg+1);
                 for(int i=0; i<=deg; i++){
-                        this.coeff[i].reset((double)aa[i], 0.0);
+                        this.coeff[i].reset(aa[i], 0.0);
                 }
         }
 
@@ -98,7 +98,7 @@ public class ComplexPoly{
                 this.deg =aa.length-1;
                 coeff = Complex.oneDarray(this.deg+1);
                 for(int i=0; i<=deg; i++){
-                        this.coeff[i].reset((double)aa[i], 0.0);
+                        this.coeff[i].reset(aa[i], 0.0);
                 }
         }
 
@@ -117,7 +117,7 @@ public class ComplexPoly{
                 this.deg =aa.size()-1;
                 coeff = Complex.oneDarray(this.deg+1);
                 for(int i=0; i<=deg; i++){
-                    int code = this.getTypeCode((Object)aa.get(i));
+                    int code = this.getTypeCode(aa.get(i));
                     switch(code){
                         case 1: // Byte
                                 this.coeff[i].reset((double)((Byte)aa.get(i)), 0.0);
@@ -390,7 +390,7 @@ public class ComplexPoly{
         public void resetPoly(ArrayList<Object> aa){
                 if((this.deg+1)!=aa.size())throw new IllegalArgumentException("array lengths do not match");
                 for(int i=0; i<=deg; i++){
-                    int code = this.getTypeCode((Object)aa.get(i));
+                    int code = this.getTypeCode(aa.get(i));
                     switch(code){
                         case 1: // Byte
                                 this.coeff[i].reset((double)((Byte)aa.get(i)), 0.0);
@@ -471,7 +471,7 @@ public class ComplexPoly{
 
         // Clone a ComplexPoly
         public Object clone(){
-                return (Object) this.copy();
+                return this.copy();
         }
 
         // Return a copy of the polynomial coefficients
@@ -743,13 +743,13 @@ public class ComplexPoly{
 
         // Addition of an int,  instance method
         public ComplexPoly plus(int bb){
-                ComplexPoly b = new ComplexPoly(new Complex((double) bb, 0.0));
+                ComplexPoly b = new ComplexPoly(new Complex(bb, 0.0));
                 return this.plus(b);
         }
 
         // Addition of an int,  static method
         public static ComplexPoly plus(ComplexPoly a, int bb){
-                ComplexPoly b = new ComplexPoly(new Complex((double)bb, 0.0));
+                ComplexPoly b = new ComplexPoly(new Complex(bb, 0.0));
                 return ComplexPoly.plus(a, b);
         }
 
@@ -785,7 +785,7 @@ public class ComplexPoly{
 
         // Subtraction of an int,  instance method
         public ComplexPoly minus(int bb){
-                ComplexPoly b = new ComplexPoly(new Complex((double)bb, 0.0));
+                ComplexPoly b = new ComplexPoly(new Complex(bb, 0.0));
                 return this.minus(b);
         }
 
@@ -820,7 +820,7 @@ public class ComplexPoly{
 
         // Subtraction  of an int,  static method
         public static ComplexPoly minus(ComplexPoly a, int bb){
-            ComplexPoly b = new ComplexPoly(new Complex((double)bb, 0.0));
+            ComplexPoly b = new ComplexPoly(new Complex(bb, 0.0));
             return ComplexPoly.minus(a, b);
         }
 
@@ -1244,15 +1244,15 @@ public class ComplexPoly{
                         g=Complex.over(d, b);
                         g2=Complex.square(g);
                         h=Complex.minus(g2, Complex.times(2.0, Complex.over(f, b)));
-                        sq=Complex.sqrt(Complex.times((double)(m-1), Complex.minus(Complex.times((double)m, h), g2)));
+                        sq=Complex.sqrt(Complex.times(m-1, Complex.minus(Complex.times(m, h), g2)));
                         gp=Complex.plus(g, sq);
                         gm=Complex.minus(g, sq);
                         abp=Complex.abs(gp);
                         abm=Complex.abs(gm);
                         if( abp < abm ) gp = gm;
-                        temp1.setReal((double)m);
-                        temp2.setReal(Math.cos((double)i));
-                        temp2.setImag(Math.sin((double)i));
+                        temp1.setReal(m);
+                        temp2.setReal(Math.cos(i));
+                        temp2.setImag(Math.sin(i));
                         dx=((Math.max(abp, abm) > 0.0 ? Complex.over(temp1, gp):Complex.times(Math.exp(1.0+abx),temp2)));
                         x1=Complex.minus(estx, dx);
                         if(Complex.isEqual(estx, x1))

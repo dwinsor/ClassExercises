@@ -406,7 +406,7 @@ public class Maximisation{
 	                ilo=i;
 	            }
 	        }
-	        sumnm /= (double)(nnp);
+	        sumnm /= (nnp);
 	        summnm=0.0;
 	        for (int i=0; i<nnp; ++i){
 		        zn=yy[i]-sumnm;

@@ -33,8 +33,6 @@
 
 package flanagan.plot;
 
-import java.awt.*;
-
 import flanagan.math.Fmath;
 import flanagan.complex.Complex;
 import flanagan.complex.ComplexPoly;
@@ -406,7 +404,7 @@ public class PlotPoleZero{
                 double minall = 0.0;
                 double maxall = 0.0;
                 int ncirc = 600;
-                double stp = 2.0/(double)(ncirc-1);
+                double stp = 2.0/(ncirc-1);
                 int maxPoints = 0;
                 double[] zerosReal = null;
                 double[] zerosImag = null;
@@ -533,7 +531,7 @@ public class PlotPoleZero{
                 int ii = 0;
 
                 // Create array for data to be plotted
-                double[][] data = PlotGraph.data(mm, maxPoints);
+                double[][] data = Plot.data(mm, maxPoints);
                 boolean[] trim = new  boolean[mm];
                 boolean[] minmax = new  boolean[mm];
                 int[] line = new int[mm];

@@ -59,7 +59,6 @@ import flanagan.math.*;
 import flanagan.io.*;
 import flanagan.plot.Plot;
 import flanagan.plot.PlotGraph;
-import flanagan.analysis.*;
 import flanagan.circuits.Impedance;
 import flanagan.interpolation.CubicSpline;
 
@@ -1113,7 +1112,7 @@ public class Regression{
         int n=error.length;
 
         for(int i=0; i<n; i++)if(error[i]<=0.0)nZeros++;
-        double perCentZeros = 100.0*(double)nZeros/(double)n;
+        double perCentZeros = 100.0*nZeros/n;
         if(perCentZeros>40.0){
             System.out.println(perCentZeros + "% of the weighting errors are zero or less; all weighting errors set to 1.0");
             for(int i=0; i<n; i++)error[i]=1.0D;
@@ -1696,7 +1695,7 @@ public class Regression{
             if(step[i]==0.0)step[i] = Stat.mean(start)*0.1;
         }
        
-        this.nelderMead((Object)dualFunc, null, start, step, this.fTol, this.nMax);
+        this.nelderMead(dualFunc, null, start, step, this.fTol, this.nMax);
         double[][] aa = new double[this.nParam][this.nData];
         this.linNonLin = true; 
         
@@ -1888,7 +1887,7 @@ public class Regression{
             if(step[i]==0.0)step[i] = Stat.mean(start)*0.1;
         }
 
-        this.nelderMead((Object)dualFunc, null, start, step, this.fTol, this.nMax);
+        this.nelderMead(dualFunc, null, start, step, this.fTol, this.nMax);
         this.linNonLin = true; 
         
         //Statistical analysis
@@ -2092,7 +2091,7 @@ public class Regression{
         }
        
 
-        this.nelderMead((Object)dualFunc, null, start, step, this.fTol, this.nMax);
+        this.nelderMead(dualFunc, null, start, step, this.fTol, this.nMax);
         this.linNonLin = true; 
         
         //Statistical analysis
@@ -2226,7 +2225,7 @@ public class Regression{
             if(step[i]==0.0)step[i] = Stat.mean(start)*0.1;
         }
        
-        this.nelderMead((Object)dualFunc, null, start, step, this.fTol, this.nMax);
+        this.nelderMead(dualFunc, null, start, step, this.fTol, this.nMax);
         this.linNonLin = true; 
         
         //Statistical analysis
@@ -2759,7 +2758,7 @@ public class Regression{
         // Nelder and Mead Simplex Regression
         NonIntegerPolyFunction f = new NonIntegerPolyFunction();
         f.setNterms(nTerms);
-        Object regFun = (Object)f;
+        Object regFun = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -2828,7 +2827,7 @@ public class Regression{
         f.setNterms(nTerms);
         f.setYerrors(this.yErrors);
         f.setXerrors(this.xErrors);
-        Object regFun = (Object)f;
+        Object regFun = f;
         this.nelderMead(regFun, null, start, step, this.fTol, this.nMax);
 
         if(plotFlag==1){
@@ -2910,7 +2909,7 @@ public class Regression{
             if(step[i]==0.0)step[i] = Stat.mean(start)*0.1;
         }
        
-        this.nelderMead((Object)dualFunc, null, start, step, this.fTol, this.nMax);
+        this.nelderMead(dualFunc, null, start, step, this.fTol, this.nMax);
         this.linNonLin = true;
         
         //Statistical analysis
@@ -3364,7 +3363,7 @@ public class Regression{
 	                ilo=i;
 	            }
 	        }
-	        sumnm /= (double)(nnp);
+	        sumnm /= (nnp);
 	        summnm=0.0;
 	        for (int i=0; i<nnp; ++i){
 		        zn=yy[i]-sumnm;
@@ -6854,7 +6853,7 @@ public class Regression{
         this.graphTitle = title;
         int ncurves = 2;
         int npoints = this.nData0;
-        double[][] data = PlotGraph.data(ncurves, npoints);
+        double[][] data = Plot.data(ncurves, npoints);
 
         int kk = 0;
         for(int jj=0; jj<this.nYarrays; jj++){
@@ -7136,10 +7135,10 @@ public class Regression{
         int npoints = 200;
         if(npoints<this.nData0)npoints=this.nData0;
         if(this.lastMethod==11 || this.lastMethod==12 || this.lastMethod==21)npoints=this.nData0;
-        double[][] data = PlotGraph.data(ncurves, npoints);
+        double[][] data = Plot.data(ncurves, npoints);
         double xmin =Fmath.minimum(xData[0]);
         double xmax =Fmath.maximum(xData[0]);
-        double inc = (xmax - xmin)/(double)(npoints - 1);
+        double inc = (xmax - xmin)/(npoints - 1);
         String title1 = " ";
         String title2 = " ";
 
@@ -7296,7 +7295,7 @@ public class Regression{
             if(this.lastMethod==6)npoints=this.nData0;
             String title1;
             String title2;
-            double[][] data = PlotGraph.data(ncurves, npoints);
+            double[][] data = Plot.data(ncurves, npoints);
             for(int i=0; i<this.nData0; i++){
                     data[0][i] = this.xData[0][i];
                     data[1][i] = this.yData[i];
@@ -7312,7 +7311,7 @@ public class Regression{
             else{
                     double xmin =Fmath.minimum(xData[0]);
                     double xmax =Fmath.maximum(xData[0]);
-                    double inc = (xmax - xmin)/(double)(npoints - 1);
+                    double inc = (xmax - xmin)/(npoints - 1);
                     data[2][0]=xmin;
                     for(int i=1; i<npoints; i++)data[2][i] = data[2][i-1] + inc;
                     data[2][npoints-1] = xmax;
@@ -7417,7 +7416,7 @@ public class Regression{
                 if(npoints<this.nData0)npoints=this.nData0;
                 if(this.lastMethod==6)npoints=this.nData0;
                 String title1, title2;
-                double[][] data = PlotGraph.data(ncurves, npoints);
+                double[][] data = Plot.data(ncurves, npoints);
                 for(int i=0; i<this.nData0; i++){
                     data[0][i] = this.xData[0][i];
                     data[1][i] = this.yData[i];
@@ -7433,7 +7432,7 @@ public class Regression{
                 else{
                     double xmin =Fmath.minimum(xData[0]);
                     double xmax =Fmath.maximum(xData[0]);
-                    double inc = (xmax - xmin)/(double)(npoints - 1);
+                    double inc = (xmax - xmin)/(npoints - 1);
                     data[2][0]=xmin;
                     for(int i=1; i<npoints; i++)data[2][i] = data[2][i-1] + inc;
                     double[] xd = new double[this.nXarrays];
@@ -8105,7 +8104,7 @@ public class Regression{
         f.setScaleOption(this.scaleFlag);
         f.setScaleFactor(this.yScaleFactor);
        
-        Object regFun2 = (Object) f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -8222,7 +8221,7 @@ public class Regression{
         f.setScaleFactor(this.yScaleFactor);
 
 
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -8363,7 +8362,7 @@ public class Regression{
 	    for(int i=0; i<this.nParam; i++){
             if(constraint[i])this.addConstraint(i,-1, 0.0D);
         }
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -8495,7 +8494,7 @@ public class Regression{
             this.addConstraint(3*i+2,-1, 0.0D);
         }
 
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -8704,7 +8703,7 @@ public class Regression{
         f.setScaleOption(this.scaleFlag);
         f.setScaleFactor(this.yScaleFactor);
 
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -8829,7 +8828,7 @@ public class Regression{
         f.setScaleOption(this.scaleFlag);
         f.setScaleFactor(this.yScaleFactor);
   
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -8938,7 +8937,7 @@ public class Regression{
         f.setScaleOption(this.scaleFlag);
         f.setScaleFactor(this.yScaleFactor);
 
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -9327,7 +9326,7 @@ public class Regression{
 	        if(data[i]>0.0D)signCheckPos++;
 	        if(data[i]<0.0D)signCheckNeg++;
 	    }
-	    mean /= (double)n;
+	    mean /= n;
 
 	    if((signCheckZero+signCheckPos)==n){
 	        peak=max;
@@ -9594,7 +9593,7 @@ public class Regression{
         if(this.frechetWeibull){
             FrechetFunctionTwo f = new FrechetFunctionTwo();
             f.setTypeFlag(typeFlag);
-            Object regFun2 = (Object)f;
+            Object regFun2 = f;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -9603,7 +9602,7 @@ public class Regression{
         else{
             WeibullFunctionTwo f = new WeibullFunctionTwo();
             f.setTypeFlag(typeFlag);
-            Object regFun2 = (Object)f;
+            Object regFun2 = f;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -9677,7 +9676,7 @@ public class Regression{
             ff.setScaleOption(this.scaleFlag);
             ff.setScaleFactor(this.yScaleFactor);
             ff.setTypeFlag(typeFlag);
-            Object regFun3 = (Object)ff;
+            Object regFun3 = ff;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -9695,7 +9694,7 @@ public class Regression{
             ff.setScaleOption(this.scaleFlag);
             ff.setScaleFactor(this.yScaleFactor);
             ff.setTypeFlag(typeFlag);
-            Object regFun3 = (Object)ff;
+            Object regFun3 = ff;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -10200,7 +10199,7 @@ public class Regression{
         if(typeFlag<4){
 
             // Perform simplex regression
-            Object regFun3 = (Object)ff;
+            Object regFun3 = ff;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -10422,7 +10421,7 @@ public class Regression{
         f.setScaleOption(this.scaleFlag);
         f.setScaleFactor(this.yScaleFactor);
        
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -10531,7 +10530,7 @@ public class Regression{
         // Nelder and Mead Simplex Regression
         ExponentialMultipleFunction f = new ExponentialMultipleFunction();
         f.setNexps(this.nParam);
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -10577,7 +10576,7 @@ public class Regression{
         // Nelder and Mead Simplex Regression
         ExponentialMultipleFunction f = new ExponentialMultipleFunction();
         f.setNexps(this.nParam);
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -10671,7 +10670,7 @@ public class Regression{
         f.setScaleOption(this.scaleFlag);
         f.setScaleFactor(this.yScaleFactor);
 
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -10868,7 +10867,7 @@ public class Regression{
         ff.setScaleOption(this.scaleFlag);
         ff.setScaleFactor(this.yScaleFactor);
         ff.setTypeFlag(typeFlag);
-        Object regFun3 = (Object)ff;
+        Object regFun3 = ff;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -11051,7 +11050,7 @@ public class Regression{
 
         // Create instance of log function and perform regression
         RayleighFunctionTwo f = new RayleighFunctionTwo();
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -11084,7 +11083,7 @@ public class Regression{
         RayleighFunctionOne ff = new RayleighFunctionOne();
         ff.setScaleOption(this.scaleFlag);
         ff.setScaleFactor(this.yScaleFactor);
-        Object regFun3 = (Object)ff;
+        Object regFun3 = ff;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -11318,7 +11317,7 @@ public class Regression{
         // Create instance of cdf function and perform regression
         ParetoFunctionTwo f = new ParetoFunctionTwo();
         f.setTypeFlag(typeFlag);
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -11433,7 +11432,7 @@ public class Regression{
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
-        Object regFun3 = (Object)ff;
+        Object regFun3 = ff;
         this.nelderMead(regFun3, null, start, step, this.fTol, this.nMax);
 
         if(allTest==1){
@@ -11571,7 +11570,7 @@ public class Regression{
             f1.setScaleFactor(this.yScaleFactor);
             f1.setXerrors(this.xErrors);
             f1.setYerrors(this.yErrors);
-            Object regFun1 = (Object)f1;
+            Object regFun1 = f1;
             this.nelderMead(regFun1, null, start, step, this.fTol, this.nMax);
             if(plotFlag==1){
                 // Print results
@@ -11588,7 +11587,7 @@ public class Regression{
             SigmoidThresholdFunction f2 = new SigmoidThresholdFunction();
             f2.setScaleOption(this.scaleFlag);
             f2.setScaleFactor(this.yScaleFactor);
-            Object regFun2 = (Object)f2;
+            Object regFun2 = f2;
             this.nelderMead(regFun2, null, start, step, this.fTol, this.nMax);
             if(plotFlag==1){
                 // Print results
@@ -11687,7 +11686,7 @@ public class Regression{
             f1.setScaleFactor(this.yScaleFactor);
             f1.setXerrors(this.xErrors);
             f1.setYerrors(this.yErrors);
-            Object regFun1 = (Object)f1;
+            Object regFun1 = f1;
             this.nelderMead(regFun1, null, start, step, this.fTol, this.nMax);
             
             if(plotFlag==1){
@@ -11705,7 +11704,7 @@ public class Regression{
             SigmoidHillSipsFunction f2 = new SigmoidHillSipsFunction();
             f2.setScaleOption(this.scaleFlag);
             f2.setScaleFactor(this.yScaleFactor);
-            Object regFun2 = (Object)f2;
+            Object regFun2 = f2;
             this.nelderMead(regFun2, null, start, step, this.fTol, this.nMax);
             if(plotFlag==1){
                 // Print results
@@ -11832,7 +11831,7 @@ public class Regression{
             EC50FunctionDual f1 = new EC50FunctionDual();
             f1.setXerrors(this.xErrors);
             f1.setYerrors(this.yErrors);
-            Object regFun1 = (Object)f1;
+            Object regFun1 = f1;
             this.simplexFlag = 3;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = true;
@@ -11847,7 +11846,7 @@ public class Regression{
         }
         else{
             EC50Function f2 = new EC50Function();
-            Object regFun2 = (Object)f2;
+            Object regFun2 = f2;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -11938,7 +11937,7 @@ public class Regression{
             f1.setTop(this.top);
             f1.setXerrors(this.xErrors);
             f1.setYerrors(this.yErrors);
-            Object regFun1 = (Object)f1;
+            Object regFun1 = f1;
             this.simplexFlag = 3;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = true;
@@ -11955,7 +11954,7 @@ public class Regression{
             EC50FixedFunction f2 = new EC50FixedFunction();
             f2.setBottom(this.bottom);
             f2.setTop(this.top);
-            Object regFun2 = (Object)f2;
+            Object regFun2 = f2;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -12164,7 +12163,7 @@ public class Regression{
             Logistic5FunctionDual f1 = new Logistic5FunctionDual();
             f1.setXerrors(this.xErrors);
             f1.setYerrors(this.yErrors);
-            Object regFun1 = (Object)f1;
+            Object regFun1 = f1;
             this.simplexFlag = 3;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = true;
@@ -12179,7 +12178,7 @@ public class Regression{
         }
         else{
             Logistic5Function f2 = new Logistic5Function();
-            Object regFun2 = (Object)f2;
+            Object regFun2 = f2;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -12256,7 +12255,7 @@ public class Regression{
             f1.setTop(top);
             f1.setXerrors(this.xErrors);
             f1.setYerrors(this.yErrors);
-            Object regFun1 = (Object)f1;
+            Object regFun1 = f1;
             this.simplexFlag = 3;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = true;
@@ -12273,7 +12272,7 @@ public class Regression{
             Logistic5FixedFunction f2 = new Logistic5FixedFunction();
             f2.setBottom(bottom);
             f2.setTop(top);
-            Object regFun2 = (Object)f2;
+            Object regFun2 = f2;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -12384,7 +12383,7 @@ public class Regression{
             f1.setScaleFactor(this.yScaleFactor);
             f1.setXerrors(this.xErrors);
             f1.setYerrors(this.yErrors);
-            Object regFun1 = (Object)f1;
+            Object regFun1 = f1;
             this.simplexFlag = 3;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = true;
@@ -12401,7 +12400,7 @@ public class Regression{
             RectangularHyperbolaFunction f2 = new RectangularHyperbolaFunction();
             f2.setScaleOption(this.scaleFlag);
             f2.setScaleFactor(this.yScaleFactor);
-            Object regFun2 = (Object)f2;
+            Object regFun2 = f2;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -12510,7 +12509,7 @@ public class Regression{
             ShiftedRectangularHyperbolaFunctionDual f1 = new ShiftedRectangularHyperbolaFunctionDual();
             f1.setYerrors(this.yErrors);
             f1.setXerrors(this.xErrors);
-            Object regFun1 = (Object)f1;
+            Object regFun1 = f1;
             this.simplexFlag = 3;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = true;
@@ -12525,7 +12524,7 @@ public class Regression{
         }
         else{
             ShiftedRectangularHyperbolaFunction f2 = new ShiftedRectangularHyperbolaFunction();
-            Object regFun2 = (Object)f2;
+            Object regFun2 = f2;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -12635,7 +12634,7 @@ public class Regression{
         f.setScaleOption(this.scaleFlag);
         f.setScaleFactor(this.yScaleFactor);
 
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -12737,7 +12736,7 @@ public class Regression{
         f.setScaleOption(this.scaleFlag);
         f.setScaleFactor(this.yScaleFactor);
 
-        Object regFun2 = (Object)f;
+        Object regFun2 = f;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -12924,7 +12923,7 @@ public class Regression{
   
                 
         // Perform simplex regression
-        Object regFun3 = (Object)ff;
+        Object regFun3 = ff;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -13094,7 +13093,7 @@ public class Regression{
         ff.setScaleFactor(this.yScaleFactor);
 
         // Perform simplex regression
-        Object regFun3 = (Object)ff;
+        Object regFun3 = ff;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -13224,7 +13223,7 @@ public class Regression{
         ff.setScaleFactor(this.yScaleFactor);
 
         // Perform simplex regression
-        Object regFun3 = (Object)ff;
+        Object regFun3 = ff;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -13277,7 +13276,7 @@ public class Regression{
         while(testKay){
 
             // Perform simplex regression
-            Object regFun4 = (Object)ef;
+            Object regFun4 = ef;
             this.simplexFlag = 1;
             this.nonLinStatsNeeded = true;
             this.dualErrorsRequired = false;
@@ -13345,7 +13344,7 @@ public class Regression{
             while(testKay){
 
                 // Perform simplex regression
-                Object regFun5 = (Object)ef;
+                Object regFun5 = ef;
                 this.simplexFlag = 1;
                 this.nonLinStatsNeeded = true;
                 this.dualErrorsRequired = false;
@@ -13422,7 +13421,7 @@ public class Regression{
         this.kayValue = Math.round(kayFinal);
 
         // Perform penultimate regression
-        Object regFun4 = (Object)ef;
+        Object regFun4 = ef;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -13448,7 +13447,7 @@ public class Regression{
         this.kayValue = Math.round(kayFinal);
 
         // Perform final regression
-        Object regFun5 = (Object)ef;
+        Object regFun5 = ef;
         this.simplexFlag = 1;
         this.nonLinStatsNeeded = true;
         this.dualErrorsRequired = false;
@@ -13569,7 +13568,7 @@ public class Regression{
             double span = dmax - dmin;
             double binZero = dmin;
             int nBins = (int) Math.ceil(span/binWidth);
-            double histoSpan = ((double)nBins)*binWidth;
+            double histoSpan = (nBins)*binWidth;
             double rem = histoSpan - span;
             if(rem>=0){
                 binZero -= rem/2.0D;
@@ -13582,7 +13581,7 @@ public class Regression{
                     int iTest = 0;
                     while(testBw){
                        binWidth += incr;
-                       histoSpan = ((double)nBins)*binWidth;
+                       histoSpan = (nBins)*binWidth;
                         rem = histoSpan - span;
                         if(rem<0){
                             iTest++;

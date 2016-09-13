@@ -297,21 +297,21 @@ public class RankAnalysis{
         Matrix matv = new Matrix(values);
         this.values = matv.getArrayCopy();
         this.errorType = 2;
-        this.preprocessDataTwo((double)commonError);
+        this.preprocessDataTwo(commonError);
     }
 
     public RankAnalysis(long[][] values, long commonError){
         Matrix matv = new Matrix(values);
         this.values = matv.getArrayCopy();
         this.errorType = 2;
-        this.preprocessDataTwo((double)commonError);
+        this.preprocessDataTwo(commonError);
     }
 
     public RankAnalysis(int[][] values, int commonError){
         Matrix matv = new Matrix(values);
         this.values = matv.getArrayCopy();
         this.errorType = 2;
-        this.preprocessDataTwo((double)commonError);
+        this.preprocessDataTwo(commonError);
     }
 
     public RankAnalysis(BigDecimal[][] values, BigDecimal commonError){

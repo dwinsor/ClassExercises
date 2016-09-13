@@ -83,7 +83,7 @@ public class PolyCubicSpline{
             if(this.xArrays instanceof double[] && this.nDimensions == 1){
                 double[][] xArraysTemp = new double[1][];
                 xArraysTemp[0] = (double[])this.xArrays;
-                this.xArrays = (Object)xArraysTemp;
+                this.xArrays = xArraysTemp;
             }
             else{
                if(!(this.xArrays instanceof double[][]))throw new IllegalArgumentException("xArrays should be a two dimensional array of doubles");
@@ -98,30 +98,30 @@ public class PolyCubicSpline{
                 case 0: throw new IllegalArgumentException("data array must have at least one dimension");
                 case 1:     // If fOfX is one dimensional perform simple cubic spline
                             CubicSpline cs = new CubicSpline(this.xArray[0], (double[])this.fOfX);
-                            if(this.averageIdenticalAbscissae)cs.averageIdenticalAbscissae();
-                            this.internalDeriv = (Object)(cs.getDeriv());
-                            this.method = (Object)cs;
+                            if(this.averageIdenticalAbscissae)CubicSpline.averageIdenticalAbscissae();
+                            this.internalDeriv = (cs.getDeriv());
+                            this.method = cs;
                             this.calculationDone = true;
                             break;
                 case 2:     // If fOfX is two dimensional perform bicubic spline
                             BiCubicSpline bcs = new BiCubicSpline(this.xArray[0], this.xArray[1], (double[][])this.fOfX);
                             if(this.averageIdenticalAbscissae)bcs.averageIdenticalAbscissae();
-                            this.internalDeriv = (Object)(bcs.getDeriv());
-                            this.method = (Object)bcs;
+                            this.internalDeriv = (bcs.getDeriv());
+                            this.method = bcs;
                             this.calculationDone = true;
                             break;
                 case 3:     // If fOfX is three dimensional perform tricubic spline
                             TriCubicSpline tcs = new TriCubicSpline(xArray[0], xArray[1], xArray[2], (double[][][])this.fOfX);
                             if(this.averageIdenticalAbscissae)tcs.averageIdenticalAbscissae();
-                            this.internalDeriv = (Object)(tcs.getDeriv());
-                            this.method = (Object)tcs;
+                            this.internalDeriv = (tcs.getDeriv());
+                            this.method = tcs;
                             this.calculationDone = true;
                             break;
                 case 4:     // If fOfX is four dimensional perform quadricubic spline
                             QuadriCubicSpline qcs = new QuadriCubicSpline(xArray[0], xArray[1], xArray[2], xArray[3], (double[][][][])this.fOfX);
                             if(this.averageIdenticalAbscissae)qcs.averageIdenticalAbscissae();
-                            this.internalDeriv = (Object)(qcs.getDeriv());
-                            this.method = (Object)qcs;
+                            this.internalDeriv = (qcs.getDeriv());
+                            this.method = qcs;
                             this.calculationDone = true;
                             break;
                 default:    // If fOfX is greater than four dimensional, recursively call PolyCubicSpline
@@ -139,13 +139,13 @@ public class PolyCubicSpline{
                             if(calculationDone)objDeriv = (Object[])this.internalDeriv;
                             this.pcs = new PolyCubicSpline[dimOne];
                             for(int i=0; i<dimOne; i++){
-                                Object objT = (Object)Array.get(obj, i);
+                                Object objT = Array.get(obj, i);
                                 this.pcs[i] = new PolyCubicSpline(newXarrays, objT);
                                 if(this.averageIdenticalAbscissae)pcs[i].averageIdenticalAbscissae();
                                 if(this.calculationDone)pcs[i].setDeriv(objDeriv[i]);
                                 if(!this.calculationDone)objDeriv[i] = pcs[i].getDeriv();
                             }
-                            this.internalDeriv = (Object)objDeriv;
+                            this.internalDeriv = objDeriv;
                             this.calculationDone = true;
             }
 

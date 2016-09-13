@@ -36,7 +36,6 @@
 package flanagan.io;
 
 import java.io.*;
-import flanagan.complex.Complex;
 
 public class FileInputAsChar{
 

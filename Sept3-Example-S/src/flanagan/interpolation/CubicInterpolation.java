@@ -37,8 +37,6 @@
 
 package flanagan.interpolation;
 
-import java.util.ArrayList;
-
 import flanagan.math.Fmath;
 import flanagan.math.Conv;
 import flanagan.math.ArrayMaths;

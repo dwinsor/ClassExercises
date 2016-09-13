@@ -34,7 +34,7 @@ package flanagan.circuits;
 import flanagan.complex.Complex;
 import flanagan.complex.ComplexMatrix;
 import flanagan.math.Fmath;
-import flanagan.math.Matrix;
+import flanagan.plot.Plot;
 import flanagan.plot.PlotGraph;
 
 public class TransmissionLine
@@ -836,9 +836,9 @@ public class TransmissionLine
   // Plot voltage and current along the line
     public void plotVandI(){
         // Fill data arrays
-        double [][] data = PlotGraph.data(4, this.numberOfPoints);
+        double [][] data = Plot.data(4, this.numberOfPoints);
 
-        double increment = this.segmentLength/(double)(this.numberOfPoints-1);
+        double increment = this.segmentLength/(this.numberOfPoints-1);
 
         data[0][0] = 0.0D;
         data[2][0] = 0.0D;
@@ -1077,7 +1077,7 @@ public class TransmissionLine
 
             tl.numberOfPoints = this.numberOfPoints;
 
-            ret = (Object)tl;
+            ret = tl;
         }
         return ret;
     }

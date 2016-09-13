@@ -50,7 +50,6 @@ package flanagan.control;
 import flanagan.math.Fmath;
 import flanagan.math.Conv;
 import flanagan.complex.*;
-import flanagan.plot.Plot;
 import flanagan.plot.PlotGraph;
 import flanagan.plot.PlotPoleZero;
 import flanagan.io.Db;
@@ -1502,7 +1501,7 @@ public class BlackBox{
         double[] logFreqArray = new double[nPoints+1];
         double logLow = Fmath.log10(2.0D*Math.PI*lowFreq);
         double logHigh = Fmath.log10(2.0D*Math.PI*highFreq);
-        double incr = (logHigh - logLow)/((double)nPoints-1.0D);
+        double incr = (logHigh - logLow)/(nPoints-1.0D);
         double freqArray = lowFreq;
         logFreqArray[0]=logLow;
         for(int i=0; i<nPoints; i++){
@@ -1647,7 +1646,7 @@ public class BlackBox{
         if(sNumerDeg==0 && sDenomDeg==0 && test0){
             // Calculate time course outputs
             int n = 51;                             // number of points on plot
-            double incrT = finalTime/(double)(n-2); // plotting increment
+            double incrT = finalTime/(n-2); // plotting increment
             double cdata[][] = new double [2][n];   // plotting array
 
             cdata[0][0]=0.0D;
@@ -1764,7 +1763,7 @@ public class BlackBox{
 
         // Calculate time course outputs
         int m = denomT.getDeg();                        // number of Aexp(-at) terms
-        double incrT = finalTime/(double)(nPoints-1);   // plotting increment
+        double incrT = finalTime/(nPoints-1);   // plotting increment
         double cdata[][] = new double [2][nPoints];     // plotting array
         double temp = 0.0D;                             // working variable
         Complex tempc = new Complex();                  // working variable
@@ -2016,14 +2015,14 @@ public class BlackBox{
                     int centre = numberInSet[i]/2;
                     if(Fmath.isEven(numberInSet[i])){
                         for(int j=0; j<centre; j++){
-                            shifts[centre+j] = delta.times((double)(j+1));
+                            shifts[centre+j] = delta.times(j+1);
                             shifts[centre-1-j] = shifts[centre+j].times(-1.0);
                         }
                     }
                     else{
                         shifts[centre] = Complex.zero();
                         for(int j=0; j<centre; j++){
-                            shifts[centre+1+j] = delta.times((double)(j+1));
+                            shifts[centre+1+j] = delta.times(j+1);
                             shifts[centre-1-j] = shifts[centre+j].times(-1.0);
                         }
                     }
@@ -2051,7 +2050,7 @@ public class BlackBox{
             boolean testjj = true;
             while(testjj){
                 if(subValues[ii].isEqualWithinLimits(subValues[jj],identicalRootLimit)){
-                    subValues[ii] = subValues[ii].plus(poleSubstitute.times((double)nAttempts));
+                    subValues[ii] = subValues[ii].plus(poleSubstitute.times(nAttempts));
                     nAttempts++;
                     ii=0;
                     testjj = false;
@@ -2195,7 +2194,7 @@ public class BlackBox{
 
     // Clone - overrides Java.Object method clone
     public Object clone(){
-        return (Object)this.copy();
+        return this.copy();
     }
 }
 

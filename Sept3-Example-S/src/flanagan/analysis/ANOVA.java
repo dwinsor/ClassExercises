@@ -36,10 +36,7 @@
 
 package flanagan.analysis;
 
-import java.util.*;
 import java.math.*;
-import java.text.*;
-
 import flanagan.math.*;
 import flanagan.io.*;
 
@@ -417,7 +414,7 @@ public class ANOVA{
 
         // Set variables
         this.originalDataType = 1;
-        this.setVariables((Object)responses, this.originalDataType);
+        this.setVariables(responses, this.originalDataType);
         
     }
     
@@ -437,7 +434,7 @@ public class ANOVA{
         
         // Set variables
         this.originalDataType = 1;
-        this.setVariables((Object)responses, this.originalDataType);
+        this.setVariables(responses, this.originalDataType);
     }
 
     // Enter responses as a matrix with rows of responses for each group - matrix of responses entered as double[][]
@@ -455,7 +452,7 @@ public class ANOVA{
     
         // Set variables
         this.originalDataType = 2;
-        this.setVariables((Object)responses, this.originalDataType);
+        this.setVariables(responses, this.originalDataType);
     }
     
     // Enter responses as a matrix with rows of responses for each group - matrix of responses entered as Matrix
@@ -474,7 +471,7 @@ public class ANOVA{
 
         // Set variables
         this.originalDataType = 3;
-        this.setVariables((Object)responses, this.originalDataType);
+        this.setVariables(responses, this.originalDataType);
     }
     
     // Enter responses as a matrix with rows of responses for each group   -  matrix of responses entered as BigDecimal[][]
@@ -492,7 +489,7 @@ public class ANOVA{
         
         // Set variables
         this.originalDataType = 9;
-        this.setVariables((Object)responses, this.originalDataType);
+        this.setVariables(responses, this.originalDataType);
     }
 
     // Enter responses as a matrix with rows of responses for each group - matrix of responses entered as float[][]
@@ -510,7 +507,7 @@ public class ANOVA{
         
         // Set variables
         this.originalDataType = 4;
-        this.setVariables((Object)responses, this.originalDataType);
+        this.setVariables(responses, this.originalDataType);
     }
     
      // Enter responses as a matrix with rows of responses for each group   -  matrix of responses entered as long[][]
@@ -528,7 +525,7 @@ public class ANOVA{
         
         // Set variables
         this.originalDataType = 8;
-        this.setVariables((Object)responses, this.originalDataType);
+        this.setVariables(responses, this.originalDataType);
     }
     
     // Enter responses as a matrix with rows of responses for each group   -  matrix of responses entered as int[][]
@@ -546,7 +543,7 @@ public class ANOVA{
         
         // Set variables
         this.originalDataType = 5;
-        this.setVariables((Object)responses, this.originalDataType);
+        this.setVariables(responses, this.originalDataType);
     }
     
     // Enter responses as a matrix with rows of responses for each group   -  matrix of responses entered as char[][]
@@ -565,7 +562,7 @@ public class ANOVA{
         
         // Set variables
         this.originalDataType = 6;
-        this.setVariables((Object)responses, this.originalDataType);
+        this.setVariables(responses, this.originalDataType);
     }
 
 
@@ -584,7 +581,7 @@ public class ANOVA{
         
         // Set variables
         this.originalDataType = 7;
-        this.setVariables((Object)responses, this.originalDataType);
+        this.setVariables(responses, this.originalDataType);
     }
     
     // DATA PREPROCESSING
@@ -600,7 +597,7 @@ public class ANOVA{
         }
 
         // Store entered data
-        this.originalData = (Object)Conv.copy(responses);
+        this.originalData = Conv.copy(responses);
         this.originalDataType = type;
         this.dataEntered = true;
         
@@ -660,7 +657,7 @@ public class ANOVA{
                     for(int i=0; i<this.nGroups; i++){
                         this.responses0[i] = new double[this.nResponsesPerGroup[i]];
                         for(int j=0; j<this.nResponsesPerGroup[i]; j++){
-                            this.responses0[i][j] = (double)responsesF[i][j];
+                            this.responses0[i][j] = responsesF[i][j];
                         }
                     } 
                     this.doubleToBD();
@@ -671,7 +668,7 @@ public class ANOVA{
                     for(int i=0; i<this.nGroups; i++){
                         this.responses0[i] = new double[this.nResponsesPerGroup[i]];
                         for(int j=0; j<this.nResponsesPerGroup[i]; j++){
-                            this.responses0[i][j] = (double)responsesI[i][j];
+                            this.responses0[i][j] = responsesI[i][j];
                         }
                     } 
                     this.doubleToBD();
@@ -720,7 +717,7 @@ public class ANOVA{
                     for(int i=0; i<this.nGroups; i++){
                         this.responses0[i] = new double[this.nResponsesPerGroup[i]];
                         for(int j=0; j<this.nResponsesPerGroup[i]; j++){
-                            this.responses0[i][j] = (double)responsesL[i][j];
+                            this.responses0[i][j] = responsesL[i][j];
                         }
                     } 
                     this.doubleToBD();
@@ -820,7 +817,7 @@ public class ANOVA{
         for(int i=0; i<n; i++){
             boolean test1 = false;
             if(responses[i].length()==1){
-                int iC = (int)responses[i].charAt(0);
+                int iC = responses[i].charAt(0);
                 if(iC>64 && iC<91){
                     test1 = true;
                 }
@@ -844,7 +841,7 @@ public class ANOVA{
         
         for(int i=0; i<n; i++){
             boolean test1 = false;
-            int iC = (int)responses[i];
+            int iC = responses[i];
             if(iC>64 && iC<91){
                 test1 = true;
             }
@@ -904,7 +901,7 @@ public class ANOVA{
         int n = responses.length;
         double[] converted = new double[n];
         for(int i=0; i<n; i++){
-            double holdi = (double)((int)responses[i].charAt(0));
+            double holdi = (responses[i].charAt(0));
             if(holdi>96.0){
                 converted[i] = holdi-96.0;
             }
@@ -920,7 +917,7 @@ public class ANOVA{
         int n = responses.length;
         double[] converted = new double[n];
         for(int i=0; i<n; i++){
-            double holdi = (double)((int)responses[i]);
+            double holdi = (responses[i]);
             if(holdi>96.0){
                 converted[i] = holdi-96.0;
             }
@@ -946,7 +943,7 @@ public class ANOVA{
         int n = responses.length;
         double[] converted = new double[n];
         for(int i=0; i<n; i++){
-            double holdi = (double)((int)responses[i]);
+            double holdi = (responses[i]);
             if(holdi>96.0){
                 converted[i] = holdi-96.0;
             }

@@ -161,7 +161,7 @@ public class Matrix{
                     for(int i=0;i<this.numberOfRows;i++){
                         this.permutationIndex[i]=i;
                         for(int j=0;j<this.numberOfColumns;j++){
-                            this.matrix[i][j] = (double)twoD[i][j];
+                            this.matrix[i][j] = twoD[i][j];
                             this.matrixS[i][j] = Conv.convert_float_to_String(twoD[i][j]);
                         }
                     }
@@ -183,7 +183,7 @@ public class Matrix{
                     for(int i=0;i<this.numberOfRows;i++){
                         this.permutationIndex[i]=i;
                         for(int j=0;j<this.numberOfColumns;j++){
-                            this.matrix[i][j] = (double)twoD[i][j];
+                            this.matrix[i][j] = twoD[i][j];
                             this.matrixS[i][j] = Conv.convert_long_to_String(twoD[i][j]);
                         }
                     }
@@ -206,7 +206,7 @@ public class Matrix{
                     for(int i=0;i<numberOfRows;i++){
                         this.permutationIndex[i]=i;
                         for(int j=0;j<this.numberOfColumns;j++){
-                            this.matrix[i][j] = (double)twoD[i][j];
+                            this.matrix[i][j] = twoD[i][j];
                             this.matrixS[i][j] = Conv.convert_long_to_String(twoD[i][j]);
                         }
                     }
@@ -776,7 +776,7 @@ public class Matrix{
             		}
         	    }
         	    for(int i=0; i<nr; i++)b.permutationIndex[i] = this.permutationIndex[i];
-        	    return (Object) b;
+        	    return b;
         	}
     	}
 
@@ -1866,8 +1866,8 @@ public class Matrix{
     	    am = new ArrayMaths(holdD);
     	    ret[0] = am.maximum();
     	    int maxI = am.maximumIndex();
-    	    ret[1] = (double)maxI;
-    	    ret[2] = (double)holdI[maxI];
+    	    ret[1] = maxI;
+    	    ret[2] = holdI[maxI];
 
     	    return ret;
     	}
@@ -1913,8 +1913,8 @@ public class Matrix{
     	    am = new ArrayMaths(holdD);
     	    ret[0] = am.minimum();
     	    int minI = am.minimumIndex();
-    	    ret[1] = (double)minI;
-    	    ret[2] = (double)holdI[minI];
+    	    ret[1] = minI;
+    	    ret[2] = holdI[minI];
 
     	    return ret;
     	}

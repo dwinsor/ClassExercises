@@ -490,7 +490,7 @@ public class Scores{
                     for(int j=0; j<this.nItems; j++){
                         if(Double.isNaN(scores0[j][i])){
                             deletedSum++;
-                            double pc = (double)deletedSum*100.0/this.nItems;
+                            double pc = deletedSum*100.0/this.nItems;
                             if(pc>this.personDeletionPercentage){
                                 this.deletedPersons[i] = true;
                             }
@@ -559,7 +559,7 @@ public class Scores{
                 for(int j=0; j<this.nPersons; j++){
                     if(Double.isNaN(scores0[i][j])){
                         deletedSum++;
-                        double pc = (double)deletedSum*100.0/this.nPersons;
+                        double pc = deletedSum*100.0/this.nPersons;
                         if(pc>this.itemDeletionPercentage){
                             this.deletedItems[i] = true;
                         }
@@ -1259,7 +1259,7 @@ public class Scores{
         if(this.readFlag==0 || this.readFlag==1)this.defaultItemNames();
         
         // Store entered data
-        this.storeData((Object)scores, 1, 0);
+        this.storeData(scores, 1, 0);
     }
     
     // Core method for reading scores as rows of scores for each item
@@ -1338,7 +1338,7 @@ public class Scores{
         this.defaultItemNames();
         
         // Store entered data
-        this.storeData((Object)scores, 1, 0);
+        this.storeData(scores, 1, 0);
     }
     
     
@@ -1394,7 +1394,7 @@ public class Scores{
         this.defaultItemNames();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 1, 0);
+        this.storeData(Conv.copy(scores), 1, 0);
     }
 
 
@@ -1420,7 +1420,7 @@ public class Scores{
         this.defaultItemNames();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 2, 0);
+        this.storeData(Conv.copy(scores), 2, 0);
     }
 
 
@@ -1447,8 +1447,8 @@ public class Scores{
         this.defaultItemNames();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 3, 0);
-        this.originalData = (Object)scores.copy();
+        this.storeData(Conv.copy(scores), 3, 0);
+        this.originalData = scores.copy();
     }
 
     // Enter scores as a matrix with rows of scores for each item - matrix of scores entered as float[][]
@@ -1473,7 +1473,7 @@ public class Scores{
         this.defaultItemNames();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 4, 0);
+        this.storeData(Conv.copy(scores), 4, 0);
     }
 
     // Enter scores as a matrix with rows of scores for each item   -  matrix of scores entered as int[][]
@@ -1498,7 +1498,7 @@ public class Scores{
         this.defaultItemNames();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 5, 0);;
+        this.storeData(Conv.copy(scores), 5, 0);;
     }
 
     // Enter scores as a matrix with rows of scores for each item   -  matrix of scores entered as char[][]
@@ -1524,7 +1524,7 @@ public class Scores{
         this.defaultItemNames();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 6, 0);
+        this.storeData(Conv.copy(scores), 6, 0);
     }
 
     // Enter scores as a matrix with rows of scores for each item - scores either true  or false  -  matrix of scores entered as boolean[][]
@@ -1550,7 +1550,7 @@ public class Scores{
         this.defaultItemNames();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 7, 0);
+        this.storeData(Conv.copy(scores), 7, 0);
     }
 
 
@@ -1792,7 +1792,7 @@ public class Scores{
         if(this.readFlag==0 || this.readFlag==1)this.defaultPersonNames();
         
         // Store entered data
-        this.storeData((Object)scores, 1, 1);
+        this.storeData(scores, 1, 1);
         
     }
     
@@ -1874,7 +1874,7 @@ public class Scores{
         this.defaultItemNames();
         
         // Store entered data
-        this.storeData((Object)scores, 1, 1);
+        this.storeData(scores, 1, 1);
     }
     
    
@@ -1897,7 +1897,7 @@ public class Scores{
         if(this.title==null)this.setTitle1();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 1, 1);
+        this.storeData(Conv.copy(scores), 1, 1);
         
         // Person names
         this.defaultPersonNames();
@@ -1928,7 +1928,7 @@ public class Scores{
         if(this.title==null)this.setTitle1();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 2, 1);
+        this.storeData(Conv.copy(scores), 2, 1);
    
         // Person names
         this.defaultPersonNames();
@@ -1955,7 +1955,7 @@ public class Scores{
         if(this.title==null)this.setTitle1();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 3, 1);
+        this.storeData(Conv.copy(scores), 3, 1);
         
         // Person names
         this.defaultPersonNames();
@@ -1981,7 +1981,7 @@ public class Scores{
         if(this.title==null)this.setTitle1();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 4, 1);
+        this.storeData(Conv.copy(scores), 4, 1);
         
         // Person names
         this.defaultPersonNames();
@@ -2007,7 +2007,7 @@ public class Scores{
         if(this.title==null)this.setTitle1();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 5, 1);
+        this.storeData(Conv.copy(scores), 5, 1);
         
         // Person names
         this.defaultPersonNames();
@@ -2034,7 +2034,7 @@ public class Scores{
         if(this.title==null)this.setTitle1();
 
         // Store entered data
-       this.storeData((Object)Conv.copy(scores), 6, 1);
+       this.storeData(Conv.copy(scores), 6, 1);
         
         // Person names
         this.defaultPersonNames();
@@ -2060,7 +2060,7 @@ public class Scores{
         if(this.title==null)this.setTitle1();
 
         // Store entered data
-        this.storeData((Object)Conv.copy(scores), 7, 1);
+        this.storeData(Conv.copy(scores), 7, 1);
         
         // Person names
         this.defaultPersonNames();
@@ -2221,7 +2221,7 @@ public class Scores{
         ArrayMaths am0 = new ArrayMaths(responseMatching);
         ArrayMaths am1 = am0.sort();
         double[] sorted = am1.array();
-        double max = (sorted[n-1] + sorted[n-2])*100.0/((double)n);
+        double max = (sorted[n-1] + sorted[n-2])*100.0/(n);
         return max;
     }
 
@@ -2539,12 +2539,12 @@ public class Scores{
                 for(int i=0; i<this.nItems; i++){
                     for(int j=0; j<this.nPersons; j++){
                         char elem = holdingArrayS[i][j].charAt(0);
-                        if((int)elem>64 && elem<91 && holdingArrayS[i][j].length()==1){
-                            holdingArrayS[i][j] = "" + ((int)elem - 63);
+                        if(elem>64 && elem<91 && holdingArrayS[i][j].length()==1){
+                            holdingArrayS[i][j] = "" + (elem - 63);
                         }
                         else{
-                            if((int)elem>96 && elem<123 && holdingArrayS[i][j].length()==1){
-                                holdingArrayS[i][j] = "" + ((int)elem - 96);
+                            if(elem>96 && elem<123 && holdingArrayS[i][j].length()==1){
+                                holdingArrayS[i][j] = "" + (elem - 96);
                             }
                         }
                     }

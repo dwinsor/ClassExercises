@@ -31,9 +31,6 @@
 
 package flanagan.roots;
 
-import java.util.*;
-import flanagan.math.Fmath;
-
 
 // Interface for RealRoot class
 // returns value of function whose root is required

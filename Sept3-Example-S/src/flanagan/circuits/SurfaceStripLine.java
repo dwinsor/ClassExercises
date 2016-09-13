@@ -639,7 +639,7 @@ public class SurfaceStripLine extends TransmissionLine{
 
             tl.numberOfPoints = this.numberOfPoints;
 
-            ret = (Object)tl;
+            ret = tl;
         }
         return ret;
     }

@@ -802,7 +802,7 @@ public class BoxCox{
     public void transformedProbabilityPlot(){
         if(!this.transformDone)this.transform();
 
-        double[][] data = PlotGraph.data(2,this.nData);
+        double[][] data = Plot.data(2,this.nData);
         data[0] = this.gaussianOrderMedians;
         data[1] = ((new ArrayMaths(this.standardizedTransformedData)).sort()).array();
 
@@ -828,7 +828,7 @@ public class BoxCox{
     public void originalProbabilityPlot(){
         if(!this.initializationDone)this.initialize();
 
-        double[][] data = PlotGraph.data(2,this.nData);
+        double[][] data = Plot.data(2,this.nData);
         data[0] = this.gaussianOrderMedians;
         data[1] = ((new ArrayMaths(this.standardizedOriginalData)).sort()).array();
         data[2] = this.gaussianOrderMedians;

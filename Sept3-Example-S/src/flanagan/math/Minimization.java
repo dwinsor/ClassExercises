@@ -35,10 +35,6 @@
 
 package flanagan.math;
 
-import java.util.*;
-import flanagan.math.Fmath;
-import flanagan.io.FileOutput;
-
 // Minimization/Minimisation class
 public class Minimization extends Minimisation{
 

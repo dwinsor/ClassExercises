@@ -133,7 +133,7 @@ public class DtoA  extends BlackBox{
         int[] vPosBinary = Conv.copy(this.vBinary);
         if(this.vBinary[len-1]==1){
             sign = -1L;
-            vPosBinary = this.negateNegativeBinary(vPosBinary);
+            vPosBinary = DtoA.negateNegativeBinary(vPosBinary);
         }
 
         // convert positive binary to decimal equivalent
@@ -175,7 +175,7 @@ public class DtoA  extends BlackBox{
         int[] vPosBinary = Conv.copy(this.vBinary);
         if(this.vBinary[len-1]==1){
             sign = -1L;
-            vPosBinary = this.negateNegativeBinary(this.vBinary);
+            vPosBinary = DtoA.negateNegativeBinary(this.vBinary);
         }
 
         // convert positive binary to decimal equivalent
@@ -390,6 +390,6 @@ public class DtoA  extends BlackBox{
 
     // Clone - overrides Java.Object method clone
     public Object clone(){
-        return (Object)this.copy();
+        return this.copy();
     }
 }

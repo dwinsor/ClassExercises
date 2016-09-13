@@ -34,8 +34,6 @@ package flanagan.io;
 
 import javax.swing.*;
 import java.io.*;
-import java.util.*;
-import javax.swing.filechooser.*;
 import flanagan.io.FileInput;
 
 public class MultipleFilesChooser{

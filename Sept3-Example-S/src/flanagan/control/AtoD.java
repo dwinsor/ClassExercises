@@ -41,7 +41,6 @@ package flanagan.control;
 
 import flanagan.math.*;
 import flanagan.complex.*;
-import flanagan.control.*;
 
 public class AtoD  extends BlackBox{
 
@@ -477,6 +476,6 @@ public class AtoD  extends BlackBox{
 
     // Clone - overrides Java.Object method clone
     public Object clone(){
-        return (Object)this.copy();
+        return this.copy();
     }
 }

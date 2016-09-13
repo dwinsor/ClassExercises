@@ -51,8 +51,6 @@ import flanagan.io.Db;
 import flanagan.io.FileOutput;
 import flanagan.analysis.Scores;
 import flanagan.analysis.Stat;
-import flanagan.plot.PlotGraph;
-import flanagan.plot.Plot;
 
 
 public class Cronbach extends Scores{

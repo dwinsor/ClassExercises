@@ -42,12 +42,12 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.io.*;
 import java.net.*;
-import javax.swing.*;
-import javax.swing.JFrame;
 
-import flanagan.io.*;
+import javax.swing.*;
+
 import flanagan.interpolation.CubicSpline;
 import flanagan.math.Fmath;
+import flanagan.plot.Plot;
 import flanagan.plot.PlotGraph;
 
 public class DigiGraph extends Canvas implements MouseListener{
@@ -306,7 +306,7 @@ public class DigiGraph extends Canvas implements MouseListener{
             this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
         else{
-            this.window.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            this.window.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         }
 
         // Add graph canvas
@@ -419,7 +419,7 @@ public class DigiGraph extends Canvas implements MouseListener{
                         this.sumY += this.yPos;
                         this.iSum++;
                         this.lowYaxisXpixel = (double)this.sumX/(double)this.iSum;
-                        this.lowYaxisYpixel = (double)this.windowHeight - (double)this.sumY/(double)this.iSum;
+                        this.lowYaxisYpixel = this.windowHeight - (double)this.sumY/(double)this.iSum;
                         this.iCounter++;
                         this.sumX = 0;
                         this.sumY = 0;
@@ -444,7 +444,7 @@ public class DigiGraph extends Canvas implements MouseListener{
                         this.sumY += this.yPos;
                         this.iSum++;
                         this.highYaxisXpixel = (double)this.sumX/(double)this.iSum;
-                        this.highYaxisYpixel = (double)this.windowHeight - (double)this.sumY/(double)this.iSum;
+                        this.highYaxisYpixel = this.windowHeight - (double)this.sumY/(double)this.iSum;
                         this.iCounter++;
                         this.sumX = 0;
                         this.sumY = 0;
@@ -468,7 +468,7 @@ public class DigiGraph extends Canvas implements MouseListener{
                         this.sumY += this.yPos;
                         this.iSum++;
                         this.lowXaxisXpixel = (double)this.sumX/(double)this.iSum;
-                        this.lowXaxisYpixel = (double)this.windowHeight - (double)this.sumY/(double)this.iSum;
+                        this.lowXaxisYpixel = this.windowHeight - (double)this.sumY/(double)this.iSum;
                         this.iCounter++;
                         this.sumX = 0;
                         this.sumY = 0;
@@ -495,7 +495,7 @@ public class DigiGraph extends Canvas implements MouseListener{
                         this.sumY += this.yPos;
                         this.iSum++;
                         this.highXaxisXpixel = (double)this.sumX/(double)this.iSum;
-                        this.highXaxisYpixel = (double)this.windowHeight - (double)this.sumY/(double)this.iSum;
+                        this.highXaxisYpixel = this.windowHeight - (double)this.sumY/(double)this.iSum;
                         this.iCounter++;
                         this.sumX = 0;
                         this.sumY = 0;
@@ -544,7 +544,7 @@ public class DigiGraph extends Canvas implements MouseListener{
             ii++;
             int yy = this.xAndYvalues.get(ii);
             ii++;
-            this.xPosPixel[i] =  (double)xx;
+            this.xPosPixel[i] =  xx;
             this.yPosPixel[i] =  (double)this.windowHeight - (double)yy;
         }
 
@@ -717,7 +717,7 @@ public class DigiGraph extends Canvas implements MouseListener{
         // Plot interpolated curve
         if(this.plotOpt){
             int nMax = Math.max(this.nInterpPoints, this.nData);
-            double[][] plotData = PlotGraph.data(2, nMax);
+            double[][] plotData = Plot.data(2, nMax);
 
             plotData[0] = this.xPositions;
             plotData[1] = this.yPositions;
@@ -790,7 +790,7 @@ public class DigiGraph extends Canvas implements MouseListener{
     private void plotDigitisedPoints(){
 
             // Plot interpolated curve
-            double[][] plotData = PlotGraph.data(1, this.nData);
+            double[][] plotData = Plot.data(1, this.nData);
 
             plotData[0] = this.xPositions;
             plotData[1] = this.yPositions;

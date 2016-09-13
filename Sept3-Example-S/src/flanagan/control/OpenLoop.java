@@ -82,7 +82,7 @@ public class OpenLoop extends BlackBox{
          BlackBox aa = null;
         if(this.nSeg==1){
             if(this.nBoxes==1){
-                aa = (BlackBox) this.openPath.get(0);
+                aa = this.openPath.get(0);
             }
             else{
                 aa = (BlackBox) this.segments.get(3);
@@ -600,6 +600,6 @@ public class OpenLoop extends BlackBox{
 
     // Clone - overrides Java.Object method clone
     public Object clone(){
-        return (Object)this.copy();
+        return this.copy();
     }
 }

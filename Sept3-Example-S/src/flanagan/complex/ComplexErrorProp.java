@@ -311,7 +311,7 @@ public class ComplexErrorProp{
                 ComplexErrorProp b = new ComplexErrorProp();
                 b.eReal=this.eReal.copy();
                 b.eImag=this.eImag.copy();
-                return (Object) b;
+                return b;
             }
         }
 

@@ -95,7 +95,7 @@ public class Fmath{
 
         // Log to base 10 of a float number
         public static float log10(float a){
-            return (float) (Math.log((double)a)/Math.log(10.0D));
+            return (float) (Math.log(a)/Math.log(10.0D));
         }
 
         // Base 10 antilog of a double
@@ -105,7 +105,7 @@ public class Fmath{
 
         // Base 10 antilog of a float
         public static float antilog10(float x){
-            return (float)Math.pow(10.0D, (double)x);
+            return (float)Math.pow(10.0D, x);
         }
 
         // Log to base e of a double number
@@ -115,7 +115,7 @@ public class Fmath{
 
         // Log to base e of a float number
         public static float log(float a){
-            return (float)Math.log((double)a);
+            return (float)Math.log(a);
         }
 
         // Base e antilog of a double
@@ -125,7 +125,7 @@ public class Fmath{
 
         // Base e antilog of a float
         public static float antilog(float x){
-            return (float)Math.exp((double)x);
+            return (float)Math.exp(x);
         }
 
         // Log to base 2 of a double number
@@ -135,7 +135,7 @@ public class Fmath{
 
         // Log to base 2 of a float number
         public static float log2(float a){
-            return (float) (Math.log((double)a)/Math.log(2.0D));
+            return (float) (Math.log(a)/Math.log(2.0D));
         }
 
         // Base 2 antilog of a double
@@ -145,7 +145,7 @@ public class Fmath{
 
         // Base 2 antilog of a float
         public static float antilog2(float x){
-            return (float)Math.pow(2.0D, (double)x);
+            return (float)Math.pow(2.0D, x);
         }
 
         // Log to base b of a double number and double base
@@ -155,17 +155,17 @@ public class Fmath{
 
         // Log to base b of a double number and int base
         public static double log10(double a, int b){
-            return Math.log(a)/Math.log((double)b);
+            return Math.log(a)/Math.log(b);
         }
 
         // Log to base b of a float number and flaot base
         public static float log10(float a, float b){
-            return (float) (Math.log((double)a)/Math.log((double)b));
+            return (float) (Math.log(a)/Math.log(b));
         }
 
         // Log to base b of a float number and int base
         public static float log10(float a, int b){
-            return (float) (Math.log((double)a)/Math.log((double)b));
+            return (float) (Math.log(a)/Math.log(b));
         }
         
         // Logit to base e of a double number
@@ -1117,7 +1117,7 @@ public class Fmath{
         // x and y are int, percentage provided as double
         public static boolean isEqualWithinPerCent(int x, int y, double perCent){
             boolean test=false;
-            double limit = Math.abs((double)(x+y)*perCent/200.0D);
+            double limit = Math.abs((x+y)*perCent/200.0D);
             if(Math.abs(x-y)<=limit)test=true;
             return test;
         }
@@ -1430,10 +1430,10 @@ public class Fmath{
         // x is float but must hold an integer value
         public static boolean isEven(float x){
             double y=Math.floor(x);
-            if(((double)x - y)!= 0.0D)throw new IllegalArgumentException("the argument is not an integer");
+            if((x - y)!= 0.0D)throw new IllegalArgumentException("the argument is not an integer");
             boolean test=false;
             y=Math.floor(x/2.0F);
-            if(((double)(x/2.0F)-y) == 0.0D)test=true;
+            if((x/2.0F-y) == 0.0D)test=true;
             return test;
         }
 
@@ -1461,10 +1461,10 @@ public class Fmath{
         // x is float but must hold an integer value
         public static boolean isOdd(float x){
             double y=Math.floor(x);
-            if(((double)x - y)!= 0.0D)throw new IllegalArgumentException("the argument is not an integer");
+            if((x - y)!= 0.0D)throw new IllegalArgumentException("the argument is not an integer");
             boolean test=true;
             y=Math.floor(x/2.0F);
-            if(((double)(x/2.0F)-y) == 0.0D)test=false;
+            if((x/2.0F-y) == 0.0D)test=false;
             return test;
         }
 
@@ -1802,7 +1802,7 @@ public class Fmath{
             int n = aa.length;
             double[] bb = new double[n];
             for(int i=0; i<n; i++){
-               bb[i] = (double)aa[i]*constant;
+               bb[i] = aa[i]*constant;
             }
             return bb;
         }
@@ -1811,7 +1811,7 @@ public class Fmath{
             int n = aa.length;
             double[] bb = new double[n];
             for(int i=0; i<n; i++){
-               bb[i] = aa[i]*(double)constant;
+               bb[i] = aa[i]*constant;
             }
             return bb;
         }
@@ -1821,7 +1821,7 @@ public class Fmath{
             int n = aa.length;
             double[] bb = new double[n];
             for(int i=0; i<n; i++){
-               bb[i] = (double)(aa[i]*constant);
+               bb[i] = aa[i]*constant;
             }
             return bb;
         }
@@ -2847,7 +2847,7 @@ public class Fmath{
             int n = aa.length;
             double[] bb = new double[n];
             for(int i=0; i<n; i++){
-               bb[i] = (double)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2857,7 +2857,7 @@ public class Fmath{
             int n = aa.length;
             double[] bb = new double[n];
             for(int i=0; i<n; i++){
-               bb[i] = (double)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2867,7 +2867,7 @@ public class Fmath{
             int n = aa.length;
             float[] bb = new float[n];
             for(int i=0; i<n; i++){
-               bb[i] = (float)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2877,7 +2877,7 @@ public class Fmath{
             int n = aa.length;
             long[] bb = new long[n];
             for(int i=0; i<n; i++){
-               bb[i] = (long)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2888,7 +2888,7 @@ public class Fmath{
             int n = aa.length;
             double[] bb = new double[n];
             for(int i=0; i<n; i++){
-               bb[i] = (double)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2899,7 +2899,7 @@ public class Fmath{
             int n = aa.length;
             float[] bb = new float[n];
             for(int i=0; i<n; i++){
-               bb[i] = (float)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2909,7 +2909,7 @@ public class Fmath{
             int n = aa.length;
             double[] bb = new double[n];
             for(int i=0; i<n; i++){
-               bb[i] = (double)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2919,7 +2919,7 @@ public class Fmath{
             int n = aa.length;
             float[] bb = new float[n];
             for(int i=0; i<n; i++){
-               bb[i] = (float)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2929,7 +2929,7 @@ public class Fmath{
             int n = aa.length;
             long[] bb = new long[n];
             for(int i=0; i<n; i++){
-               bb[i] = (long)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2939,7 +2939,7 @@ public class Fmath{
             int n = aa.length;
             int[] bb = new int[n];
             for(int i=0; i<n; i++){
-               bb[i] = (int)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2949,7 +2949,7 @@ public class Fmath{
             int n = aa.length;
             double[] bb = new double[n];
             for(int i=0; i<n; i++){
-               bb[i] = (int)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2959,7 +2959,7 @@ public class Fmath{
             int n = aa.length;
             float[] bb = new float[n];
             for(int i=0; i<n; i++){
-               bb[i] = (float)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2969,7 +2969,7 @@ public class Fmath{
             int n = aa.length;
             long[] bb = new long[n];
             for(int i=0; i<n; i++){
-               bb[i] = (long)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2979,7 +2979,7 @@ public class Fmath{
             int n = aa.length;
             int[] bb = new int[n];
             for(int i=0; i<n; i++){
-               bb[i] = (int)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }
@@ -2989,7 +2989,7 @@ public class Fmath{
             int n = aa.length;
             short[] bb = new short[n];
             for(int i=0; i<n; i++){
-               bb[i] = (short)aa[i];
+               bb[i] = aa[i];
             }
             return bb;
         }

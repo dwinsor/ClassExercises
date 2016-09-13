@@ -511,7 +511,7 @@ public class ComplexMatrix{
             		}
         	    }
         	    for(int i=0; i<nr; i++)b.index[i] = this.index[i];
-        	    return (Object) b;
+        	    return b;
         	}
     	}
 

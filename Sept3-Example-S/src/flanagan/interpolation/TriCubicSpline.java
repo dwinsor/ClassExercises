@@ -153,7 +153,7 @@ public class TriCubicSpline{
     	public void averageIdenticalAbscissae(){
     	    this.averageIdenticalAbscissae = true;
     	    for(int i=0; i<this.bcsn.length; i++)this.bcsn[i].averageIdenticalAbscissae();
-    	    this.csm.averageIdenticalAbscissae();
+    	    CubicSpline.averageIdenticalAbscissae();
     	}
 
     	// Returns a new TriCubicSpline setting internal array size to nP x mP x lP and all array values to zero with natural spline default

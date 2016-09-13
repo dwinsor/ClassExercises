@@ -173,9 +173,9 @@ public class Integration{
 
         	// Get Gauss-Legendre coefficients, i.e. the weights and scaled distances
         	// Check if coefficients have been already calculated on an earlier call
-        	if(!this.gaussQuadIndex.isEmpty()){
-            		for(k=0; k<this.gaussQuadIndex.size(); k++){
-                		Integer ki = this.gaussQuadIndex.get(k);
+        	if(!Integration.gaussQuadIndex.isEmpty()){
+            		for(k=0; k<Integration.gaussQuadIndex.size(); k++){
+                		Integer ki = Integration.gaussQuadIndex.get(k);
                 		if(ki.intValue()==this.glPoints){
                     			test=false;
                     			kn = k;
@@ -325,11 +325,11 @@ public class Integration{
     	    this.maxIntervals = maxIntervals;
         	this.trapeziumIntervals = 1;
 
-        	double  summ = this.trapezium(this.integralFunc, this.lowerLimit, this.upperLimit, 1);
+        	double  summ = Integration.trapezium(this.integralFunc, this.lowerLimit, this.upperLimit, 1);
         	double oldSumm = summ;
         	int i = 2;
         	for(i=2; i<=this.maxIntervals; i++){
-            		summ = this.trapezium(this.integralFunc, this.lowerLimit, this.upperLimit, i);
+            		summ = Integration.trapezium(this.integralFunc, this.lowerLimit, this.upperLimit, i);
             		this.trapeziumAccuracy = Math.abs((summ - oldSumm)/oldSumm);
             		if(this.trapeziumAccuracy<=this.requiredAccuracy)break;
             		oldSumm = summ;

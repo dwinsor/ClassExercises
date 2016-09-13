@@ -165,7 +165,7 @@ public class QuadriCubicSpline{
     	public void averageIdenticalAbscissae(){
     	    this.averageIdenticalAbscissae = true;
     	    for(int i=0; i<this.tcsn.length; i++)this.tcsn[i].averageIdenticalAbscissae();
-    	    this.csm.averageIdenticalAbscissae();
+    	    CubicSpline.averageIdenticalAbscissae();
     	}
 
    	    // Get minimum limits

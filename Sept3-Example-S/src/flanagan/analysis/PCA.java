@@ -308,7 +308,7 @@ public class PCA extends Scores{
 
             // Bartlett Sphericity Test
             double correlationDeterminant = this.correlationMatrix.determinant();
-            this.chiSquareBartlett = -((double)(this.nPersons -1) - ((double)(2*this.nItems + 5)/(double)6))*Math.log(Math.abs(correlationDeterminant));
+            this.chiSquareBartlett = -(this.nPersons -1 - ((double)(2*this.nItems + 5)/(double)6))*Math.log(Math.abs(correlationDeterminant));
             if(this.chiSquareBartlett>=0.0){
                 this.dfBartlett = this.nItems*(this.nItems - 1)/2;
                 this.probBartlett = 1.0 - Stat.chiSquareCDF(this.chiSquareBartlett, this.dfBartlett);
@@ -730,7 +730,7 @@ public class PCA extends Scores{
                 holdDA[i][j] = this.usRotatedLoadingFactorsAsRows[sortedRotIndices[i]][j];
             }
         }
-        this.usRotatedLoadingFactorsAsRows = Conv.copy((double[][])holdDA);
+        this.usRotatedLoadingFactorsAsRows = Conv.copy(holdDA);
 
         nn = sortedRotIndices.length;
         this.rotatedIndices = new int[nn];
@@ -738,7 +738,7 @@ public class PCA extends Scores{
         for(int i=0; i<nn; i++){
             holdIA[i] = this.eigenValueIndices[sortedRotIndices[i]];
         }
-        this.rotatedIndices = Conv.copy((int[])this.eigenValueIndices);
+        this.rotatedIndices = Conv.copy(this.eigenValueIndices);
         for(int i=0; i<nn; i++){
             this.rotatedIndices[i] = holdIA[i];
         }

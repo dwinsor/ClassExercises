@@ -495,7 +495,7 @@ public class Complex{
                 for(int i=0; i<n; i++){
                         sum = sum.plus(aa[i]);
                 }
-                return sum.over((double)n);
+                return sum.over(n);
         }
 
         // Create a one dimensional array of Complex objects of length n
@@ -681,7 +681,7 @@ public class Complex{
                     Complex b = new Complex();
                     b.real=this.real;
                     b.imag=this.imag;
-                    ret = (Object)b;
+                    ret = b;
             }
 
             return ret;
@@ -1481,7 +1481,7 @@ public class Complex{
                         c = aa;
                     }
                     else{
-                        c = Complex.exp((Complex.log(aa)).over((double)n));
+                        c = Complex.exp((Complex.log(aa)).over(n));
                     }
                 }
 
@@ -1574,13 +1574,13 @@ public class Complex{
 
         // returns a Complex number raised to an integer, i.e. int, power [instance method]
         public Complex pow(int n ){
-                double b = (double) n;
+                double b = n;
                 return  powDouble(this, b);
         }
 
         // returns a Complex number raised to an integer, i.e. int, power
         public static Complex pow(Complex a, int n ){
-                double b = (double) n;
+                double b = n;
                 return  powDouble(a, b);
         }
 

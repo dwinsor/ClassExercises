@@ -125,8 +125,8 @@ public class BiCubicSplinePartialDerivative{
         // to avraging the relevant ordinates
     	public void averageIdenticalAbscissae(){
     	    this.averageIdenticalAbscissae = true;
-    	    for(int i=0; i<this.csn.length; i++)this.csn[i].averageIdenticalAbscissae();
-    	    this.csm.averageIdenticalAbscissae();
+    	    for(int i=0; i<this.csn.length; i++)CubicSpline.averageIdenticalAbscissae();
+    	    CubicSpline.averageIdenticalAbscissae();
     	}
 
    	    // Get minimum limits

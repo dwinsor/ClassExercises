@@ -882,7 +882,7 @@ public class PsRandom implements Serializable{
 	        // use rejection method
 		    if(nTrials != nOld) {
 		        // if nTrials has changed compute useful quantities
-			    enTrials = (double)nTrials;
+			    enTrials = nTrials;
 			    oldGamma = Stat.logGamma(enTrials + 1.0D);
 			    nOld = nTrials;
 		    }
@@ -964,7 +964,7 @@ public class PsRandom implements Serializable{
 	            // use rejection method
 		        if(nTrials != nOld) {
 		            // if nTrials has changed compute useful quantities
-			        enTrials = (double)nTrials;
+			        enTrials = nTrials;
 			        oldGamma = Stat.logGamma(enTrials + 1.0D);
 			        nOld = nTrials;
 		        }
@@ -1568,13 +1568,13 @@ public class PsRandom implements Serializable{
 
     // method for generating an Erlang random deviate
     public double nextErlang(double lambda, int kay){
-        return nextGamma(0.0D, 1.0D/lambda, (double) kay);
+        return nextGamma(0.0D, 1.0D/lambda, kay);
     }
 
 
     // method for generating an array of Erlang random deviates
     public double[] erlangArray(double lambda, int kay, int n){
-        return gammaArray(0.0D, 1.0D/lambda, (double) kay, n);
+        return gammaArray(0.0D, 1.0D/lambda, kay, n);
     }
 
     // CHI-SQUARE
@@ -1800,8 +1800,8 @@ public class PsRandom implements Serializable{
 
         // upper bound
         double upperBound = 10.0D;
-        double nu1d = (double) nu1;
-        double nu2d = (double) nu2;
+        double nu1d = nu1;
+        double nu2d = nu2;
         if(nu2>4)upperBound = 5.0D*Math.sqrt(2*nu2d*nu2d*(nu1d+nu2d-2)/(nu1d*(nu2d-2)*(nu2d-2)*(nu2d-4)));
 
         for(int i=0; i<n; i++){

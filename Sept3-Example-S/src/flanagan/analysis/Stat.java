@@ -54,7 +54,7 @@ import flanagan.math.*;
 import flanagan.integration.Integration;
 import flanagan.integration.IntegralFunction;
 import flanagan.interpolation.CubicSpline;
-
+import flanagan.plot.Plot;
 import flanagan.plot.PlotGraph;
 import flanagan.complex.*;
 import flanagan.circuits.Phasor;
@@ -417,7 +417,7 @@ public class Stat extends ArrayMaths{
         }
 
         public double trueSampleNumber_as_double(){
-            return (double)this.length;
+            return this.length;
         }
 
         public BigDecimal trueSampleNumber_as_BigDecimal(){
@@ -425,7 +425,7 @@ public class Stat extends ArrayMaths{
         }
 
         public Complex trueSampleNumber_as_Complex(){
-                return new Complex((double)this.length, 0.0);
+                return new Complex(this.length, 0.0);
         }
 
 
@@ -662,7 +662,7 @@ public class Stat extends ArrayMaths{
                              for(int i=0; i<this.length; i++){
                                 mean += dd[i];
                              }
-                             mean /= (double)this.length;
+                             mean /= this.length;
                              break;
                     case 12: BigDecimal[] bd = this.getArray_as_BigDecimal();
                              BigDecimal meanbd = BigDecimal.ZERO;
@@ -684,7 +684,7 @@ public class Stat extends ArrayMaths{
                     case 1:  double[] dd = this.getArray_as_double();
                              double meand= 0.0D;
                              for(int i=0; i<this.length; i++)meand += dd[i];
-                             meand /= (double)this.length;
+                             meand /= this.length;
                              mean = new BigDecimal(meand);
                              break;
                     case 12: BigDecimal[] bd = this.getArray_as_BigDecimal();
@@ -704,7 +704,7 @@ public class Stat extends ArrayMaths{
                     case 1:  double[] dd = this.getArray_as_double();
                              double meand= 0.0D;
                              for(int i=0; i<this.length; i++)meand += dd[i];
-                             meand /= (double)this.length;
+                             meand /= this.length;
                              mean = new Complex(meand);
                              break;
                     case 12: BigDecimal[] bd = this.getArray_as_BigDecimal();
@@ -717,7 +717,7 @@ public class Stat extends ArrayMaths{
                              break;
                     case 14: Complex[] cc = this.getArray_as_Complex();
                              for(int i=0; i<this.length; i++)mean = mean.plus(cc[i]);
-                             mean = mean.over(new Complex((double)this.length));
+                             mean = mean.over(new Complex(this.length));
                              break;
                     default: throw new IllegalArgumentException("This type number, " + this.type +", should not be possible here!!!!");
                 }
@@ -3567,11 +3567,11 @@ public class Stat extends ArrayMaths{
                     case 12: BigDecimal[] bd = this.getArray_as_BigDecimal();
                              ArrayList<Object> ret = new ArrayList<Object>();
                              ret = upperOutliersAnscombeAsArrayList(bd, new BigDecimal(constant));
-                             this.upperOutlierDetails.add((Integer)ret.get(0));
+                             this.upperOutlierDetails.add(ret.get(0));
                              BigDecimal[] bd1 = (BigDecimal[])ret.get(1);
                              ArrayMaths am1 = new ArrayMaths(bd1);
                              this.upperOutlierDetails.add(am1.getArray_as_Double());
-                             this.upperOutlierDetails.add((int[])ret.get(2));
+                             this.upperOutlierDetails.add(ret.get(2));
                              BigDecimal[] bd2 = (BigDecimal[])ret.get(3);
                              ArrayMaths am2 = new ArrayMaths(bd2);
                              this.upperOutlierDetails.add(am2.getArray_as_Double());
@@ -3595,11 +3595,11 @@ public class Stat extends ArrayMaths{
                     case 1:  double[] dd = this.getArray_as_double();
                              ArrayList<Object> ret = new ArrayList<Object>();
                              ret = upperOutliersAnscombeAsArrayList(dd, constant.doubleValue());
-                             this.upperOutlierDetails.add((Integer)ret.get(0));
+                             this.upperOutlierDetails.add(ret.get(0));
                              Double[] dd1 = (Double[])ret.get(1);
                              ArrayMaths am1 = new ArrayMaths(dd1);
                              this.upperOutlierDetails.add(am1.getArray_as_BigDecimal());
-                             this.upperOutlierDetails.add((int[])ret.get(2));
+                             this.upperOutlierDetails.add(ret.get(2));
                              Double[] dd2 = (Double[])ret.get(3);
                              ArrayMaths am2 = new ArrayMaths(dd2);
                              this.upperOutlierDetails.add(am2.getArray_as_BigDecimal());
@@ -3638,11 +3638,11 @@ public class Stat extends ArrayMaths{
                     case 12: BigDecimal[] bd = this.getArray_as_BigDecimal();
                              ArrayList<Object> ret = new ArrayList<Object>();
                              ret = lowerOutliersAnscombeAsArrayList(bd, new BigDecimal(constant));
-                             this.lowerOutlierDetails.add((Integer)ret.get(0));
+                             this.lowerOutlierDetails.add(ret.get(0));
                              BigDecimal[] bd1 = (BigDecimal[])ret.get(1);
                              ArrayMaths am1 = new ArrayMaths(bd1);
                              this.lowerOutlierDetails.add(am1.getArray_as_Double());
-                             this.lowerOutlierDetails.add((int[])ret.get(2));
+                             this.lowerOutlierDetails.add(ret.get(2));
                              BigDecimal[] bd2 = (BigDecimal[])ret.get(3);
                              ArrayMaths am2 = new ArrayMaths(bd2);
                              this.lowerOutlierDetails.add(am2.getArray_as_Double());
@@ -3665,11 +3665,11 @@ public class Stat extends ArrayMaths{
                     case 1:  double[] dd = this.getArray_as_double();
                              ArrayList<Object> ret = new ArrayList<Object>();
                              ret = lowerOutliersAnscombeAsArrayList(dd, constant.doubleValue());
-                             this.lowerOutlierDetails.add((Integer)ret.get(0));
+                             this.lowerOutlierDetails.add(ret.get(0));
                              Double[] dd1 = (Double[])ret.get(1);
                              ArrayMaths am1 = new ArrayMaths(dd1);
                              this.lowerOutlierDetails.add(am1.getArray_as_BigDecimal());
-                             this.lowerOutlierDetails.add((int[])ret.get(2));
+                             this.lowerOutlierDetails.add(ret.get(2));
                              Double[] dd2 = (Double[])ret.get(3);
                              ArrayMaths am2 = new ArrayMaths(dd2);
                              this.lowerOutlierDetails.add(am2.getArray_as_BigDecimal());
@@ -3964,7 +3964,7 @@ public class Stat extends ArrayMaths{
                 for(int i=0; i<n; i++){
                         sum+=aa[i];
                 }
-                return sum/((double)n);
+                return sum/(n);
         }
 
         // Arithmetic mean of a 1D array of floats, aa
@@ -3974,7 +3974,7 @@ public class Stat extends ArrayMaths{
                 for(int i=0; i<n; i++){
                         sum+=aa[i];
                 }
-                return sum/((float)n);
+                return sum/(n);
         }
 
         // Arithmetic mean of a 1D array of int, aa
@@ -3982,9 +3982,9 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 double sum=0.0D;
                 for(int i=0; i<n; i++){
-                        sum+=(double)aa[i];
+                        sum+=aa[i];
                 }
-                return sum/((double)n);
+                return sum/(n);
         }
 
         // Arithmetic mean of a 1D array of int, aa
@@ -3992,9 +3992,9 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 double sum=0.0D;
                 for(int i=0; i<n; i++){
-                        sum+=(double)aa[i];
+                        sum+=aa[i];
                 }
-                return sum/((double)n);
+                return sum/(n);
         }
 
         // Arithmetic mean of a 1D array of short, aa
@@ -4002,9 +4002,9 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 double sum=0.0D;
                 for(int i=0; i<n; i++){
-                        sum+=(double)aa[i];
+                        sum+=aa[i];
                 }
-                return sum/((double)n);
+                return sum/(n);
         }
 
         // Arithmetic mean of a 1D array of byte, aa
@@ -4012,9 +4012,9 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 double sum=0.0D;
                 for(int i=0; i<n; i++){
-                        sum+=(double)aa[i];
+                        sum+=aa[i];
                 }
-                return sum/((double)n);
+                return sum/(n);
         }
 
         // Arithmetic mean of a 1D array of Complex, aa
@@ -4024,7 +4024,7 @@ public class Stat extends ArrayMaths{
                 for(int i=0; i<n; i++){
                         sum = sum.plus(aa[i]);
                 }
-                return sum.over((double)n);
+                return sum.over(n);
         }
 
         // Arithmetic mean of a 1D array of BigDecimal, aa
@@ -4257,7 +4257,7 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 double sum = 0.0D;
                 for(int i=0; i<n; i++)sum += Math.log(aa[i].doubleValue());
-                return Math.exp(sum/(double)n);
+                return Math.exp(sum/n);
         }
 
         // Geometric mean of a 1D array of BigInteger, aa
@@ -4265,7 +4265,7 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 double sum = 0.0D;
                 for(int i=0; i<n; i++)sum += Math.log(aa[i].doubleValue());
-                return Math.exp(sum/(double)n);
+                return Math.exp(sum/n);
         }
 
         // Geometric mean of a 1D array of Complex, aa
@@ -4273,7 +4273,7 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 Complex sum = Complex.zero();
                 for(int i=0; i<n; i++)sum = sum.plus(Complex.log(aa[i]));
-                return Complex.exp(sum.over((double)n));
+                return Complex.exp(sum.over(n));
         }
 
         // Geometric mean of a 1D array of doubles, aa
@@ -4281,7 +4281,7 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 double sum=0.0D;
                 for(int i=0; i<n; i++)sum += Math.log(aa[i]);
-                return Math.exp(sum/(double)n);
+                return Math.exp(sum/n);
         }
 
         // Geometric mean of a 1D array of floats, aa
@@ -4289,7 +4289,7 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 float sum=0.0F;
                 for(int i=0; i<n; i++)sum += (float)Math.log(aa[i]);
-                return (float)Math.exp(sum/(float)n);
+                return (float)Math.exp(sum/n);
         }
 
           // Weighted geometric mean of a 1D array of Complexs, aa
@@ -4393,7 +4393,7 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 Complex sum = Complex.zero();
                 for(int i=0; i<n; i++)sum = sum.plus(Complex.plusOne().over(aa[i]));
-                sum = (new Complex((double)n)).over(sum);
+                sum = (new Complex(n)).over(sum);
                 return sum;
         }
 
@@ -4402,7 +4402,7 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 double sum = 0.0D;
                 for(int i=0; i<n; i++)sum += 1.0D/aa[i];
-                return (double)n/sum;
+                return n/sum;
         }
 
         // Harmonic mean of a 1D array of floats, aa
@@ -4410,7 +4410,7 @@ public class Stat extends ArrayMaths{
                 int n = aa.length;
                 float sum = 0.0F;
                 for(int i=0; i<n; i++)sum += 1.0F/aa[i];
-                return (float)n/sum;
+                return n/sum;
         }
 
         // Weighted harmonic mean of a 1D array of BigDecimal, aa
@@ -4497,7 +4497,7 @@ public class Stat extends ArrayMaths{
                     for(int i=0; i<n; i++){
                         sum = sum.plus(Complex.pow(aa[i],m));
                     }
-                    return Complex.pow(sum.over((double)n), 1.0D/m);
+                    return Complex.pow(sum.over(n), 1.0D/m);
                 }
         }
 
@@ -4515,7 +4515,7 @@ public class Stat extends ArrayMaths{
                     for(int i=0; i<n; i++){
                         sum = sum.plus(Complex.pow(aa[i],m));
                     }
-                    return Complex.pow(sum.over((double)n), Complex.plusOne().over(m));
+                    return Complex.pow(sum.over(n), Complex.plusOne().over(m));
                 }
         }
 
@@ -4561,7 +4561,7 @@ public class Stat extends ArrayMaths{
                     for(int i=0; i<n; i++){
                         sum += Math.pow(aa[i],m);
                     }
-                    return Math.pow(sum/((double)n), 1.0D/m);
+                    return Math.pow(sum/(n), 1.0D/m);
                 }
         }
 
@@ -4579,7 +4579,7 @@ public class Stat extends ArrayMaths{
                     for(int i=0; i<n; i++){
                         sum += Math.pow(aa[i],m);
                     }
-                    return (float)Math.pow(sum/((float)n), 1.0F/m);
+                    return (float)Math.pow(sum/(n), 1.0F/m);
                 }
         }
 
@@ -4598,7 +4598,7 @@ public class Stat extends ArrayMaths{
                     for(int i=0; i<n; i++){
                         sum = sum.plus(Complex.pow(aa[i],m));
                     }
-                    return Complex.pow(sum.over((double)n), 1.0D/m);
+                    return Complex.pow(sum.over(n), 1.0D/m);
                 }
         }
 
@@ -4616,7 +4616,7 @@ public class Stat extends ArrayMaths{
                     for(int i=0; i<n; i++){
                         sum = sum.plus(Complex.pow(aa[i],m));
                     }
-                    return Complex.pow(sum.over((double)n), Complex.plusOne().over(m));
+                    return Complex.pow(sum.over(n), Complex.plusOne().over(m));
                 }
         }
 
@@ -4662,7 +4662,7 @@ public class Stat extends ArrayMaths{
                     for(int i=0; i<n; i++){
                         sum += Math.pow(aa[i],m);
                     }
-                    return Math.pow(sum/((double)n), 1.0D/m);
+                    return Math.pow(sum/(n), 1.0D/m);
                 }
         }
 
@@ -4680,7 +4680,7 @@ public class Stat extends ArrayMaths{
                     for(int i=0; i<n; i++){
                         sum += Math.pow(aa[i],m);
                     }
-                    return (float)Math.pow(sum/((float)n), 1.0F/m);
+                    return (float)Math.pow(sum/(n), 1.0F/m);
                 }
         }
 
@@ -4916,7 +4916,7 @@ public class Stat extends ArrayMaths{
                 BigDecimal[] bb = as.getArray_as_BigDecimal();
                 BigDecimal sum = BigDecimal.ZERO;
                 for(int i=n/4; i<3*n/4; i++)sum = sum.add(bb[i]);
-                sum = sum.multiply(new BigDecimal(2.0D/(double)n));
+                sum = sum.multiply(new BigDecimal(2.0D/n));
                 bb = null;
                 return sum;
         }
@@ -4930,7 +4930,7 @@ public class Stat extends ArrayMaths{
                 BigDecimal[] bb = as.getArray_as_BigDecimal();
                 BigDecimal sum = BigDecimal.ZERO;
                 for(int i=n/4; i<3*n/4; i++)sum = sum.add(bb[i]);
-                sum = sum.multiply(new BigDecimal(2.0D/(double)n));
+                sum = sum.multiply(new BigDecimal(2.0D/n));
                 bb = null;
                 return sum;
         }
@@ -4942,7 +4942,7 @@ public class Stat extends ArrayMaths{
                 double[] bb = Fmath.selectionSort(aa);
                 double sum = 0.0D;
                 for(int i=n/4; i<3*n/4; i++)sum += bb[i];
-                return 2.0*sum/(double)(n);
+                return 2.0*sum/(n);
         }
 
         // Interquartile mean of a 1D array of floats, aa
@@ -4952,7 +4952,7 @@ public class Stat extends ArrayMaths{
                 float[] bb = Fmath.selectionSort(aa);
                 float sum = 0.0F;
                 for(int i=n/4; i<3*n/4; i++)sum += bb[i];
-                return 2.0F*sum/(float)(n);
+                return 2.0F*sum/(n);
         }
 
         // ROOT MEAN SQUARES
@@ -4964,7 +4964,7 @@ public class Stat extends ArrayMaths{
                 for(int i=0; i<n; i++){
                         sum+=aa[i]*aa[i];
                 }
-                return Math.sqrt(sum/((double)n));
+                return Math.sqrt(sum/(n));
         }
 
         // Root mean square (rms) of a 1D array of floats, aa
@@ -4974,7 +4974,7 @@ public class Stat extends ArrayMaths{
                 for(int i=0; i<n; i++){
                         sum+=aa[i]*aa[i];
                 }
-                sum /= (float)n;
+                sum /= n;
 
                 return (float)Math.sqrt(sum);
         }
@@ -5174,10 +5174,10 @@ public class Stat extends ArrayMaths{
                 double med = 0.0D;
                 int[] bb = Fmath.selectionSort(aa);
                 if(Fmath.isOdd(n)){
-                    med = (double)bb[nOverTwo];
+                    med = bb[nOverTwo];
                 }
                 else{
-                    med = (double)(bb[nOverTwo-1]+bb[nOverTwo])/2.0D;
+                    med = (bb[nOverTwo-1]+bb[nOverTwo])/2.0D;
                 }
 
                 return med;
@@ -5195,10 +5195,10 @@ public class Stat extends ArrayMaths{
                 double med = 0.0D;
                 long[] bb = Fmath.selectionSort(aa);
                 if(Fmath.isOdd(n)){
-                    med = (double)bb[nOverTwo];
+                    med = bb[nOverTwo];
                 }
                 else{
-                    med = (double)(bb[nOverTwo-1]+bb[nOverTwo])/2.0D;
+                    med = (bb[nOverTwo-1]+bb[nOverTwo])/2.0D;
                 }
 
                 return med;
@@ -5539,7 +5539,7 @@ public class Stat extends ArrayMaths{
             }
             else{
                 for(int i=0; i<n; i++){
-                    bb[i] = ((double)aa[i] - mean0)/sd0;
+                    bb[i] = (aa[i] - mean0)/sd0;
                 }
             }
             return bb;
@@ -5563,7 +5563,7 @@ public class Stat extends ArrayMaths{
             }
             else{
                 for(int i=0; i<n; i++){
-                    bb[i] = ((double)aa[i] - mean0)/sd0;
+                    bb[i] = (aa[i] - mean0)/sd0;
                 }
             }
             return bb;
@@ -5680,8 +5680,8 @@ public class Stat extends ArrayMaths{
         // Moment skewness of a 1D array of doubles
         public static double momentSkewness(double[] aa){
                 int n = aa.length;
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
                 double sum = 0.0D;
                 double mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
@@ -5695,8 +5695,8 @@ public class Stat extends ArrayMaths{
         // Moment skewness of a 1D array of floats
         public static float momentSkewness(float[] aa){
                 int n = aa.length;
-                float denom = (float)(n-1);
-                if(Stat.nFactorOptionS)denom = (float)n;
+                float denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
                 float sum = 0.0F;
                 float mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
@@ -5709,8 +5709,8 @@ public class Stat extends ArrayMaths{
         // Moment skewness of a 1D array of BigDecimal
         public static double momentSkewness(BigDecimal[] aa){
                 int n = aa.length;
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
                 BigDecimal sum = BigDecimal.ZERO;
                 BigDecimal mean = Stat.mean(aa);
                 double sd = Stat.standardDeviation(aa);
@@ -5725,8 +5725,8 @@ public class Stat extends ArrayMaths{
         // Moment skewness of a 1D array of long
         public static double momentSkewness(long[] aa){
                 int n = aa.length;
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
                 double sum = 0.0D;
                 double mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
@@ -5739,8 +5739,8 @@ public class Stat extends ArrayMaths{
         // Moment skewness of a 1D array of int
         public static double momentSkewness(int[] aa){
                 int n = aa.length;
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
                 double sum = 0.0D;
                 double mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
@@ -5943,8 +5943,8 @@ public class Stat extends ArrayMaths{
         // Kutosis of a 1D array of doubles
         public static double kurtosis(double[] aa){
                 int n = aa.length;
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
                 double sum=0.0D;
                 double mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
@@ -5981,8 +5981,8 @@ public class Stat extends ArrayMaths{
         // Kutosis of a 1D array of floats
         public static float kurtosis(float[] aa){
                 int n = aa.length;
-                float denom = (float)(n-1);
-                if(Stat.nFactorOptionS)denom = (float)n;
+                float denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
                 float sum=0.0F;
                 float mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
@@ -6047,8 +6047,8 @@ public class Stat extends ArrayMaths{
         // Kutosis of a 1D array of BigDecimal
         public static BigDecimal kurtosis(BigDecimal[] aa){
                 int n = aa.length;
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
                 BigDecimal sum = BigDecimal.ZERO;
                 BigDecimal mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
@@ -6092,12 +6092,12 @@ public class Stat extends ArrayMaths{
         // Kutosis of a 1D array of long
         public static double kurtosis(long[] aa){
                 int n = aa.length;
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
                 double sum=0.0D;
                 double mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
-                        sum+=Math.pow(((double)aa[i]-mean), 4);
+                        sum+=Math.pow((aa[i]-mean), 4);
                 }
                 sum = sum/denom;
                 double ret = sum/Fmath.square(Stat.variance(aa));
@@ -6130,8 +6130,8 @@ public class Stat extends ArrayMaths{
         // Kutosis of a 1D array of int
         public static double kurtosis(int[] aa){
                 int n = aa.length;
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
                 double sum=0.0D;
                 double mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
@@ -6213,8 +6213,8 @@ public class Stat extends ArrayMaths{
                         Complex hold = new Complex(aa[i]).minus(mean);
                         sum = sum.plus(hold.times(hold));
                 }
-                Complex ret = sum.over(new Complex((double)(n-1)));
-                if(Stat.nFactorOptionS) ret = sum.over(new Complex((double)n));
+                Complex ret = sum.over(new Complex(n-1));
+                if(Stat.nFactorOptionS) ret = sum.over(new Complex(n));
                 return ret;
          }
 
@@ -6227,8 +6227,8 @@ public class Stat extends ArrayMaths{
                         Complex hold = new Complex(aa[i]).minus(mean);
                         sum = sum.plus(hold.times(hold.conjugate()));
                 }
-                double ret = sum.getReal()/(double)(n-1);
-                if(Stat.nFactorOptionS) ret = sum.getReal()/(double)n;
+                double ret = sum.getReal()/(n-1);
+                if(Stat.nFactorOptionS) ret = sum.getReal()/n;
                 return ret;
         }
 
@@ -6266,8 +6266,8 @@ public class Stat extends ArrayMaths{
                 for(int i=0; i<n; i++){
                         sum+=Fmath.square(aa[i]-mean);
                 }
-                double ret = sum/((double)(n-1));
-                if(Stat.nFactorOptionS) ret = sum/((double)n);
+                double ret = sum/(n-1);
+                if(Stat.nFactorOptionS) ret = sum/(n);
                 return ret;
         }
 
@@ -6279,8 +6279,8 @@ public class Stat extends ArrayMaths{
                 for(int i=0; i<n; i++){
                         sum+=Fmath.square(aa[i]-mean);
                 }
-                float ret = sum/((float)(n-1));
-                if(Stat.nFactorOptionS) ret = sum/((float)n);
+                float ret = sum/(n-1);
+                if(Stat.nFactorOptionS) ret = sum/(n);
                 return ret;
         }
 
@@ -6290,10 +6290,10 @@ public class Stat extends ArrayMaths{
                 double sum=0.0D;
                 double mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
-                        sum+=Fmath.square((double)aa[i]-mean);
+                        sum+=Fmath.square(aa[i]-mean);
                 }
-                double ret = sum/((double)(n-1));
-                if(Stat.nFactorOptionS) ret = sum/((double)n);
+                double ret = sum/(n-1);
+                if(Stat.nFactorOptionS) ret = sum/(n);
                 return ret;
         }
 
@@ -6303,10 +6303,10 @@ public class Stat extends ArrayMaths{
                 double sum=0.0D;
                 double mean = Stat.mean(aa);
                 for(int i=0; i<n; i++){
-                        sum+=Fmath.square((double)aa[i]-mean);
+                        sum+=Fmath.square(aa[i]-mean);
                 }
-                double ret = sum/((double)(n-1));
-                if(Stat.nFactorOptionS) ret = sum/((double)n);
+                double ret = sum/(n-1);
+                if(Stat.nFactorOptionS) ret = sum/(n);
                 return ret;
         }
 
@@ -6625,8 +6625,8 @@ public class Stat extends ArrayMaths{
         public static double covariance(double[] xx, double[] yy){
                 int n = xx.length;
                 if(n!=yy.length)throw new IllegalArgumentException("length of x variable array, " + n + " and length of y array, " + yy.length + " are different");
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
 
                 double sumx=0.0D, meanx=0.0D;
                 double sumy=0.0D, meany=0.0D;
@@ -6634,8 +6634,8 @@ public class Stat extends ArrayMaths{
                         sumx+=xx[i];
                         sumy+=yy[i];
                 }
-                meanx=sumx/((double)n);
-                meany=sumy/((double)n);
+                meanx=sumx/(n);
+                meany=sumy/(n);
                 double sum=0.0D;
                 for(int i=0; i<n; i++){
                         sum+=(xx[i]-meanx)*(yy[i]-meany);
@@ -6647,8 +6647,8 @@ public class Stat extends ArrayMaths{
         public static float covariance(float[] xx, float[] yy){
                 int n = xx.length;
                 if(n!=yy.length)throw new IllegalArgumentException("length of x variable array, " + n + " and length of y array, " + yy.length + " are different");
-                float denom = (float)(n-1);
-                if(Stat.nFactorOptionS)denom = (float)n;
+                float denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
 
                 float sumx=0.0F, meanx=0.0F;
                 float sumy=0.0F, meany=0.0F;
@@ -6656,8 +6656,8 @@ public class Stat extends ArrayMaths{
                         sumx+=xx[i];
                         sumy+=yy[i];
                 }
-                meanx=sumx/((float)n);
-                meany=sumy/((float)n);
+                meanx=sumx/(n);
+                meany=sumy/(n);
                 float sum=0.0F;
                 for(int i=0; i<n; i++){
                         sum+=(xx[i]-meanx)*(yy[i]-meany);
@@ -6669,20 +6669,20 @@ public class Stat extends ArrayMaths{
         public static double covariance(int[] xx, int[] yy){
                 int n = xx.length;
                 if(n!=yy.length)throw new IllegalArgumentException("length of x variable array, " + n + " and length of y array, " + yy.length + " are different");
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
 
                 double sumx=0.0D, meanx=0.0D;
                 double sumy=0.0D, meany=0.0D;
                 for(int i=0; i<n; i++){
-                        sumx+=(double)xx[i];
-                        sumy+=(double)yy[i];
+                        sumx+=xx[i];
+                        sumy+=yy[i];
                 }
-                meanx=sumx/((double)n);
-                meany=sumy/((double)n);
+                meanx=sumx/(n);
+                meany=sumy/(n);
                 double sum=0.0D;
                 for(int i=0; i<n; i++){
-                        sum+=((double)xx[i]-meanx)*((double)yy[i]-meany);
+                        sum+=(xx[i]-meanx)*(yy[i]-meany);
                 }
                 return sum/(denom);
         }
@@ -6691,20 +6691,20 @@ public class Stat extends ArrayMaths{
         public static double covariance(long[] xx, long[] yy){
                 int n = xx.length;
                 if(n!=yy.length)throw new IllegalArgumentException("length of x variable array, " + n + " and length of y array, " + yy.length + " are different");
-                double denom = (double)(n-1);
-                if(Stat.nFactorOptionS)denom = (double)n;
+                double denom = n-1;
+                if(Stat.nFactorOptionS)denom = n;
 
                 double sumx=0.0D, meanx=0.0D;
                 double sumy=0.0D, meany=0.0D;
                 for(int i=0; i<n; i++){
-                        sumx+=(double)xx[i];
-                        sumy+=(double)yy[i];
+                        sumx+=xx[i];
+                        sumy+=yy[i];
                 }
-                meanx=sumx/((double)n);
-                meany=sumy/((double)n);
+                meanx=sumx/(n);
+                meany=sumy/(n);
                 double sum=0.0D;
                 for(int i=0; i<n; i++){
-                        sum+=((double)xx[i]-meanx)*((double)yy[i]-meany);
+                        sum+=(xx[i]-meanx)*(yy[i]-meany);
                 }
                 return sum/(denom);
         }
@@ -6792,8 +6792,8 @@ public class Stat extends ArrayMaths{
             double[] xx = new double[n];
             double[] yy = new double[n];
             for(int i=0; i<n; i++){
-                xx[i] = (double)x[i];
-                yy[i] = (double)y[i];
+                xx[i] = x[i];
+                yy[i] = y[i];
             }
             return (float)Stat.corrCoeff(xx, yy);
         }
@@ -6807,8 +6807,8 @@ public class Stat extends ArrayMaths{
             double[] xx = new double[n];
             double[] yy = new double[n];
             for(int i=0; i<n; i++){
-                xx[i] = (double)x[i];
-                yy[i] = (double)y[i];
+                xx[i] = x[i];
+                yy[i] = y[i];
             }
             return Stat.corrCoeff(xx, yy);
         }
@@ -6848,7 +6848,7 @@ public class Stat extends ArrayMaths{
         // f(1,0) - element10 - frequency of x = 1 and y = 0
         // f(1,1) - element11 - frequency of x and y both = 0
         public static double corrCoeff(int element00, int element01, int element10, int element11){
-            double sampleR = ((double)(element00*element11 - element01*element10))/Math.sqrt((double)((element00+element01)*(element10+element11)*(element00+element10)*(element01+element11)));
+            double sampleR = (element00*element11 - element01*element10)/Math.sqrt((element00+element01)*(element10+element11)*(element00+element10)*(element01+element11));
 
             // Check for rounding error
             if(sampleR>1.0){
@@ -6873,10 +6873,10 @@ public class Stat extends ArrayMaths{
         // F(1,0) - frequency of x = 1 and y = 0
         // F(1,1) - frequency of x and y both = 0
         public static double corrCoeff(int[][] freqMatrix){
-            double element00 = (double)freqMatrix[0][0];
-            double element01 = (double)freqMatrix[0][1];
-            double element10 = (double)freqMatrix[1][0];
-            double element11 = (double)freqMatrix[1][1];
+            double element00 = freqMatrix[0][0];
+            double element01 = freqMatrix[0][1];
+            double element10 = freqMatrix[1][0];
+            double element11 = freqMatrix[1][1];
             double sampleR = ((element00*element11 - element01*element10))/Math.sqrt(((element00+element01)*(element10+element11)*(element00+element10)*(element01+element11)));
 
             // Check for rounding error
@@ -6909,7 +6909,7 @@ public class Stat extends ArrayMaths{
             CorrCoeff cc = new CorrCoeff();
 
             // Assign values to constant in the function
-            cc.a = ((double)nu - 2.0D)/2.0D;
+            cc.a = (nu - 2.0D)/2.0D;
 
 
             double integral = Integration.gaussQuad(cc, Math.abs(rCoeff), 1.0D, 128);
@@ -6929,7 +6929,7 @@ public class Stat extends ArrayMaths{
         public static double corrCoeffPDF(double rCoeff, int nu){
             if(Math.abs(rCoeff)>1.0D)throw new IllegalArgumentException("|Correlation coefficient| > 1 :  " + rCoeff);
 
-            double a = ((double)nu - 2.0D)/2.0D;
+            double a = (nu - 2.0D)/2.0D;
             double y = Math.pow((1.0D - Fmath.square(rCoeff)),a);
 
             double preterm = Math.exp(Stat.logGamma((nu+1.0D)/2.0)-Stat.logGamma(nu/2.0D))/Math.sqrt(Math.PI);
@@ -6941,7 +6941,7 @@ public class Stat extends ArrayMaths{
         public static double corrCoeffPdf(double rCoeff, int nu){
             if(Math.abs(rCoeff)>1.0D)throw new IllegalArgumentException("|Correlation coefficient| > 1 :  " + rCoeff);
 
-            double a = ((double)nu - 2.0D)/2.0D;
+            double a = (nu - 2.0D)/2.0D;
             double y = Math.pow((1.0D - Fmath.square(rCoeff)),a);
 
             double preterm = Math.exp(Stat.logGamma((nu+1.0D)/2.0)-Stat.logGamma(nu/2.0D))/Math.sqrt(Math.PI);
@@ -7562,7 +7562,7 @@ public class Stat extends ArrayMaths{
             double span = dmax - dmin;
             double binZero = dmin;
             int nBins = (int) Math.ceil(span/binWidth);
-            double histoSpan = ((double)nBins)*binWidth;
+            double histoSpan = (nBins)*binWidth;
             double rem = histoSpan - span;
             if(rem>=0){
                 binZero -= rem/2.0D;
@@ -7575,7 +7575,7 @@ public class Stat extends ArrayMaths{
                     int iTest = 0;
                     while(testBw){
                        binWidth += incr;
-                       histoSpan = ((double)nBins)*binWidth;
+                       histoSpan = (nBins)*binWidth;
                         rem = histoSpan - span;
                         if(rem<0){
                             iTest++;
@@ -7638,7 +7638,7 @@ public class Stat extends ArrayMaths{
             double[][] results = histogramBins(data, binWidth, binZero);
             int nBins = results[0].length;
             int nPoints = nBins*3+1;
-            double[][] cdata = PlotGraph.data(1, nPoints);
+            double[][] cdata = Plot.data(1, nPoints);
             cdata[0][0]=binZero;
             cdata[1][0]=0.0D;
             int k=1;
@@ -7679,7 +7679,7 @@ public class Stat extends ArrayMaths{
             double dmax = Fmath.maximum(data);
             double span = dmax - dmin;
             int nBins = (int) Math.ceil(span/binWidth);
-            double rem = ((double)nBins)*binWidth-span;
+            double rem = (nBins)*binWidth-span;
             double binZero =dmin-rem/2.0D;
             return Stat.histogramBinsPlot(data, binWidth, binZero, xLegend);
         }
@@ -7688,7 +7688,7 @@ public class Stat extends ArrayMaths{
 
         // UNIFORM ORDER STATISTIC MEDIANS
         public static double[] uniformOrderStatisticMedians(int n){
-            double nn = (double)n;
+            double nn = n;
             double[] uosm = new double[n];
             uosm[n-1] = Math.pow(0.5, 1.0/nn);
             uosm[0] = 1.0 - uosm[n-1];
@@ -8185,7 +8185,7 @@ public class Stat extends ArrayMaths{
 
                     while(check){
                         ++i;
-                        ii = (double)i;
+                        ii = i;
                         numer = -ii*(ii - a);
                         denom += 2.0D;
                         first = numer*first + denom;
@@ -8405,11 +8405,11 @@ public class Stat extends ArrayMaths{
         // Erlang distribution
         // Cumulative distribution function
         public static double erlangCDF(double lambda, int kay, double upperLimit){
-            return gammaCDF(0.0D, 1.0D/lambda, (double)kay, upperLimit);
+            return gammaCDF(0.0D, 1.0D/lambda, kay, upperLimit);
         }
 
         public static double erlangCDF(double lambda, long kay, double upperLimit){
-            return gammaCDF(0.0D, 1.0D/lambda, (double)kay, upperLimit);
+            return gammaCDF(0.0D, 1.0D/lambda, kay, upperLimit);
         }
 
         public static double erlangCDF(double lambda, double kay, double upperLimit){
@@ -8420,11 +8420,11 @@ public class Stat extends ArrayMaths{
         // Erlang distribution
         // probablity density function
         public static double erlangPDF(double lambda, int kay, double x){
-            return  gammaPDF(0.0D, 1.0D/lambda, (double)kay, x);
+            return  gammaPDF(0.0D, 1.0D/lambda, kay, x);
         }
 
         public static double erlangPDF(double lambda, long kay, double x){
-            return  gammaPDF(0.0D, 1.0D/lambda, (double)kay, x);
+            return  gammaPDF(0.0D, 1.0D/lambda, kay, x);
         }
 
         public static double erlangPDF(double lambda, double kay, double x){
@@ -8437,12 +8437,12 @@ public class Stat extends ArrayMaths{
         // mean
         public static double erlangMean(double lambda, int kay){
             if(kay<1)throw new IllegalArgumentException("The rate parameter, " + kay + "must be equal to or greater than one");
-            return (double)kay/lambda;
+            return kay/lambda;
         }
 
         public static double erlangMean(double lambda, long kay){
             if(kay<1)throw new IllegalArgumentException("The rate parameter, " + kay + "must be equal to or greater than one");
-            return (double)kay/lambda;
+            return kay/lambda;
         }
 
         public static double erlangMean(double lambda, double kay){
@@ -8456,14 +8456,14 @@ public class Stat extends ArrayMaths{
         public static double erlangMode(double lambda, int kay){
             if(kay<1)throw new IllegalArgumentException("The rate parameter, " + kay + "must be equal to or greater than one");
             double mode = Double.NaN;
-            if(kay>=1)mode = ((double)kay-1.0D)/lambda;
+            if(kay>=1)mode = (kay-1.0D)/lambda;
             return mode;
         }
 
         public static double erlangMode(double lambda, long kay){
             if(kay<1)throw new IllegalArgumentException("The rate parameter, " + kay + "must be equal to or greater than one");
             double mode = Double.NaN;
-            if(kay>=1)mode = ((double)kay-1.0D)/lambda;
+            if(kay>=1)mode = (kay-1.0D)/lambda;
             return mode;
         }
 
@@ -8495,12 +8495,12 @@ public class Stat extends ArrayMaths{
         // standard deviation
         public static double erlangStandDev(double lambda, int kay){
             if(kay<1)throw new IllegalArgumentException("The rate parameter, " + kay + "must be equal to or greater than one");
-            return Math.sqrt((double)kay)/lambda;
+            return Math.sqrt(kay)/lambda;
         }
 
         public static double erlangStandDev(double lambda, long kay){
             if(kay<1)throw new IllegalArgumentException("The rate parameter, " + kay + "must be equal to or greater than one");
-            return Math.sqrt((double)kay)/lambda;
+            return Math.sqrt(kay)/lambda;
         }
 
         public static double erlangStandDev(double lambda, double kay){
@@ -8512,12 +8512,12 @@ public class Stat extends ArrayMaths{
         // Returns an array of Erlang random deviates - clock seed
         public static double[] erlangRand(double lambda, int kay, int n){
             if(kay<1)throw new IllegalArgumentException("The rate parameter, " + kay + "must be equal to or greater than one");
-            return gammaRand(0.0D, 1.0D/lambda, (double) kay, n);
+            return gammaRand(0.0D, 1.0D/lambda, kay, n);
         }
 
         public static double[] erlangRand(double lambda, long kay, int n){
             if(kay<1)throw new IllegalArgumentException("The rate parameter, " + kay + "must be equal to or greater than one");
-            return gammaRand(0.0D, 1.0D/lambda, (double) kay, n);
+            return gammaRand(0.0D, 1.0D/lambda, kay, n);
         }
 
         public static double[] erlangRand(double lambda, double kay, int n){
@@ -8529,12 +8529,12 @@ public class Stat extends ArrayMaths{
        // Returns an array of Erlang random deviates - user supplied seed
         public static double[] erlangRand(double lambda, int kay, int n, long seed){
             if(kay<1)throw new IllegalArgumentException("The rate parameter, " + kay + "must be equal to or greater than one");
-            return gammaRand(0.0D, 1.0D/lambda, (double) kay, n, seed);
+            return gammaRand(0.0D, 1.0D/lambda, kay, n, seed);
         }
 
         public static double[] erlangRand(double lambda, long kay, int n, long seed){
             if(kay<1)throw new IllegalArgumentException("The rate parameter, " + kay + "must be equal to or greater than one");
-            return gammaRand(0.0D, 1.0D/lambda, (double) kay, n, seed);
+            return gammaRand(0.0D, 1.0D/lambda, kay, n, seed);
         }
 
         public static double[] erlangRand(double lambda, double kay, int n, long seed){
@@ -8557,7 +8557,7 @@ public class Stat extends ArrayMaths{
                 double denom = 1.0D;
                 double lastTerm = 1.0D;
                 for(int i=1; i<=totalResources; i++){
-                    lastTerm = lastTerm*totalTraffic/(double)i;
+                    lastTerm = lastTerm*totalTraffic/i;
                     denom += lastTerm;
                 }
                 denom = Math.log(denom);
@@ -8653,7 +8653,7 @@ public class Stat extends ArrayMaths{
                 double[] pp = new double[ni];
                 for(int i=0; i<ni; i++){
                     tr[i] = low+i;
-                    trd[i] = (double)tr[i];
+                    trd[i] = tr[i];
                     pp[i] = Stat.erlangBprobability(totalTraffic, tr[i]);
                 }
                 CubicSpline cs = new CubicSpline(trd, pp);
@@ -8735,10 +8735,10 @@ public class Stat extends ArrayMaths{
             while(test){
                 prob = Stat.erlangBprobability(totalTraffic, counter);
                 if(prob<=blockingProbability){
-                    ret[0] = (double)counter;
+                    ret[0] = counter;
                     ret[1] = prob;
                     ret[2] = Stat.erlangBload(blockingProbability, counter);
-                    ret[3] = (double)(counter-1);
+                    ret[3] = counter-1;
                     ret[4] = lastProb;
                     ret[5] = Stat.erlangBload( blockingProbability, counter-1);
                     ret[6] = blockingProbability;
@@ -8844,10 +8844,10 @@ public class Stat extends ArrayMaths{
             while(test){
                 prob = Stat.erlangCprobability(totalTraffic, counter);
                 if(prob<=nonZeroDelayProbability){
-                    ret[0] = (double)counter;
+                    ret[0] = counter;
                     ret[1] = prob;
                     ret[2] = Stat.erlangCload(nonZeroDelayProbability, counter);
-                    ret[3] = (double)(counter-1);
+                    ret[3] = counter-1;
                     ret[4] = lastProb;
                     ret[5] = Stat.erlangCload(nonZeroDelayProbability, counter-1);
                     ret[6] = nonZeroDelayProbability;
@@ -8997,12 +8997,12 @@ public class Stat extends ArrayMaths{
                 prob = Stat.engsetProbability(offeredTraffic, counter, numberOfSources);
                 if(prob<=blockingProbability){
 
-                    ret[0] = (double)counter;
+                    ret[0] = counter;
                     ret[1] = prob;
-                    ret[2] = Stat.engsetLoad(blockingProbability, (double)counter, numberOfSources);
-                    ret[3] = (double)(counter-1);
+                    ret[2] = Stat.engsetLoad(blockingProbability, counter, numberOfSources);
+                    ret[3] = counter-1;
                     ret[4] = lastProb;
-                    ret[5] = Stat.engsetLoad( blockingProbability, (double)(counter-1), numberOfSources);
+                    ret[5] = Stat.engsetLoad( blockingProbability, counter-1, numberOfSources);
                     ret[6] = blockingProbability;
                     ret[7] = offeredTraffic;
                     ret[8] = numberOfSources;
@@ -9048,13 +9048,13 @@ public class Stat extends ArrayMaths{
                 prob = Stat.engsetProbability(offeredTraffic, resources, counter);
                 if(prob>=blockingProbability){
 
-                    ret[0] = (double)counter;
+                    ret[0] = counter;
                     ret[1] = prob;
-                    ret[2] = Stat.engsetLoad(blockingProbability, resources, (double)counter);
-                    ret[3] = (double)(counter-1L);
+                    ret[2] = Stat.engsetLoad(blockingProbability, resources, counter);
+                    ret[3] = counter-1L;
                     ret[4] = lastProb;
                     if((counter-1L)>=(long)(resources+1L)){
-                        ret[5] = Stat.engsetLoad(blockingProbability, resources, (double)(counter-1L));
+                        ret[5] = Stat.engsetLoad(blockingProbability, resources, counter-1L);
                     }
                     else{
                         ret[5] = Double.NaN;
@@ -9604,7 +9604,7 @@ public class Stat extends ArrayMaths{
 
         // Gaussian (normal) order statistic medians (n points)
         public static double[] gaussianOrderStatisticMedians(double mean, double sigma, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] gosm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -9996,7 +9996,7 @@ public class Stat extends ArrayMaths{
         // LogNormal order statistic medians (n points)
         // Three parametrs
         public static double[] logNormalOrderStatisticMedians(double alpha, double beta, double gamma, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] lnosm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -10172,7 +10172,7 @@ public class Stat extends ArrayMaths{
 
         // Logistic order statistic medians (n points)
         public static double[] logisticOrderStatisticMedians(double mu, double beta, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] losm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -10183,7 +10183,7 @@ public class Stat extends ArrayMaths{
 
         // Logistic order statistic medians (n points)
         public static double[] logisticTwoParOrderStatisticMedians(double mu, double beta, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] losm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -10321,7 +10321,7 @@ public class Stat extends ArrayMaths{
 
         // Lorentzian order statistic medians (n points)
         public static double[] lorentzianOrderStatisticMedians(double mu, double gamma, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] losm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -10338,7 +10338,7 @@ public class Stat extends ArrayMaths{
         // mean  = mean of the Poisson distribution
         public static double poissonCDF(int k, double mean){
                 if(k<1)throw new IllegalArgumentException("k must be an integer greater than or equal to 1");
-                return Stat.incompleteGammaComplementary((double) k, mean);
+                return Stat.incompleteGammaComplementary(k, mean);
         }
 
         // Poisson Cumulative Distribution Function
@@ -10347,7 +10347,7 @@ public class Stat extends ArrayMaths{
         // mean  = mean of the Poisson distribution
         public static double poissonProb(int k, double mean){
                 if(k<1)throw new IllegalArgumentException("k must be an integer greater than or equal to 1");
-                return Stat.incompleteGammaComplementary((double) k, mean);
+                return Stat.incompleteGammaComplementary(k, mean);
         }
 
         // Poisson Probability Density Function
@@ -10442,13 +10442,13 @@ public class Stat extends ArrayMaths{
         // nu  =  the degrees of freedom
         public static double chiSquareCDF(double chiSquare, int nu){
                 if(nu<=0)throw new IllegalArgumentException("The degrees of freedom [nu], " + nu + ", must be greater than zero");
-                return Stat.incompleteGamma((double)nu/2.0D, chiSquare/2.0D);
+                return Stat.incompleteGamma(nu/2.0D, chiSquare/2.0D);
         }
 
         // retained for compatability
         public static double chiSquareProb(double chiSquare, int nu){
                 if(nu<=0)throw new IllegalArgumentException("The degrees of freedom [nu], " + nu + ", must be greater than zero");
-                return Stat.incompleteGamma((double)nu/2.0D, chiSquare/2.0D);
+                return Stat.incompleteGamma(nu/2.0D, chiSquare/2.0D);
         }
 
         // Chi-Square Inverse Cumulative Distribution Function
@@ -10515,7 +10515,7 @@ public class Stat extends ArrayMaths{
         // nu  =  the degrees of freedom
         public static double chiSquarePDF(double chiSquare, int nu){
                 if(nu<=0)throw new IllegalArgumentException("The degrees of freedom [nu], " + nu + ", must be greater than zero");
-                double dnu = (double) nu;
+                double dnu = nu;
                 return Math.pow(0.5D, dnu/2.0D)*Math.pow(chiSquare, dnu/2.0D - 1.0D)*Math.exp(-chiSquare/2.0D)/Stat.gammaFunction(dnu/2.0D);
         }
 
@@ -10538,7 +10538,7 @@ public class Stat extends ArrayMaths{
         // nu  =  the degrees of freedom
         public static double chiSquareMean(int nu){
                 if(nu<=0)throw new IllegalArgumentException("The degrees of freedom [nu], " + nu + ", must be greater than zero");
-                return (double)nu;
+                return nu;
         }
 
         // Chi-Square Distribution Mean
@@ -10546,7 +10546,7 @@ public class Stat extends ArrayMaths{
         public static double chiSquareMode(int nu){
                 if(nu<=0)throw new IllegalArgumentException("The degrees of freedom [nu], " + nu + ", must be greater than zero");
                 double mode = 0.0D;
-                if(nu>=2)mode = (double)nu - 2.0D;
+                if(nu>=2)mode = nu - 2.0D;
                 return mode;
         }
 
@@ -10561,7 +10561,7 @@ public class Stat extends ArrayMaths{
         // nu  =  the degrees of freedom
         public static double chiSquareStandDev(int nu){
                 if(nu<=0)throw new IllegalArgumentException("The degrees of freedom [nu], " + nu + ", must be greater than zero");
-                double dnu = (double) nu;
+                double dnu = nu;
                 return Math.sqrt(2.0D*dnu);
         }
 
@@ -10713,7 +10713,7 @@ public class Stat extends ArrayMaths{
 	                // use rejection method
 		            if(nTrials != nOld) {
 		                // if nTrials has changed compute useful quantities
-			            enTrials = (double)nTrials;
+			            enTrials = nTrials;
 			            oldGamma = Stat.logGamma(enTrials + 1.0D);
 			            nOld = nTrials;
 		            }
@@ -10799,7 +10799,7 @@ public class Stat extends ArrayMaths{
 	                // use rejection method
 		            if(nTrials != nOld) {
 		                // if nTrials has changed compute useful quantities
-			            enTrials = (double)nTrials;
+			            enTrials = nTrials;
 			            oldGamma = Stat.logGamma(enTrials + 1.0D);
 			            nOld = nTrials;
 		            }
@@ -10841,8 +10841,8 @@ public class Stat extends ArrayMaths{
             if(df1<=0)throw new IllegalArgumentException("the degrees of freedom, nu1, " + df1 + ", must be greater than zero");
             if(df2<=0)throw new IllegalArgumentException("the degrees of freedom, nu2, " + df2 + ", must be greater than zero");
             if(fValue<0)throw new IllegalArgumentException("the F-ratio, " + fValue + ", must be greater than or equal to zero");
-            double ddf1 = (double)df1;
-            double ddf2 = (double)df2;
+            double ddf1 = df1;
+            double ddf2 = df2;
             double x = ddf2/(ddf2+ddf1*fValue);
             return Stat.regularisedBetaFunction(df2/2.0D, df1/2.0D, x);
         }
@@ -10852,8 +10852,8 @@ public class Stat extends ArrayMaths{
             if(df1<=0)throw new IllegalArgumentException("the degrees of freedom, nu1, " + df1 + ", must be greater than zero");
             if(df2<=0)throw new IllegalArgumentException("the degrees of freedom, nu2, " + df2 + ", must be greater than zero");
             if(fValue<0)throw new IllegalArgumentException("the F-ratio, " + fValue + ", must be greater than or equal to zero");
-            double ddf1 = (double)df1;
-            double ddf2 = (double)df2;
+            double ddf1 = df1;
+            double ddf2 = df2;
             double x = ddf2/(ddf2+ddf1*fValue);
             return Stat.regularisedBetaFunction(df2/2.0D, df1/2.0D, x);
         }
@@ -10866,8 +10866,8 @@ public class Stat extends ArrayMaths{
             if(var1<0)throw new IllegalArgumentException("the variance, var1" + var1 + ", must be greater than or equal to zero");
             if(var1<=0)throw new IllegalArgumentException("the variance, var2" + var2 + ", must be greater than zero");
             double fValue = var1/var2;
-            double ddf1 = (double)df1;
-            double ddf2 = (double)df2;
+            double ddf1 = df1;
+            double ddf2 = df2;
             double x = ddf2/(ddf2+ddf1*fValue);
             return Stat.regularisedBetaFunction(df2/2.0D, df1/2.0D, x);
         }
@@ -10879,8 +10879,8 @@ public class Stat extends ArrayMaths{
             if(var1<0)throw new IllegalArgumentException("the variance, var1" + var1 + ", must be greater than or equal to zero");
             if(var1<=0)throw new IllegalArgumentException("the variance, var2" + var2 + ", must be greater than zero");
             double fValue = var1/var2;
-            double ddf1 = (double)df1;
-            double ddf2 = (double)df2;
+            double ddf1 = df1;
+            double ddf2 = df2;
             double x = ddf2/(ddf2+ddf1*fValue);
             return Stat.regularisedBetaFunction(df2/2.0D, df1/2.0D, x);
         }
@@ -10944,7 +10944,7 @@ public class Stat extends ArrayMaths{
 
         // F-distribution order statistic medians (n points)
         public static double[] fDistributionOrderStatisticMedians(int nu1, int nu2, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] gosm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -11102,8 +11102,8 @@ public class Stat extends ArrayMaths{
         // F-distribution pdf
         public double fPDF(double fValue, int nu1, int nu2){
             double numer = Math.pow(nu1*fValue, nu1)*Math.pow(nu2, nu2);
-            double dnu1 = (double)nu1;
-            double dnu2 = (double)nu2;
+            double dnu1 = nu1;
+            double dnu2 = nu2;
             numer /= Math.pow(dnu1*fValue+dnu2, dnu1+dnu2);
             numer = Math.sqrt(numer);
             double denom = fValue*Stat.betaFunction(dnu1/2.0D, dnu2/2.0D);
@@ -11141,7 +11141,7 @@ public class Stat extends ArrayMaths{
         public static double studentT(double tValue, int df){
             if(tValue!=tValue)throw new IllegalArgumentException("argument tValue is not a number (NaN)");
 
-            double ddf = (double)df;
+            double ddf = df;
             double dfterm = (ddf + 1.0D)/2.0D;
             return ((Stat.gamma(dfterm)/Stat.gamma(ddf/2))/Math.sqrt(ddf*Math.PI))*Math.pow(1.0D + tValue*tValue/ddf, -dfterm);
         }
@@ -11155,7 +11155,7 @@ public class Stat extends ArrayMaths{
         public static double studentTpdf(double tValue, int df){
             if(tValue!=tValue)throw new IllegalArgumentException("argument tValue is not a number (NaN)");
 
-            double ddf = (double)df;
+            double ddf = df;
             double dfterm = (ddf + 1.0D)/2.0D;
             return ((Stat.gamma(dfterm)/Stat.gamma(ddf/2))/Math.sqrt(ddf*Math.PI))*Math.pow(1.0D + tValue*tValue/ddf, -dfterm);
         }
@@ -11164,7 +11164,7 @@ public class Stat extends ArrayMaths{
         public static double studentTPDF(double tValue, int df){
             if(tValue!=tValue)throw new IllegalArgumentException("argument tValue is not a number (NaN)");
 
-            double ddf = (double)df;
+            double ddf = df;
             double dfterm = (ddf + 1.0D)/2.0D;
             return ((Stat.gamma(dfterm)/Stat.gamma(ddf/2))/Math.sqrt(ddf*Math.PI))*Math.pow(1.0D + tValue*tValue/ddf, -dfterm);
         }
@@ -11187,7 +11187,7 @@ public class Stat extends ArrayMaths{
                     return 0.0;
                 }
                 else{
-                    double ddf = (double)df;
+                    double ddf = df;
                     double x = ddf/(ddf+tValue*tValue);
                     return 0.5D*(1.0D + (Stat.regularisedBetaFunction(ddf/2.0D, 0.5D, 1) - Stat.regularisedBetaFunction(ddf/2.0D, 0.5D, x))*Fmath.sign(tValue));
                 }
@@ -11206,7 +11206,7 @@ public class Stat extends ArrayMaths{
                     return 0.0;
                 }
                 else{
-                    double ddf = (double)df;
+                    double ddf = df;
                     double x = ddf/(ddf+tValue*tValue);
                     return 0.5D*(1.0D + (Stat.regularisedBetaFunction(ddf/2.0D, 0.5D, 1) - Stat.regularisedBetaFunction(ddf/2.0D, 0.5D, x))*Fmath.sign(tValue));
                 }
@@ -11225,7 +11225,7 @@ public class Stat extends ArrayMaths{
                     return 0.0;
                 }
                 else{
-                    double ddf = (double)df;
+                    double ddf = df;
                     double x = ddf/(ddf+tValue*tValue);
                     return 0.5D*(1.0D + (Stat.regularisedBetaFunction(ddf/2.0D, 0.5D, 1) - Stat.regularisedBetaFunction(ddf/2.0D, 0.5D, x))*Fmath.sign(tValue));
                 }
@@ -11318,7 +11318,7 @@ public class Stat extends ArrayMaths{
 
         // Returns the A(t|n) distribution probabilty
         public static double probAtn(double tValue, int df){
-            double ddf = (double)df;
+            double ddf = df;
             double x = ddf/(ddf+tValue*tValue);
             return 1.0D - Stat.regularisedBetaFunction(ddf/2.0D, 0.5D, x);
         }
@@ -11557,7 +11557,7 @@ public class Stat extends ArrayMaths{
 
         // Gumbel (minimum order statistic) order statistic medians (n points)
         public static double[] gumbelMinOrderStatisticMedians(double mu, double sigma, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] gmosm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -11568,7 +11568,7 @@ public class Stat extends ArrayMaths{
 
         // Gumbel (maximum order statistic) order statistic medians (n points)
         public static double[] gumbelMaxOrderStatisticMedians(double mu, double sigma, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] gmosm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -11719,7 +11719,7 @@ public class Stat extends ArrayMaths{
         // Frechet order statistic medians (n points)
         // Three parameters
         public static double[] frechetOrderStatisticMedians(double mu, double sigma, double gamma, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] fosm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -11960,7 +11960,7 @@ public class Stat extends ArrayMaths{
         // Weibull order statistic medians (n points)
         // Three parameter
         public static double[] weibullOrderStatisticMedians(double mu, double sigma, double gamma, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] wosm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -12119,7 +12119,7 @@ public class Stat extends ArrayMaths{
 
         // Exponential order statistic medians (n points)
         public static double[] exponentialOrderStatisticMedians(double mu, double sigma, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] eosm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -12267,7 +12267,7 @@ public class Stat extends ArrayMaths{
 
         // Rayleigh order statistic medians (n points)
         public static double[] rayleighOrderStatisticMedians(double beta, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] rosm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
@@ -12405,7 +12405,7 @@ public class Stat extends ArrayMaths{
 
         // Pareto order statistic medians (n points)
         public static double[] paretoOrderStatisticMedians(double alpha, double beta, int n){
-            double nn = (double)n;
+            double nn = n;
             double[] posm = new double[n];
             double[] uosm = uniformOrderStatisticMedians(n);
             for(int i=0; i<n; i++){
