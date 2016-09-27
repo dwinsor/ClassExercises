@@ -1,4 +1,3 @@
-
 package headfirst.decorator.io;
 import static org.junit.Assert.*;
 import java.io.BufferedInputStream;
@@ -21,9 +20,7 @@ public class LowerCaseInputStreamTest {
 	@Before
 	public void setUp() throws Exception {
 		// create input stream
-		// lowercaseIS = new LowerCaseInputStream(byteStream);
-		// byteStream = new ByteArrayInputStream(words);
-		words = "This should not be in CAPS";
+		words = "This Should Not Be In CAPS";
 		wordsBytes = words.getBytes();
 		outputStream = new ByteArrayOutputStream(wordsBytes.length);
 		in = new LowerCaseInputStream(new BufferedInputStream(new ByteArrayInputStream(wordsBytes)));
@@ -56,21 +53,19 @@ public class LowerCaseInputStreamTest {
 
 	@Test
 	public void testReadByteArrayIntInt() {
-		int i;
 		byte[] stringBytes = new byte[words.length()];
 		
 		try {
-			i = in.read(stringBytes, 5, words.length()-5);
+			int i = in.read(stringBytes, 5, 6);
 			if (i != -1) {
-				outputStream.write(stringBytes);
+				outputStream.write(stringBytes, 5, 6);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
+		}		
 		outputString = outputStream.toString();
 		System.out.println(outputString);
-		assertEquals(outputString.substring(5), "this should not be in");
+		assertEquals(outputString, "this s");
 		
 	}
 }
