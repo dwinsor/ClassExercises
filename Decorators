@@ -1,1 +1,76 @@
 
+package headfirst.decorator.io;
+import static org.junit.Assert.*;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class LowerCaseInputStreamTest {
+	private ByteArrayOutputStream outputStream;
+	private String outputString;
+	private String words;
+	private byte[] wordsBytes;
+	public InputStream in;
+
+	@Before
+	public void setUp() throws Exception {
+		// create input stream
+		// lowercaseIS = new LowerCaseInputStream(byteStream);
+		// byteStream = new ByteArrayInputStream(words);
+		words = "This should not be in CAPS";
+		wordsBytes = words.getBytes();
+		outputStream = new ByteArrayOutputStream(wordsBytes.length);
+		in = new LowerCaseInputStream(new BufferedInputStream(new ByteArrayInputStream(wordsBytes)));
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		in = null;
+		outputStream = null;
+		words = null;
+	}
+
+	@Test
+	public void testRead() {
+		int i;
+		
+		try {
+			while ((i = in.read()) >= 0) {
+				outputStream.write(i);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		String actual = outputStream.toString();
+		System.out.println(actual);
+		String expected = "this should not be in caps";
+		assertEquals(actual, expected);
+	}
+
+	@Test
+	public void testReadByteArrayIntInt() {
+		int i;
+		byte[] stringBytes = new byte[words.length()];
+		
+		try {
+			i = in.read(stringBytes, 5, words.length()-5);
+			if (i != -1) {
+				outputStream.write(stringBytes);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		outputString = outputStream.toString();
+		System.out.println(outputString);
+		assertEquals(outputString.substring(5), "this should not be in");
+		
+	}
+}
