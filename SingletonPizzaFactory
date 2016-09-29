@@ -13,3 +13,56 @@ public class PizzaTestDrive {
     System.out.println("We ordered a " + pizza.getName() + "\n");
   }
 }
+
+
+____________________________________________________________________________
+
+package headfirst.factory.pizzas;
+
+public class PizzaStore {
+	SimplePizzaFactory factory = SimplePizzaFactory.getInstance();
+
+	public PizzaStore() {
+	}
+
+	public Pizza orderPizza(String type) {
+		Pizza pizza;
+		pizza = factory.createPizza(type);
+		pizza.prepare();
+		pizza.bake();
+		pizza.cut();
+		pizza.box();
+
+		return pizza;
+	}
+
+}
+__________________________________________________________________________________
+
+package headfirst.factory.pizzas;
+
+public class SimplePizzaFactory {
+	private static SimplePizzaFactory uniqueInstance = new SimplePizzaFactory();
+
+	private SimplePizzaFactory() {
+	}
+	
+	public static synchronized SimplePizzaFactory getInstance() {
+		return uniqueInstance;		
+	}
+
+	public Pizza createPizza(String type) {
+		Pizza pizza = null;
+		
+		if (type.equals("cheese")) {
+			pizza = new CheesePizza();
+		} else if (type.equals("pepperoni")) {
+			pizza = new PepperoniPizza();
+		} else if (type.equals("clam")) {
+			pizza = new ClamPizza();
+		} else if (type.equals("veggie")) {
+			pizza = new VeggiePizza();
+		}
+		return pizza;
+	}
+}
