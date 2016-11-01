@@ -1,0 +1,185 @@
+
+public class CarTestDriver {
+	
+	public static void main(String args[]) {
+		CarComponent car1 = new Car("2016 CR-Z EX", "Manual");
+		
+		CarComponent interiorColor = new CarItem("InteriorColor", "Black/Orange", 0.0);
+		CarComponent exteriorColor = new CarItem("ExteriorColor", "Milano Red", 0.0);
+		CarComponent tailgateSpoiler = new CarItem("Tailgate Spoiler", "", 430.00);
+		CarComponent floorMats = new CarItem("All Season Floor Mats", "", 99.00);
+		CarComponent destAndHandle = new CarItem("Destination and handling", "", 835.00);
+		
+		car1.add(interiorColor);
+		car1.add(exteriorColor);
+		car1.add(tailgateSpoiler);
+		car1.add(floorMats);
+		car1.add(destAndHandle);
+		
+		CarComponent summary = new Car("Summary", "Summary of Car");
+		summary.add(car1);
+		
+		
+		Client client = new Client(summary);
+		
+		client.printCarList();	
+		
+	}
+
+}
+--------------------------------------------------------------------------
+
+
+public class Client {
+	CarComponent allCars;
+	
+	public Client(CarComponent allCars) {
+		this.allCars = allCars;
+	}
+	
+	public void printCarList() {
+		allCars.print();
+	}
+
+}
+
+--------------------------------------------------------------------------
+
+
+public abstract class CarComponent {
+	public void add(CarComponent carComponent) {
+		throw new UnsupportedOperationException();
+		
+	}
+	
+	public void remove(CarComponent carComponent) {
+		throw new UnsupportedOperationException();
+	}
+	
+	public CarComponent getChild(int i) {
+		throw new UnsupportedOperationException();
+	}
+	
+	public String getName() {
+		throw new UnsupportedOperationException();
+	}
+	
+	public String getDescription() {
+		throw new UnsupportedOperationException();
+	}
+	
+	public String getInteriorColor() {
+		throw new UnsupportedOperationException();
+	}
+	
+	public String getExteriorColor() {
+		throw new UnsupportedOperationException();
+	}
+	
+	public double getPrice() {
+		throw new UnsupportedOperationException();
+	}
+	
+	public void print() {
+		throw new UnsupportedOperationException();
+	}
+
+}
+
+--------------------------------------------------------------------------
+import java.util.ArrayList;
+
+public class CarItem extends CarComponent {
+	ArrayList<CarComponent> carComponents = new ArrayList<CarComponent>();
+	String name;
+	boolean manual;
+	double price;
+	String exColor;
+	String intColor;
+	
+	public CarItem(String name, String description, double price) {
+		this.name = name;
+		this.manual = manual;
+		this.price = price;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public boolean getManual() {
+		return manual;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public void print() {
+		System.out.print(" " + getName());
+		System.out.println(", " + getPrice());
+		System.out.println("   -- " + getDescription());
+	}
+
+
+}
+
+--------------------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Car extends CarComponent {
+	ArrayList<CarComponent> carComponents = new ArrayList<CarComponent>();
+	String name;
+	String description;
+	
+	public Car(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
+	
+	public void add(CarComponent carComponent) {
+		carComponents.add(carComponent);
+	}
+	
+	public void remove(CarComponent carComponent) {
+		carComponents.remove(carComponent);
+	}
+	
+	public CarComponent getChild(int i) {
+		return carComponents.get(i);
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void print() {
+		System.out.println("Summary");
+		System.out.println("Model");
+		System.out.println(getName() + "\t" + "Manual \t" + getPrice());
+		System.out.println("Colors");
+		System.out.println("Exterior: " + getExteriorColor());
+		System.out.println("Interior: " + getInteriorColor());
+		System.out.println("Accessorries");
+		System.out.println("Exterior");
+		System.out.println("Tailgate Spoiler \t \t" + getPrice());
+		System.out.println("Interior");
+		System.out.println("All Season Floor Mats \t \t" + getPrice());
+		System.out.println("Destination and handling \t \t" + getPrice());
+		System.out.println("\t \t Total MSRP as built " + getPrice());
+		
+		Iterator<CarComponent> iterator = carComponents.iterator();
+		while (iterator.hasNext()) {
+			CarComponent carComponent = iterator.next();
+			carComponent.print();
+		}
+	}
+
+}
+
