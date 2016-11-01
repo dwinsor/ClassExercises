@@ -1,0 +1,97 @@
+package edu.elon.subway;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class FiniteStateMachineTest {
+	FiniteStateMachine fsm;
+
+	@Before
+	public void setUp() throws Exception {
+		fsm = new FiniteStateMachine(true);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		fsm = null;
+	}
+
+	@Test
+	public void testLockedCoinEvent() {
+		String actual = fsm.coinEvent();
+		String expected = "Machine is now unlocked";
+		assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void testUnlockedCoinEvent() {
+		fsm = new FiniteStateMachine(false);
+		String actual = fsm.coinEvent();
+		String expected = "Thank you";
+		assertEquals(actual, expected);
+	}
+
+	@Test
+	public void testLockedPassEvent() {
+		String actual = fsm.passEvent();
+		String expected = "Alarm: Cannot pass through a locked state!";
+		assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void testUnlockedPassEvent() {
+		fsm = new FiniteStateMachine(false);
+		String actual = fsm.passEvent();
+		String expected = "Machine is now locked";
+		assertEquals(actual, expected);
+	}
+
+}
+
+--------------------------------------------------------------------------
+package edu.elon.subway;
+
+public class FiniteStateMachine {
+	private String lightMessage;
+	
+	public enum MachineState {
+		UNLOCKED, LOCKED
+	};
+	
+	private MachineState state = MachineState.LOCKED;
+	private boolean locked;
+	
+	public FiniteStateMachine(boolean locked) {
+		this.locked = locked;
+		if (locked) {
+			state = MachineState.LOCKED;
+		} else {
+			state = MachineState.UNLOCKED;
+		}
+	}
+	
+	public String coinEvent() {
+		if (state == MachineState.LOCKED) {
+			state = MachineState.UNLOCKED;
+			lightMessage = "Machine is now unlocked";
+		} else if (state == MachineState.UNLOCKED) {
+			lightMessage = "Thank you";
+		}
+		return lightMessage;
+		
+	}
+	
+	public String passEvent() {
+		if (state == MachineState.UNLOCKED) {
+			state = MachineState.LOCKED;
+			lightMessage = "Machine is now locked";
+		} else if (state == MachineState.LOCKED) {
+			lightMessage = "Alarm: Cannot pass through a locked state!";
+		}
+		return lightMessage;
+	}
+
+}
