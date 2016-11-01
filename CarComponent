@@ -1,78 +1,64 @@
-
 public class CarTestDriver {
 	
 	public static void main(String args[]) {
-		CarComponent car1 = new Car("2016 CR-Z EX", "Manual");
-		
-		CarComponent interiorColor = new CarItem("InteriorColor", "Black/Orange", 0.0);
-		CarComponent exteriorColor = new CarItem("ExteriorColor", "Milano Red", 0.0);
+		CarComponent hondaCar = new Car("2016 CR-Z EX", "Manual", 22140.00);
+		CarComponent exteriorColor = new CarItem("Exterior: Milano Red", "", 0.0);
+		CarComponent interiorColor = new CarItem("Interior: Black/Orange", "", 0.0);
 		CarComponent tailgateSpoiler = new CarItem("Tailgate Spoiler", "", 430.00);
 		CarComponent floorMats = new CarItem("All Season Floor Mats", "", 99.00);
 		CarComponent destAndHandle = new CarItem("Destination and handling", "", 835.00);
 		
-		car1.add(interiorColor);
-		car1.add(exteriorColor);
-		car1.add(tailgateSpoiler);
-		car1.add(floorMats);
-		car1.add(destAndHandle);
+		hondaCar.add(exteriorColor);
+		hondaCar.add(interiorColor);
+		hondaCar.add(tailgateSpoiler);
+		hondaCar.add(floorMats);
+		hondaCar.add(destAndHandle);
 		
-		CarComponent summary = new Car("Summary", "Summary of Car");
-		summary.add(car1);
-		
-		
-		Client client = new Client(summary);
-		
-		client.printCarList();	
+		//summary.add(hondaCar);
+				
+		//Client client = new Client(summary);		
+		//client.printCarSummary();	
 		
 	}
 
 }
+
 --------------------------------------------------------------------------
 
 
 public class Client {
-	CarComponent allCars;
+	CarComponent carSummary;
 	
-	public Client(CarComponent allCars) {
-		this.allCars = allCars;
+	public Client(CarComponent carSummary) {
+		this.carSummary = carSummary;
 	}
 	
-	public void printCarList() {
-		allCars.print();
+	public void printCarSummary() {
+		carSummary.print();
 	}
 
 }
-
 --------------------------------------------------------------------------
 
 
 public abstract class CarComponent {
 	public void add(CarComponent carComponent) {
 		throw new UnsupportedOperationException();
-		
 	}
-	
+
 	public void remove(CarComponent carComponent) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public CarComponent getChild(int i) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public String getName() {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public String getDescription() {
-		throw new UnsupportedOperationException();
-	}
-	
-	public String getInteriorColor() {
-		throw new UnsupportedOperationException();
-	}
-	
-	public String getExteriorColor() {
 		throw new UnsupportedOperationException();
 	}
 	
@@ -80,26 +66,31 @@ public abstract class CarComponent {
 		throw new UnsupportedOperationException();
 	}
 	
+	public String getColors() {
+		throw new UnsupportedOperationException();
+	}
+	
+	public String getAccessories() {
+		throw new UnsupportedOperationException();
+	}
+
 	public void print() {
 		throw new UnsupportedOperationException();
 	}
 
 }
-
 --------------------------------------------------------------------------
 import java.util.ArrayList;
 
 public class CarItem extends CarComponent {
 	ArrayList<CarComponent> carComponents = new ArrayList<CarComponent>();
 	String name;
-	boolean manual;
+	String description;
 	double price;
-	String exColor;
-	String intColor;
 	
 	public CarItem(String name, String description, double price) {
 		this.name = name;
-		this.manual = manual;
+		this.description = description;
 		this.price = price;
 	}
 	
@@ -107,8 +98,11 @@ public class CarItem extends CarComponent {
 		return name;
 	}
 	
-	public boolean getManual() {
-		return manual;
+	public String getDescription() {
+		if (description.equals(null)) {
+			description = "";
+		}
+		return description;
 	}
 	
 	public double getPrice() {
@@ -117,11 +111,14 @@ public class CarItem extends CarComponent {
 	
 	public void print() {
 		System.out.print(" " + getName());
-		System.out.println(", " + getPrice());
-		System.out.println("   -- " + getDescription());
+		System.out.print("\t" + getDescription());
+		if (getPrice() == 0.0) {
+			System.out.println("");
+		} else {
+			System.out.print("\t" + getPrice());
+		}
 	}
-
-
+}
 }
 
 --------------------------------------------------------------------------
@@ -132,13 +129,16 @@ import java.util.Iterator;
 public class Car extends CarComponent {
 	ArrayList<CarComponent> carComponents = new ArrayList<CarComponent>();
 	String name;
-	String description;
+	double price;
+	String manualSetting;
+	double totalPrice;
 	
-	public Car(String name, String description) {
+	public Car(String name, String manualSetting, double price) {
 		this.name = name;
-		this.description = description;
+		this.manualSetting = manualSetting;
+		this.price = price;
 	}
-	
+
 	public void add(CarComponent carComponent) {
 		carComponents.add(carComponent);
 	}
@@ -155,31 +155,26 @@ public class Car extends CarComponent {
 		return name;
 	}
 	
-	public String getDescription() {
-		return description;
+	public String getManualSetting() {
+		return manualSetting;
+	}
+	
+	public double getPrice() {
+		return price;
 	}
 	
 	public void print() {
 		System.out.println("Summary");
 		System.out.println("Model");
-		System.out.println(getName() + "\t" + "Manual \t" + getPrice());
-		System.out.println("Colors");
-		System.out.println("Exterior: " + getExteriorColor());
-		System.out.println("Interior: " + getInteriorColor());
-		System.out.println("Accessorries");
-		System.out.println("Exterior");
-		System.out.println("Tailgate Spoiler \t \t" + getPrice());
-		System.out.println("Interior");
-		System.out.println("All Season Floor Mats \t \t" + getPrice());
-		System.out.println("Destination and handling \t \t" + getPrice());
-		System.out.println("\t \t Total MSRP as built " + getPrice());
 		
 		Iterator<CarComponent> iterator = carComponents.iterator();
 		while (iterator.hasNext()) {
 			CarComponent carComponent = iterator.next();
 			carComponent.print();
+			totalPrice = totalPrice + carComponent.getPrice();
 		}
+		
+		System.out.println("\t\t Total MSRP as built " + totalPrice);
 	}
 
 }
-
