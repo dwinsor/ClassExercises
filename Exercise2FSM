@@ -1,0 +1,193 @@
+package edu.elon.subway;
+
+public interface State {
+	public void passAlarm();
+	public void passLock();
+	public void coinUnlock();
+	public void coinThankYou();
+}
+
+
+---------------------------------------------------------------------------
+package edu.elon.subway;
+
+public class FiniteStateMachine {
+	State lockedState;
+	State unlockedState;
+	private State currentState;
+	
+	private String lightMessage;
+	
+//	public enum MachineState {
+//		UNLOCKED, LOCKED
+//	};
+//	
+//	private MachineState state = MachineState.LOCKED;
+//	private boolean locked;
+	
+	public FiniteStateMachine(State state) {
+		lockedState = new LockedState(this);
+		unlockedState = new UnlockedState(this);
+		currentState = state;	
+	}
+
+	
+	public String passAlarm() {
+		return lightMessage;
+		
+	}
+	
+	public String passLock() {
+		return lightMessage;
+
+	}
+	
+	public String coinUnlock() {
+		return lightMessage;
+	}
+	
+	public String coinThankYou() {
+		return lightMessage;
+	}
+
+	void setState(State state) {
+		this.currentState = state;
+	}
+
+
+	public State getState() {
+		return currentState;
+	}
+	
+	public State getUnlockedState() {
+		return unlockedState;
+	}
+	
+	public State getLockedState() {
+		return lockedState;
+	}
+
+}
+
+---------------------------------------------------------------------------
+
+package edu.elon.subway;
+
+public class LockedState implements State {
+	FiniteStateMachine fsm;
+	private String lightMessage;
+	
+	public LockedState(FiniteStateMachine fsm) {
+		this.fsm = fsm;
+	}
+
+	@Override
+	public void passAlarm() {
+		lightMessage = "Alarm: Cannot pass through a locked state!";
+		System.out.println(lightMessage);
+		
+	}
+
+	@Override
+	public void passLock() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void coinUnlock() {
+		fsm.setState(fsm.getUnlockedState());
+		lightMessage = "Machine is now unlocked";
+		System.out.println(lightMessage);
+	}
+
+	@Override
+	public void coinThankYou() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+
+---------------------------------------------------------------------------
+
+package edu.elon.subway;
+
+public class UnlockedState implements State {
+	FiniteStateMachine fsm;
+	private String lightMessage;
+	
+	public UnlockedState(FiniteStateMachine fsm) {
+		this.fsm = fsm;
+	}
+
+	@Override
+	public void passAlarm() {
+		lightMessage = "Alarm: Cannot pass through a locked state!";
+		System.out.println(lightMessage);
+		
+	}
+
+	@Override
+	public void passLock() {
+		fsm.setState(fsm.getLockedState());
+		lightMessage = "Machine is now locked";
+		
+	}
+
+	@Override
+	public void coinUnlock() {
+
+	}
+
+	@Override
+	public void coinThankYou() {
+		lightMessage = "Thank you.";
+		
+	}
+
+}
+
+---------------------------------------------------------------------------
+
+package edu.elon.subway;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class FiniteStateMachineTest {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testPassAlarm() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testPassLock() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCoinUnlock() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCoinThankYou() {
+		fail("Not yet implemented");
+	}
+
+}
+
+---------------------------------------------------------------------------
