@@ -1,45 +1,40 @@
 public class CarTestDriver {
 	
 	public static void main(String args[]) {
-		CarComponent hondaCar = new Car("2016 CR-Z EX", "Manual", 22140.00);
-		CarComponent exteriorColor = new CarItem("Exterior: Milano Red", "", 0.0);
-		CarComponent interiorColor = new CarItem("Interior: Black/Orange", "", 0.0);
-		CarComponent tailgateSpoiler = new CarItem("Tailgate Spoiler", "", 430.00);
-		CarComponent floorMats = new CarItem("All Season Floor Mats", "", 99.00);
-		CarComponent destAndHandle = new CarItem("Destination and handling", "", 835.00);
+		CarComponent summary = new Car("Summary", "", 0.0);
+		CarComponent model = new Car("Model", "", 0.0);
+		CarComponent hondaCar = new CarLeaf("2016 C R-Z EX", "Manual", 22140.00);
+		CarComponent colors = new Car("Colors", "", 0.0);
+		CarComponent exteriorColor = new CarLeaf("Exterior: ","Milano Red", 0.0);
+		CarComponent interiorColor = new Car("Interior: ","Black/Orange", 0.0);
+		CarComponent accessories = new Car("Accessories", "", 0.0);
+		CarComponent exterior = new Car("Exterior", "", 0.0);
+		CarComponent tailgateSpoiler = new CarLeaf("Tailgate Spoiler", "", 430.00);
+		CarComponent interior = new Car("Interior", "", 0.0);
+		CarComponent floorMats = new CarLeaf("All Season Floor Mats", "", 99.00);
+		CarComponent destAndHandle = new Car("Destination and handling", "", 835.00);
 		
-		hondaCar.add(exteriorColor);
-		hondaCar.add(interiorColor);
-		hondaCar.add(tailgateSpoiler);
-		hondaCar.add(floorMats);
-		hondaCar.add(destAndHandle);
+		summary.add(model);
+		model.add(hondaCar);
+		colors.add(exteriorColor);
+		colors.add(interiorColor);
+		model.add(colors);
+		interiorColor.add(accessories);
+		accessories.add(exterior);
+		exterior.add(tailgateSpoiler);
+		exterior.add(interior);
+		interior.add(floorMats);
+		interior.add(destAndHandle);
 		
-		//summary.add(hondaCar);
-				
-		//Client client = new Client(summary);		
-		//client.printCarSummary();	
+		summary.print();		
+		System.out.println("\t \t Total MSRP as built $" + summary.getPrice());
 		
+
 	}
 
 }
 
 --------------------------------------------------------------------------
-
-
-public class Client {
-	CarComponent carSummary;
-	
-	public Client(CarComponent carSummary) {
-		this.carSummary = carSummary;
-	}
-	
-	public void printCarSummary() {
-		carSummary.print();
-	}
-
-}
---------------------------------------------------------------------------
-
 
 public abstract class CarComponent {
 	public void add(CarComponent carComponent) {
@@ -65,14 +60,6 @@ public abstract class CarComponent {
 	public double getPrice() {
 		throw new UnsupportedOperationException();
 	}
-	
-	public String getColors() {
-		throw new UnsupportedOperationException();
-	}
-	
-	public String getAccessories() {
-		throw new UnsupportedOperationException();
-	}
 
 	public void print() {
 		throw new UnsupportedOperationException();
@@ -80,45 +67,40 @@ public abstract class CarComponent {
 
 }
 --------------------------------------------------------------------------
-import java.util.ArrayList;
-
-public class CarItem extends CarComponent {
-	ArrayList<CarComponent> carComponents = new ArrayList<CarComponent>();
+public class CarLeaf extends CarComponent {
 	String name;
 	String description;
 	double price;
-	
-	public CarItem(String name, String description, double price) {
+
+	public CarLeaf(String name, String description, double price) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public String getDescription() {
 		if (description.equals(null)) {
 			description = "";
 		}
 		return description;
 	}
-	
+
 	public double getPrice() {
 		return price;
 	}
-	
+
 	public void print() {
-		System.out.print(" " + getName());
-		System.out.print("\t" + getDescription());
+		System.out.print(getName() + "\t" + getDescription() + "\t");
 		if (getPrice() == 0.0) {
-			System.out.println("");
+			System.out.print("" + "\n");
 		} else {
-			System.out.print("\t" + getPrice());
+			System.out.print("$" + price + "\n");
 		}
 	}
-}
 }
 
 --------------------------------------------------------------------------
@@ -130,51 +112,55 @@ public class Car extends CarComponent {
 	ArrayList<CarComponent> carComponents = new ArrayList<CarComponent>();
 	String name;
 	double price;
-	String manualSetting;
+	String description;
 	double totalPrice;
-	
-	public Car(String name, String manualSetting, double price) {
+
+	public Car(String name, String description, double price) {
 		this.name = name;
-		this.manualSetting = manualSetting;
+		this.description = description;
 		this.price = price;
 	}
 
 	public void add(CarComponent carComponent) {
 		carComponents.add(carComponent);
 	}
-	
+
 	public void remove(CarComponent carComponent) {
 		carComponents.remove(carComponent);
 	}
-	
+
 	public CarComponent getChild(int i) {
 		return carComponents.get(i);
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
-	public String getManualSetting() {
-		return manualSetting;
+
+	public String getDescription() {
+		return description;
 	}
-	
+
 	public double getPrice() {
-		return price;
+		double p = this.price;
+		for (int i = 0; i < carComponents.size(); ++i) {
+			p += carComponents.get(i).getPrice();
+		}
+		return p;
 	}
-	
+
 	public void print() {
-		System.out.println("Summary");
-		System.out.println("Model");
-		
+		System.out.print(getName() + "\t" + getDescription() + "\t");
+		if (price == 0.0) {
+			System.out.print("" + "\n");
+		} else {
+			System.out.print("$" + price + "\n");
+		}
 		Iterator<CarComponent> iterator = carComponents.iterator();
 		while (iterator.hasNext()) {
 			CarComponent carComponent = iterator.next();
 			carComponent.print();
-			totalPrice = totalPrice + carComponent.getPrice();
 		}
-		
-		System.out.println("\t\t Total MSRP as built " + totalPrice);
 	}
 
 }
