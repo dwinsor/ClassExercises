@@ -165,6 +165,7 @@ public class FiniteStateMachineTest {
 	@After
 	public void tearDown() throws Exception {
 		fsm = null;
+		currentState = null;
 	}
 
 	@Test
