@@ -17,14 +17,7 @@ public class FiniteStateMachine {
 	private State currentState;
 	
 	private String lightMessage;
-	
-//	public enum MachineState {
-//		UNLOCKED, LOCKED
-//	};
-//	
-//	private MachineState state = MachineState.LOCKED;
-//	private boolean locked;
-	
+		
 	public FiniteStateMachine(State state) {
 		lockedState = new LockedState(this);
 		unlockedState = new UnlockedState(this);
@@ -159,35 +152,55 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class FiniteStateMachineTest {
+	FiniteStateMachine fsm;
+	State currentState;
+	LockedState locked;
+	UnlockedState unlocked;
 
 	@Before
 	public void setUp() throws Exception {
+		fsm = new FiniteStateMachine(currentState);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		fsm = null;
 	}
 
 	@Test
 	public void testPassAlarm() {
-		fail("Not yet implemented");
+		fsm = new FiniteStateMachine(locked);
+		fsm.passAlarm();
+		State actual = fsm.getState();
+		State expected = locked;
+		assertEquals(actual, expected);
 	}
 
 	@Test
 	public void testPassLock() {
-		fail("Not yet implemented");
+		fsm = new FiniteStateMachine(unlocked);
+		fsm.passLock();
+		State actual = fsm.getState();
+		State expected = locked;
+		assertEquals(actual, expected);
 	}
 
 	@Test
 	public void testCoinUnlock() {
-		fail("Not yet implemented");
+		fsm = new FiniteStateMachine(locked);
+		fsm.coinUnlock();
+		State actual = fsm.getState(); 
+		State expected = unlocked;
+		assertEquals(actual, expected);
 	}
 
 	@Test
 	public void testCoinThankYou() {
-		fail("Not yet implemented");
+		fsm = new FiniteStateMachine(unlocked);
+		fsm.coinThankYou();
+		State actual = fsm.getState();
+		State expected = unlocked;
+		assertEquals(actual, expected);
 	}
 
 }
-
----------------------------------------------------------------------------
