@@ -169,7 +169,7 @@ public class FiniteStateMachineTest {
 
 	@Test
 	public void testPassAlarm() {
-		fsm = new FiniteStateMachine(locked);
+		currentState = locked;
 		fsm.passAlarm();
 		State actual = fsm.getState();
 		State expected = locked;
@@ -178,7 +178,7 @@ public class FiniteStateMachineTest {
 
 	@Test
 	public void testPassLock() {
-		fsm = new FiniteStateMachine(unlocked);
+		currentState = unlocked;
 		fsm.passLock();
 		State actual = fsm.getState();
 		State expected = locked;
@@ -187,7 +187,7 @@ public class FiniteStateMachineTest {
 
 	@Test
 	public void testCoinUnlock() {
-		fsm = new FiniteStateMachine(locked);
+		currentState = locked;
 		fsm.coinUnlock();
 		State actual = fsm.getState(); 
 		State expected = unlocked;
@@ -196,7 +196,7 @@ public class FiniteStateMachineTest {
 
 	@Test
 	public void testCoinThankYou() {
-		fsm = new FiniteStateMachine(unlocked);
+		currentState = unlocked;
 		fsm.coinThankYou();
 		State actual = fsm.getState();
 		State expected = unlocked;
