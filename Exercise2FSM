@@ -17,11 +17,11 @@ public class FiniteStateMachine {
 	private State currentState;
 	
 	private String lightMessage;
-		
-	public FiniteStateMachine(State state) {
+	
+	public FiniteStateMachine() {
 		lockedState = new LockedState(this);
 		unlockedState = new UnlockedState(this);
-		currentState = state;	
+		currentState = lockedState;
 	}
 
 	
@@ -67,7 +67,7 @@ public class FiniteStateMachine {
 package edu.elon.subway;
 
 public class LockedState implements State {
-	FiniteStateMachine fsm;
+	private FiniteStateMachine fsm;
 	private String lightMessage;
 	
 	public LockedState(FiniteStateMachine fsm) {
@@ -83,7 +83,6 @@ public class LockedState implements State {
 
 	@Override
 	public void passLock() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -96,18 +95,18 @@ public class LockedState implements State {
 
 	@Override
 	public void coinThankYou() {
-		// TODO Auto-generated method stub
 		
 	}
 
 }
+
 
 ---------------------------------------------------------------------------
 
 package edu.elon.subway;
 
 public class UnlockedState implements State {
-	FiniteStateMachine fsm;
+	private FiniteStateMachine fsm;
 	private String lightMessage;
 	
 	public UnlockedState(FiniteStateMachine fsm) {
@@ -141,8 +140,8 @@ public class UnlockedState implements State {
 
 }
 
----------------------------------------------------------------------------
 
+---------------------------------------------------------------------------
 package edu.elon.subway;
 
 import static org.junit.Assert.*;
@@ -159,49 +158,47 @@ public class FiniteStateMachineTest {
 
 	@Before
 	public void setUp() throws Exception {
-		fsm = new FiniteStateMachine(currentState);
+		fsm = new FiniteStateMachine();
+		
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		fsm = null;
-		currentState = null;
 	}
 
 	@Test
 	public void testPassAlarm() {
-		currentState = locked;
-		fsm.passAlarm();
+		fsm.getState().passAlarm();
 		State actual = fsm.getState();
-		State expected = locked;
+		State expected = fsm.getLockedState();
 		assertEquals(actual, expected);
 	}
 
 	@Test
 	public void testPassLock() {
-		currentState = unlocked;
-		fsm.passLock();
+		fsm.getState().passLock();
 		State actual = fsm.getState();
-		State expected = locked;
+		State expected = fsm.getLockedState();
 		assertEquals(actual, expected);
 	}
 
 	@Test
 	public void testCoinUnlock() {
-		currentState = locked;
-		fsm.coinUnlock();
+		fsm.getState().coinUnlock();
 		State actual = fsm.getState(); 
-		State expected = unlocked;
+		State expected = fsm.getUnlockedState();
 		assertEquals(actual, expected);
 	}
 
 	@Test
 	public void testCoinThankYou() {
-		currentState = unlocked;
-		fsm.coinThankYou();
+		fsm.getState().coinThankYou();
 		State actual = fsm.getState();
-		State expected = unlocked;
+		State expected = fsm.getLockedState();
 		assertEquals(actual, expected);
 	}
+	
 
 }
+
